@@ -38,12 +38,23 @@
   /* HERO — dark, photo-forward */
   .hero{
     position:relative; min-height:86vh; display:flex; align-items:flex-end; overflow:hidden;
-    background: linear-gradient(180deg, rgba(11,29,44,.25) 0%, rgba(11,29,44,.55) 55%, rgba(11,29,44,.95) 100%),
+    background: linear-gradient(180deg, rgba(11,29,44,.12) 0%, rgba(11,29,44,.28) 55%, rgba(11,29,44,.5) 100%),
                 linear-gradient(200deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
   }
   .hero .skyline{ position:absolute; inset:0; }
   .hero .skyline img{ width:100%; height:100%; object-fit:cover; object-position:center 65%; }
-  .hero .wrap{ position:relative; z-index:2; padding-bottom:80px; }
+  /* width:100% — .hero is a flex container, so the wrap would otherwise
+     shrink-to-fit and center, breaking alignment with the sections below */
+  .hero .wrap{ position:relative; z-index:2; width:100%; padding-bottom:80px; }
+  /* Readability panel — hugs the hero copy from the eyebrow down to the buttons */
+  .hero-panel{
+    width:fit-content; max-width:100%;
+    padding:38px 44px 42px;
+    background:rgba(11,29,44,.62);
+    -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  @media (max-width:800px){ .hero-panel{ padding:28px 24px 30px; } }
   .hero .label{ color:var(--green); margin-bottom:24px; }
   .hero h1{
     font-size:clamp(38px,6vw,74px); line-height:1.04; color:#fff; max-width:900px; margin-bottom:28px;
@@ -123,12 +134,14 @@
       <img src="proj-tucker.jpg" alt="Tucker Tower">
     </div>
     <div class="wrap">
-      <div class="label">General Contracting · Design-Build · CM — Statewide, Florida</div>
-      <h1>Solid People.<br>Solid Work.<br>Solid Relationships.</h1>
-      <p>For more than three decades, BDI Construction has built the schools, homes, and communities Floridians spend their lives in — with the same people you can trust to answer the phone.</p>
-      <div class="btnrow">
-        <a class="btn primary" href="#">View Our Work</a>
-        <a class="btn ghost" href="contact.html">Start a Conversation</a>
+      <div class="hero-panel">
+        <div class="label">General Contracting · Design-Build · CM — Statewide, Florida</div>
+        <h1>Solid People.<br>Solid Work.<br>Solid Relationships.</h1>
+        <p>For more than three decades, BDI Construction has built the schools, homes, and communities Floridians spend their lives in — with the same people you can trust to answer the phone.</p>
+        <div class="btnrow">
+          <a class="btn primary" href="#">View Our Work</a>
+          <a class="btn ghost" href="contact.html">Start a Conversation</a>
+        </div>
       </div>
     </div>
   </section>
