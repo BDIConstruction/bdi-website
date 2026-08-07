@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BDI Construction — Community</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
+  :root{
+    --ink:#15202B; --paper:#FAF9F5; --navy-deep:#0E2233; --navy:#1B3A54;
+    --teal:#4C7C8C; --green:#4FA8D8; --muted:#68737C; --hair:#E4E0D5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Inter',sans-serif; font-weight:300; color:var(--ink); background:#fff; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Fraunces',serif; font-weight:450; }
+  a{color:inherit; text-decoration:none;}
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 48px; }
+  @media (max-width:800px){ .wrap{padding:0 24px;} }
+  .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
+
+  .nav{ border-bottom:1px solid var(--hair); }
+  .nav-inner{ max-width:1140px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
+  .brand{ font-family:'Fraunces',serif; font-style:italic; font-size:20px; color:var(--navy); }
+  .navlinks{ display:flex; gap:38px; }
+  .navlinks .label{ color:var(--muted); }
+  .navlinks > div{ position:relative; }
+  .navlinks a.active .label{ color:var(--navy); }
+  .dropdown{
+    position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:26px;
+    background:#fff; min-width:170px; padding:16px 0; border:1px solid var(--hair);
+    opacity:0; visibility:hidden; transition:all .2s ease; text-align:center;
+  }
+  .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .dropdown a.here{ color:var(--navy); }
+  .dropdown a:hover{ color:var(--navy); }
+  @media (max-width:920px){ .navlinks{display:none;} }
+
+  .pagehead{ position:relative; padding:120px 0 90px; overflow:hidden; }
+  .pagehead .year{
+    position:absolute; top:-6px; right:-2%; font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    font-size:min(11vw, 130px); color:var(--paper); z-index:0; line-height:1; user-select:none;
+  }
+  .pagehead .inner{ position:relative; z-index:1; }
+  .pagehead .label{ color:var(--teal); margin-bottom:20px; }
+  .pagehead h1{ font-size:clamp(38px,5.4vw,64px); font-style:italic; color:var(--navy); }
+  .pagehead .crumbs{ margin-top:22px; }
+  .pagehead .crumbs a{ font-size:12px; letter-spacing:.08em; color:var(--muted); }
+  .pagehead .crumbs a:hover{ color:var(--navy); }
+
+  .intro-block{ max-width:640px; padding:0 0 70px; }
+  .intro-block p{ color:var(--muted); font-size:17px; line-height:1.85; font-weight:300; }
+
+  /* hairline list groups instead of boxed cards */
+  .groups{ border-top:1px solid var(--hair); }
+  .group{ display:grid; grid-template-columns:280px 1fr; gap:60px; padding:44px 0; border-bottom:1px solid var(--hair); }
+  .group h3{ font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); }
+  .group .items{ display:flex; flex-wrap:wrap; gap:10px 0; }
+  .group .items span{
+    font-size:15px; color:var(--muted); font-weight:300; padding:6px 22px 6px 0; position:relative;
+  }
+  .group .items span:not(:last-child)::after{ content:"·"; position:absolute; right:8px; color:var(--hair); }
+  @media (max-width:760px){ .group{ grid-template-columns:1fr; gap:14px; } }
+
+  .gallery{ padding:100px 0; }
+  .gallery .label{ color:var(--teal); margin-bottom:16px; }
+  .gallery h2{ font-size:clamp(26px,3.2vw,34px); font-style:italic; color:var(--navy); margin-bottom:50px; }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+  .gallery-grid .slot{
+    aspect-ratio:1/1; background:var(--paper); display:flex; align-items:center; justify-content:center;
+    font-family:'Inter',sans-serif; font-size:10px; letter-spacing:.14em; color:#C9C4B6; text-transform:uppercase;
+  }
+  .gallery-grid .slot.wide{ grid-column:span 2; }
+  @media (max-width:760px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+
+  footer{ border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
+  footer .label{ color:var(--muted); font-weight:400; }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">BDI Construction</a>
+      <div class="navlinks">
+        <div>
+          <a href="history.html"><span class="label">About Us</span></a>
+          <div class="dropdown">
+            <a href="history.html">History</a>
+            <a href="culture.html">Culture</a>
+            <a class="here" href="community.html">Community</a>
+          </div>
+        </div>
+        <a href="#"><span class="label">Projects</span></a>
+        <a href="expertise.html"><span class="label">Expertise</span></a>
+        <a href="work-with-us.html"><span class="label">Work With Us</span></a>
+        <a href="contact.html"><span class="label">Contact Us</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pagehead">
+    <div class="year">Give Back</div>
+    <div class="wrap inner">
+      <div class="label">About Us</div>
+      <h1>Community</h1>
+      <div class="crumbs"><a href="history.html">History</a> &nbsp;/&nbsp; <a href="culture.html">Culture</a></div>
+    </div>
+  </div>
+
+  <section class="wrap intro-block">
+    <p>From charity events to career fairs, we show up for the communities we build in — not just the buildings themselves. BDI always gives back: we support our clients, and we support our community.</p>
+  </section>
+
+  <section class="groups wrap">
+    <div class="group">
+      <h3>Giving Back</h3>
+      <div class="items">
+        <span>BDI Block Party</span><span>Environmental Stewardship</span><span>Wings for Wishes</span>
+        <span>Women Empowerment</span><span>Twelve Good Men</span><span>The ACE Foundation Gala</span>
+        <span>The Cushman School Gala</span><span>Glory House Miami</span><span>Dolphins Cancer Challenge</span>
+        <span>Coral Gables Clean Up</span>
+      </div>
+    </div>
+    <div class="group">
+      <h3>Charity Golf Tournaments</h3>
+      <div class="items">
+        <span>U-SoA Golf Tournament</span><span>CAI-SEFL Golf Tournament</span><span>SDCC Golf Tournament</span>
+      </div>
+    </div>
+    <div class="group">
+      <h3>Building Talent</h3>
+      <div class="items">
+        <span>FIU Career Fair</span><span>University of Miami Presentation</span>
+        <span>AIA Hard Hat Tour</span><span>MWC Recruiting</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery wrap">
+    <div class="label">In the Community</div>
+    <h2>Photo Gallery</h2>
+    <div class="gallery-grid">
+      <div class="slot wide">Photo</div>
+      <div class="slot">Photo</div>
+      <div class="slot">Photo</div>
+      <div class="slot">Photo</div>
+      <div class="slot">Photo</div>
+      <div class="slot wide">Photo</div>
+    </div>
+  </section>
+
+  <footer><span class="label">© 2026 BDI Construction Company — 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+
+</body>
+</html>
