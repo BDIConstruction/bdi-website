@@ -6,7 +6,6 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
   :root{
-    --chrome:#0B1D2C;
     --ink:#15202B; --paper:#FAF9F5; --navy-deep:#0E2233; --navy:#1B3A54;
     --teal:#4C7C8C; --green:#4FA8D8; --muted:#68737C; --hair:#E4E0D5;
   }
@@ -18,76 +17,80 @@
   @media (max-width:800px){ .wrap{padding:0 24px;} }
   .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
 
-  .nav{ background:var(--chrome); border-bottom:none; }
+  .nav{ background:#fff; border-bottom:1px solid var(--hair); }
   .nav-inner{ max-width:1140px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
-  /* Brand lockup — shared across the site */
-  .brand{ display:flex; align-items:center; gap:13px; }
-  .brand .logomark{ height:26px; width:auto; display:block; }
-  .brand .wordmark{ font-family:'Inter',sans-serif; font-style:normal; font-weight:600; font-size:15px; letter-spacing:.09em; color:#fff; white-space:nowrap; }
-  @media (max-width:520px){ .brand .logomark{height:21px;} .brand .wordmark{font-size:13px;} }
+  /* Brand — logo mark only */
+  .brand{ display:flex; align-items:center; }
+  .brand .logomark{ height:34px; width:auto; display:block; }
+  @media (max-width:520px){ .brand .logomark{height:26px;} }
   .navlinks{ display:flex; gap:38px; }
-  .navlinks .label{ color:rgba(255,255,255,.72); }
-  .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--green); }
+  .navlinks .label{ color:var(--muted); }
+  .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--navy); }
   .navlinks > div{ position:relative; }
-  .navlinks a.active .label{ color:#fff; }
+  .navlinks a.active .label{ color:var(--navy); }
   .dropdown{
     position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:26px;
-    background:var(--chrome); min-width:170px; padding:16px 0; border:1px solid rgba(255,255,255,.14);
+    background:#fff; min-width:170px; padding:16px 0; border:1px solid var(--hair);
     opacity:0; visibility:hidden; transition:all .2s ease; text-align:center;
   }
   .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.72); }
-  .dropdown a.here{ color:#fff; }
-  .dropdown a:hover{ color:var(--green); }
+  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .dropdown a.here{ color:var(--navy); }
+  .dropdown a:hover{ color:var(--navy); }
   @media (max-width:920px){ .navlinks{display:none;} }
 
   .pagehead{ position:relative; padding:120px 0 90px; overflow:hidden; }
   .pagehead .year{
-    position:absolute; top:-6px; right:-2%; font-family:'Fraunces',serif; font-style:italic; font-weight:400;
-    font-size:min(11vw, 130px); color:var(--paper); z-index:0; line-height:1; user-select:none;
+    position:absolute; top:50%; right:4%; transform:translateY(-50%);
+    font-family:'Fraunces',serif; font-weight:400; font-style:italic;
+    font-size:min(11vw, 130px); color:rgba(160,200,235,.20); z-index:0; line-height:1.25;
+    white-space:nowrap; user-select:none;
   }
   .pagehead .inner{ position:relative; z-index:1; }
-  .pagehead .label{ color:var(--teal); margin-bottom:20px; }
-  .pagehead h1{ font-size:clamp(38px,5.4vw,64px); font-style:italic; color:var(--navy); }
-  .pagehead .crumbs{ margin-top:22px; }
-  .pagehead .crumbs a{ font-size:12px; letter-spacing:.08em; color:var(--muted); }
-  .pagehead .crumbs a:hover{ color:var(--navy); }
+  .pagehead .label{ color:var(--green); margin-bottom:20px; }
+  .pagehead h1{ font-size:clamp(38px,5.4vw,64px); font-style:italic; color:#fff; }
+  .pagehead .crumbs{ margin-top:22px; color:rgba(255,255,255,.55); }
+  .pagehead .crumbs a{ font-size:12px; letter-spacing:.08em; color:rgba(255,255,255,.72); }
+  .pagehead .crumbs a:hover{ color:var(--green); }
 
+  /* .intro-block and .groups carry .wrap themselves, so the full-bleed
+     background lives on banding wrappers around them */
+  .band-navy{ background:var(--navy-deep); padding-bottom:70px; }
+  .band-light{ background:#fff; }
   .intro-block{ max-width:640px; padding:0 0 70px; }
-  .intro-block p{ color:var(--muted); font-size:17px; line-height:1.85; font-weight:300; }
+  .intro-block p{ color:rgba(255,255,255,.82); font-size:17px; line-height:1.85; font-weight:300; }
 
   /* hairline list groups instead of boxed cards */
-  .groups{ border-top:1px solid var(--hair); }
-  .group{ display:grid; grid-template-columns:280px 1fr; gap:60px; padding:44px 0; border-bottom:1px solid var(--hair); }
-  .group h3{ font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); }
+  .groups{ border-top:1px solid rgba(255,255,255,.18); }
+  .group{ display:grid; grid-template-columns:280px 1fr; gap:60px; padding:44px 0; border-bottom:1px solid rgba(255,255,255,.18); }
+  .group h3{ font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:#fff; }
   .group .items{ display:flex; flex-wrap:wrap; gap:10px 0; }
   .group .items span{
-    font-size:15px; color:var(--muted); font-weight:300; padding:6px 22px 6px 0; position:relative;
+    font-size:15px; color:rgba(255,255,255,.82); font-weight:300; padding:6px 22px 6px 0; position:relative;
   }
-  .group .items span:not(:last-child)::after{ content:"·"; position:absolute; right:8px; color:var(--hair); }
+  .group .items span:not(:last-child)::after{ content:"·"; position:absolute; right:8px; color:rgba(255,255,255,.42); }
   @media (max-width:760px){ .group{ grid-template-columns:1fr; gap:14px; } }
 
   .gallery{ padding:100px 0; }
   .gallery .label{ color:var(--teal); margin-bottom:16px; }
   .gallery h2{ font-size:clamp(26px,3.2vw,34px); font-style:italic; color:var(--navy); margin-bottom:50px; }
-  .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; }
   .gallery-grid .slot{
     aspect-ratio:1/1; background:var(--paper); display:flex; align-items:center; justify-content:center;
     font-family:'Inter',sans-serif; font-size:10px; letter-spacing:.14em; color:#C9C4B6; text-transform:uppercase;
   }
   .gallery-grid .slot.wide{ grid-column:span 2; }
-  @media (max-width:760px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:760px){ .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
 
-  footer{ background:var(--chrome); padding:44px 0 40px; text-align:center; }
-  .foot-brand{ justify-content:center; margin-bottom:18px; }
-  footer .label{ color:rgba(255,255,255,.6); font-weight:400; }
+  footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
+  footer .label{ color:var(--muted); font-weight:400; }
 </style>
 </head>
 <body>
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
+      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt="BDI Construction"></a>
       <div class="navlinks">
         <div>
           <a href="history.html"><span class="label">About Us</span></a>
@@ -105,6 +108,7 @@
     </div>
   </nav>
 
+  <div class="band-navy">
   <div class="pagehead">
     <div class="year">Give Back</div>
     <div class="wrap inner">
@@ -142,7 +146,9 @@
       </div>
     </div>
   </section>
+  </div>
 
+  <div class="band-light">
   <section class="gallery wrap">
     <div class="label">In the Community</div>
     <h2>Photo Gallery</h2>
@@ -155,11 +161,9 @@
       <div class="slot wide">Photo</div>
     </div>
   </section>
+  </div>
 
-  <footer>
-    <a class="brand foot-brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
-    <span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span>
-  </footer>
+  <footer><span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
 
 </body>
 </html>
