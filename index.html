@@ -6,6 +6,7 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
   :root{
+    --chrome:#0B1D2C;
     --ink:#15202B; --paper:#FAF9F5; --navy-deep:#0B1D2C; --navy:#173352; --navy-mid:#28516B;
     --teal:#3E7A8C; --green:#4FA8D8; --muted:#5C6A72; --hair:#E4E0D5; --hairD:rgba(255,255,255,.14);
   }
@@ -17,21 +18,25 @@
   @media (max-width:800px){ .wrap{padding:0 24px;} }
   .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; font-weight:600; }
 
-  /* NAV — white, like the rest of the site */
-  .nav{ position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--hair); }
+  /* NAV — navy chrome, matching the footer */
+  .nav{ position:sticky; top:0; z-index:50; background:var(--chrome); border-bottom:none; }
   .nav-inner{ max-width:1180px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:84px; }
-  .brand{ font-family:'Archivo',sans-serif; font-weight:800; font-size:18px; letter-spacing:-.01em; color:var(--navy); display:flex; align-items:center; gap:10px; }
-  .brand .mark{ width:16px; height:16px; background:var(--green); clip-path:polygon(0 100%,100% 100%,100% 0); }
+  /* Brand lockup — shared across the site */
+  .brand{ display:flex; align-items:center; gap:13px; }
+  .brand .logomark{ height:26px; width:auto; display:block; }
+  .brand .wordmark{ font-family:'Inter',sans-serif; font-weight:600; font-size:15px; letter-spacing:.09em; color:#fff; white-space:nowrap; }
+  @media (max-width:520px){ .brand .logomark{height:21px;} .brand .wordmark{font-size:13px;} }
   .navlinks{ display:flex; gap:36px; }
-  .navlinks .label{ color:var(--muted); }
+  .navlinks .label{ color:rgba(255,255,255,.72); }
+  .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--green); }
   .navlinks > div{ position:relative; }
   .dropdown{
     position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:24px;
-    background:#fff; min-width:170px; padding:16px 0; border:1px solid var(--hair);
+    background:var(--chrome); min-width:170px; padding:16px 0; border:1px solid rgba(255,255,255,.14);
     opacity:0; visibility:hidden; transition:all .2s ease; text-align:center;
   }
   .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.72); }
   .dropdown a:hover{ color:var(--green); }
   @media (max-width:920px){ .navlinks{display:none;} }
 
@@ -98,12 +103,12 @@
   .culture a.btn{ display:inline-block; }
 
   /* FOOTER */
-  footer{ background:var(--navy-deep); padding:56px 0 34px; }
+  footer{ background:var(--chrome); padding:56px 0 34px; }
   .fgrid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:44px; }
   footer h5{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.85); margin-bottom:18px; font-weight:600; }
   footer a{ display:block; color:rgba(255,255,255,.55); margin-bottom:11px; font-size:14px; font-weight:300; }
   footer a:hover{ color:var(--green); }
-  .fbottom{ border-top:1px solid var(--hairD); padding-top:24px; display:flex; justify-content:space-between; font-size:12px; color:rgba(255,255,255,.4); flex-wrap:wrap; gap:10px; }
+  .fbottom{ border-top:1px solid var(--hairD); padding-top:24px; display:flex; justify-content:space-between; font-size:12px; color:rgba(255,255,255,.62); flex-wrap:wrap; gap:10px; }
   @media (max-width:860px){ .fgrid{grid-template-columns:1fr 1fr;} }
 </style>
 </head>
@@ -111,7 +116,7 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="mark"></span>BDI CONSTRUCTION</a>
+      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
       <div class="navlinks">
         <div>
           <a href="history.html"><span class="label">About Us</span></a>
@@ -204,7 +209,7 @@
     <div class="wrap">
       <div class="fgrid">
         <div>
-          <div class="brand" style="margin-bottom:16px; font-size:17px;">BDI CONSTRUCTION</div>
+          <a class="brand" href="index.html" style="margin-bottom:18px;"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
           <p style="max-width:260px; line-height:1.6; color:rgba(255,255,255,.55); font-size:14px; font-weight:300;">General contracting, design-build, and construction management — statewide across Florida since 1994.</p>
         </div>
         <div>

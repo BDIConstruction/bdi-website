@@ -6,6 +6,7 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
   :root{
+    --chrome:#0B1D2C;
     --ink:#15202B; --paper:#FAF9F5; --navy-deep:#0E2233; --navy:#1B3A54;
     --teal:#4C7C8C; --green:#4FA8D8; --muted:#68737C; --hair:#E4E0D5;
   }
@@ -18,22 +19,27 @@
   .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
 
   /* NAV */
-  .nav{ border-bottom:1px solid var(--hair); }
+  .nav{ background:var(--chrome); border-bottom:none; }
   .nav-inner{ max-width:1140px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
-  .brand{ font-family:'Fraunces',serif; font-style:italic; font-size:20px; letter-spacing:.01em; color:var(--navy); }
+  /* Brand lockup — shared across the site */
+  .brand{ display:flex; align-items:center; gap:13px; }
+  .brand .logomark{ height:26px; width:auto; display:block; }
+  .brand .wordmark{ font-family:'Inter',sans-serif; font-style:normal; font-weight:600; font-size:15px; letter-spacing:.09em; color:#fff; white-space:nowrap; }
+  @media (max-width:520px){ .brand .logomark{height:21px;} .brand .wordmark{font-size:13px;} }
   .navlinks{ display:flex; gap:38px; }
-  .navlinks .label{ color:var(--muted); }
+  .navlinks .label{ color:rgba(255,255,255,.72); }
+  .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--green); }
   .navlinks > div{ position:relative; }
-  .navlinks a.active .label, .navlinks a.active{ color:var(--navy); }
+  .navlinks a.active .label, .navlinks a.active{ color:#fff; }
   .dropdown{
     position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:26px;
-    background:#fff; min-width:170px; padding:16px 0; border:1px solid var(--hair);
+    background:var(--chrome); min-width:170px; padding:16px 0; border:1px solid rgba(255,255,255,.14);
     opacity:0; visibility:hidden; transition:all .2s ease; text-align:center;
   }
   .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
-  .dropdown a.here{ color:var(--navy); }
-  .dropdown a:hover{ color:var(--navy); }
+  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.72); }
+  .dropdown a.here{ color:#fff; }
+  .dropdown a:hover{ color:var(--green); }
   @media (max-width:920px){ .navlinks{display:none;} }
 
   /* PAGE HEAD — quiet, oversized watermark year */
@@ -77,15 +83,16 @@
     .person.reverse .photo{ order:0; }
   }
 
-  footer{ border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
-  footer .label{ color:var(--muted); font-weight:400; }
+  footer{ background:var(--chrome); padding:44px 0 40px; text-align:center; }
+  .foot-brand{ justify-content:center; margin-bottom:18px; }
+  footer .label{ color:rgba(255,255,255,.6); font-weight:400; }
 </style>
 </head>
 <body>
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html">BDI Construction</a>
+      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
       <div class="navlinks">
         <div>
           <a class="active" href="history.html"><span class="label">About Us</span></a>
@@ -165,7 +172,10 @@
     </div>
   </section>
 
-  <footer><span class="label">© 2026 BDI Construction Company — 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+  <footer>
+    <a class="brand foot-brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
+    <span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span>
+  </footer>
 
 </body>
 </html>
