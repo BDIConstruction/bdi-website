@@ -21,12 +21,10 @@
      positioned and would otherwise cover it */
   .nav{ position:relative; z-index:50; background:#fff; border-bottom:1px solid var(--hair); }
   .nav-inner{ max-width:980px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
-  /* Brand — mark plus wordmark. Fixed hex rather than var(--navy) so the
-     lockup is identical on every page. */
-  .brand{ display:flex; align-items:center; gap:13px; }
+  /* Brand — logo mark */
+  .brand{ display:flex; align-items:center; }
   .brand .logomark{ height:34px; width:auto; display:block; }
-  .brand .wordmark{ font-family:'Inter',sans-serif; font-style:normal; font-weight:600; font-size:14px; letter-spacing:.07em; color:#173352; white-space:nowrap; }
-  @media (max-width:520px){ .brand .logomark{height:26px;} .brand .wordmark{font-size:12.5px; letter-spacing:.06em;} }
+  @media (max-width:520px){ .brand .logomark{height:26px;} }
   .navlinks{ display:flex; gap:26px; }
   .navlinks .label{ color:var(--muted); letter-spacing:.12em; white-space:nowrap; }
   .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--navy); }
@@ -80,7 +78,7 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
+      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt="BDI Construction"></a>
       <div class="navlinks">
         <div>
           <a href="history.html"><span class="label">About Us</span></a>
