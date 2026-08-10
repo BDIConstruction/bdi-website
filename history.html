@@ -80,7 +80,12 @@
   .person{ display:grid; grid-template-columns:260px 1fr; gap:64px; align-items:center; padding:56px 0; border-top:1px solid var(--hair); }
   .person.reverse{ grid-template-columns:1fr 260px; }
   .person.reverse .photo{ order:2; }
-  .photo{ aspect-ratio:4/5; background:linear-gradient(160deg,#D8DEDF,#9FAFB3); }
+  /* Portraits show as soon as these files exist in the repo; until then the
+     gradient layer underneath is painted instead, exactly as before. */
+  .photo{ aspect-ratio:4/5; background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3); background-size:cover; background-position:center 15%; background-repeat:no-repeat; }
+  .photo.p-jr    { background-image:url('leader-rosell-jr.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }
+  .photo.p-iii   { background-image:url('leader-rosell-iii.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }
+  .photo.p-carlos{ background-image:url('leader-carlos-rosell.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }
   .person .label{ color:var(--teal); margin-bottom:12px; }
   .person h3{ font-size:26px; font-weight:450; color:var(--navy); margin-bottom:18px; }
   .person p{ color:var(--muted); font-size:15.5px; line-height:1.85; font-weight:300; margin-bottom:12px; max-width:520px; }
@@ -147,7 +152,7 @@
       </div>
 
       <div class="person">
-        <div class="photo"></div>
+        <div class="photo p-jr" role="img" aria-label="Teobaldo Rosell Jr."></div>
         <div>
           <div class="label">Founder</div>
           <h3>Teobaldo Rosell Jr.</h3>
@@ -157,7 +162,7 @@
       </div>
 
       <div class="person reverse">
-        <div class="photo"></div>
+        <div class="photo p-iii" role="img" aria-label="Teobaldo Rosell, III"></div>
         <div>
           <div class="label">President</div>
           <h3>Teobaldo Rosell, III</h3>
@@ -167,7 +172,7 @@
       </div>
 
       <div class="person">
-        <div class="photo"></div>
+        <div class="photo p-carlos" role="img" aria-label="Carlos Rosell"></div>
         <div>
           <div class="label">Vice President / Director of Operations</div>
           <h3>Carlos Rosell</h3>
