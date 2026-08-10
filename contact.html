@@ -17,23 +17,32 @@
   @media (max-width:800px){ .wrap{padding:0 24px;} }
   .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
 
-  .nav{ background:#fff; border-bottom:1px solid var(--hair); }
+  /* relative + z-index so the dropdown paints above the page head, which is
+     positioned and would otherwise cover it */
+  .nav{ position:relative; z-index:50; background:#fff; border-bottom:1px solid var(--hair); }
   .nav-inner{ max-width:980px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
-  /* Brand — logo mark only */
-  .brand{ display:flex; align-items:center; }
+  /* Brand — mark plus wordmark. Fixed hex rather than var(--navy) so the
+     lockup is identical on every page. */
+  .brand{ display:flex; align-items:center; gap:13px; }
   .brand .logomark{ height:34px; width:auto; display:block; }
-  @media (max-width:520px){ .brand .logomark{height:26px;} }
-  .navlinks{ display:flex; gap:38px; }
-  .navlinks .label{ color:var(--muted); }
+  .brand .wordmark{ font-family:'Inter',sans-serif; font-style:normal; font-weight:600; font-size:14px; letter-spacing:.07em; color:#173352; white-space:nowrap; }
+  @media (max-width:520px){ .brand .logomark{height:26px;} .brand .wordmark{font-size:12.5px; letter-spacing:.06em;} }
+  .navlinks{ display:flex; gap:26px; }
+  .navlinks .label{ color:var(--muted); letter-spacing:.12em; white-space:nowrap; }
   .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--navy); }
   .navlinks > div{ position:relative; }
   .navlinks a.active .label{ color:var(--navy); }
   .dropdown{
     position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:26px;
     background:#fff; min-width:170px; padding:16px 0; border:1px solid var(--hair);
-    opacity:0; visibility:hidden; transition:all .2s ease; text-align:center;
+    opacity:0; visibility:hidden; text-align:center;
+    transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
+    transition-delay:.35s;            /* forgiving on the way out */
   }
-  .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  /* invisible bridge over the gap between the link and the panel, so the
+     pointer does not un-hover while travelling down to the menu */
+  .dropdown::before{ content:""; position:absolute; left:0; right:0; top:-30px; height:30px; }
+  .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); transition-delay:0s; }
   .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
   .dropdown a:hover{ color:var(--navy); }
   @media (max-width:920px){ .navlinks{display:none;} }
@@ -71,7 +80,7 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt="BDI Construction"></a>
+      <a class="brand" href="index.html"><img class="logomark" src="logo-mark.svg" alt=""><span class="wordmark">BDI CONSTRUCTION</span></a>
       <div class="navlinks">
         <div>
           <a href="history.html"><span class="label">About Us</span></a>
