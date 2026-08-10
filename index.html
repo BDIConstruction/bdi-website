@@ -95,9 +95,11 @@
   .pcard .photo{ aspect-ratio:4/5; overflow:hidden; margin-bottom:20px; }
   .pcard .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
   .pcard .loc{ color:var(--teal); font-size:11px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px; font-weight:600; }
-  .pcard h4{ font-size:19px; color:var(--navy); font-weight:700; margin-bottom:10px; }
+  /* two-line reserve keeps the captions on one baseline when a project
+     name wraps */
+  .pcard h4{ font-size:19px; color:var(--navy); font-weight:700; margin-bottom:10px; min-height:2.4em; }
   .pcard .cap{ font-size:14px; color:var(--muted); font-weight:300; line-height:1.6; }
-  @media (max-width:860px){ .proj-grid{grid-template-columns:1fr;} }
+  @media (max-width:860px){ .proj-grid{grid-template-columns:1fr;} .pcard h4{min-height:0;} }
 
   /* CULTURE — dark colorful band */
   .culture{ padding:110px 0; text-align:center; background:linear-gradient(200deg, var(--navy-deep), var(--navy-mid)); }
@@ -183,18 +185,18 @@
         </div>
         <div class="pcard">
           <div class="photo">
-            <img src="proj-b.jpg" alt="Courtside Apartments II">
+            <img src="proj-c1.jpg" alt="The Fountains at Hidden Lake Apartments">
           </div>
-          <div class="loc">Florida</div>
-          <h4>Courtside Apartments II</h4>
+          <div class="loc">Crystal River, FL</div>
+          <h4>The Fountains at Hidden Lake Apartments</h4>
           <div class="cap">Multi-family housing</div>
         </div>
         <div class="pcard">
           <div class="photo">
-            <img src="proj-c1.jpg" alt="Father Marquess-Barry Apartments">
+            <img src="proj-b.jpg" alt="Courtside Apartments II">
           </div>
-          <div class="loc">Florida</div>
-          <h4>Father Marquess-Barry Apartments</h4>
+          <div class="loc">Miami, FL</div>
+          <h4>Courtside Apartments II</h4>
           <div class="cap">Multi-family housing</div>
         </div>
       </div>
