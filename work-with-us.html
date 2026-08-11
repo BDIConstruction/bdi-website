@@ -82,6 +82,28 @@
 
   footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
   footer .label{ color:var(--muted); font-weight:400; }
+
+  /* Scroll reveals — short travel, quick settle. Everything is visible by
+     default; .reveal-on is added by script only when the observer is
+     supported, so the page still reads with JS off. */
+  .reveal-on .rv{ opacity:0; transform:translateY(22px); }
+  .reveal-on .rv-l{ opacity:0; transform:translateX(-34px); }
+  .reveal-on .rv-r{ opacity:0; transform:translateX(34px); }
+  .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change:opacity, transform;
+  }
+  .reveal-on .rv.in, .reveal-on .rv-l.in, .reveal-on .rv-r.in{ opacity:1; transform:none; }
+  /* the side-entering pieces sit in two-column grids; clip so their offset
+     cannot push the page sideways while they are still out of position */
+  .reveal-on .grid{ overflow-x:clip; }
+  /* on narrow screens the columns stack, so travel vertically instead */
+  @media (max-width:860px){
+    .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(22px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{ opacity:1 !important; transform:none !important; transition:none; }
+  }
 </style>
 </head>
 <body>
@@ -108,19 +130,19 @@
 
   <div class="pagehead wrap">
     <div class="label">Work With Us</div>
-    <h1>Subcontractor Prequalification</h1>
+    <h1 class="rv" data-d="90">Subcontractor Prequalification</h1>
     <p>Interested in working with BDI Construction? Complete the form below to be considered for our approved subcontractor list.</p>
   </div>
 
   <section class="form-wrap wrap">
 
-    <div class="form-note">
+    <div class="rv form-note">
       <b>Note for implementation:</b> this form submits to <b>info@bdiconstruction.com</b> as requested. A static HTML form can't send email on its own — on WordPress, this needs a form plugin (Gravity Forms, WPForms, or Contact Form 7) configured to route submissions to that address. Your current site footer lists <b>info@bdico.com</b> instead — worth confirming which inbox should actually receive these before it goes live.
     </div>
 
     <form action="#" method="POST">
 
-      <fieldset>
+      <fieldset class="rv">
         <div class="label" style="color:var(--teal); margin-bottom:26px;">Company Information</div>
         <div class="row">
           <div><label for="company">Company Name *</label><input id="company" name="company" required></div>
@@ -135,7 +157,7 @@
         </div>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="rv">
         <div class="label" style="color:var(--teal); margin-bottom:26px;">Contact Information</div>
         <div class="row">
           <div><label for="contact-name">Contact Name *</label><input id="contact-name" name="contact-name" required></div>
@@ -147,7 +169,7 @@
         </div>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="rv">
         <div class="label" style="color:var(--teal); margin-bottom:26px;">Qualifications</div>
         <div class="row">
           <div><label for="bonding">Bonding Capacity (if applicable)</label><input id="bonding" name="bonding"></div>
@@ -170,6 +192,33 @@
   </section>
 
   <footer><span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+
+  <script>
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('reveal-on');
+    var items = [].slice.call(document.querySelectorAll('.rv, .rv-l, .rv-r'));
+    var ticking = false;
+    function sweep(){
+      ticking = false;
+      var h = window.innerHeight, i = 0;
+      while (i < items.length){
+        var el = items[i], top = el.getBoundingClientRect().top;
+        // in view, or already scrolled past - either way it must end up visible
+        if (top < h * 0.88){
+          setTimeout(function(e){ return function(){ e.classList.add('in'); }; }(el),
+                     parseInt(el.getAttribute('data-d') || 0, 10));
+          items.splice(i, 1);
+        } else i++;
+      }
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(sweep); } }
+    addEventListener('scroll', onScroll, { passive:true });
+    addEventListener('resize', onScroll);
+    addEventListener('load', onScroll);
+    requestAnimationFrame(sweep);
+  })();
+  </script>
 
 </body>
 </html>

@@ -109,6 +109,28 @@
 
   footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
   footer .label{ color:var(--muted); font-weight:400; }
+
+  /* Scroll reveals — short travel, quick settle. Everything is visible by
+     default; .reveal-on is added by script only when the observer is
+     supported, so the page still reads with JS off. */
+  .reveal-on .rv{ opacity:0; transform:translateY(22px); }
+  .reveal-on .rv-l{ opacity:0; transform:translateX(-34px); }
+  .reveal-on .rv-r{ opacity:0; transform:translateX(34px); }
+  .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change:opacity, transform;
+  }
+  .reveal-on .rv.in, .reveal-on .rv-l.in, .reveal-on .rv-r.in{ opacity:1; transform:none; }
+  /* the side-entering pieces sit in two-column grids; clip so their offset
+     cannot push the page sideways while they are still out of position */
+  .reveal-on .grid{ overflow-x:clip; }
+  /* on narrow screens the columns stack, so travel vertically instead */
+  @media (max-width:860px){
+    .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(22px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{ opacity:1 !important; transform:none !important; transition:none; }
+  }
 </style>
 </head>
 <body>
@@ -137,18 +159,18 @@
   <div class="pagehead">
     <div class="year">Give Back</div>
     <div class="wrap inner">
-      <div class="label">About Us</div>
-      <h1>Community</h1>
-      <div class="crumbs"><a href="history.html">History</a> &nbsp;/&nbsp; <a href="culture.html">Culture</a></div>
+      <div class="rv label">About Us</div>
+      <h1 class="rv" data-d="90">Community</h1>
+      <div class="rv crumbs" data-d="170"><a href="history.html">History</a> &nbsp;/&nbsp; <a href="culture.html">Culture</a></div>
     </div>
   </div>
 
-  <section class="wrap intro-block">
+  <section class="rv wrap intro-block">
     <p>From charity events to career fairs, we show up for the communities we build in — not just the buildings themselves. BDI always gives back: we support our clients, and we support our community.</p>
   </section>
 
   <section class="groups wrap">
-    <div class="group">
+    <div class="rv group" data-d="0">
       <h3>Giving Back</h3>
       <div class="items">
         <span>BDI Block Party</span><span>Environmental Stewardship</span><span>Wings for Wishes</span>
@@ -157,13 +179,13 @@
         <span>Coral Gables Clean Up</span>
       </div>
     </div>
-    <div class="group">
+    <div class="rv group" data-d="0">
       <h3>Charity Golf Tournaments</h3>
       <div class="items">
         <span>U-SoA Golf Tournament</span><span>CAI-SEFL Golf Tournament</span><span>SDCC Golf Tournament</span>
       </div>
     </div>
-    <div class="group">
+    <div class="rv group" data-d="0">
       <h3>Building Talent</h3>
       <div class="items">
         <span>FIU Career Fair</span>
@@ -175,14 +197,14 @@
 
   <div class="band-light">
   <section class="gallery wrap">
-    <div class="label">In the Community</div>
+    <div class="rv label">In the Community</div>
     <h2>Photo Gallery</h2>
     <div class="gallery-grid">
-      <button type="button" class="shot wide" data-full="community-aia-tour-2-full.jpg" aria-label="View larger: BDI Construction hosting an AIA hard hat tour of a project under construction"><img src="community-aia-tour-2.jpg" alt="BDI Construction hosting an AIA hard hat tour of a project under construction"></button>
-      <button type="button" class="shot" data-full="community-golf-full.jpg" aria-label="View larger: A BDI Construction team at a charity golf tournament"><img src="community-golf.jpg" alt="A BDI Construction team at a charity golf tournament"></button>
-      <button type="button" class="shot" data-full="community-career-fair-full.jpg" aria-label="View larger: The BDI Construction stand at a university career fair"><img src="community-career-fair.jpg" style="object-position:center 38%" alt="The BDI Construction stand at a university career fair"></button>
-      <button type="button" class="shot" data-full="community-award-full.jpg" aria-label="View larger: BDI Construction staff receiving a certificate of recognition"><img src="community-award.jpg" alt="BDI Construction staff receiving a certificate of recognition"></button>
-      <button type="button" class="shot" data-full="community-sponsors-full.jpg" aria-label="View larger: An event sponsor banner listing BDI Construction among its supporters"><img src="community-sponsors.jpg" alt="An event sponsor banner listing BDI Construction among its supporters"></button>
+      <button type="button" class="rv shot wide data-d="0"> data-full="community-aia-tour-2-full.jpg" aria-label="View larger: BDI Construction hosting an AIA hard hat tour of a project under construction"><img src="community-aia-tour-2.jpg" alt="BDI Construction hosting an AIA hard hat tour of a project under construction"></button>
+      <button type="button" class="rv shot data-d="90"> data-full="community-golf-full.jpg" aria-label="View larger: A BDI Construction team at a charity golf tournament"><img src="community-golf.jpg" alt="A BDI Construction team at a charity golf tournament"></button>
+      <button type="button" class="rv shot data-d="180"> data-full="community-career-fair-full.jpg" aria-label="View larger: The BDI Construction stand at a university career fair"><img src="community-career-fair.jpg" style="object-position:center 38%" alt="The BDI Construction stand at a university career fair"></button>
+      <button type="button" class="rv shot data-d="270"> data-full="community-award-full.jpg" aria-label="View larger: BDI Construction staff receiving a certificate of recognition"><img src="community-award.jpg" alt="BDI Construction staff receiving a certificate of recognition"></button>
+      <button type="button" class="rv shot data-d="360"> data-full="community-sponsors-full.jpg" aria-label="View larger: An event sponsor banner listing BDI Construction among its supporters"><img src="community-sponsors.jpg" alt="An event sponsor banner listing BDI Construction among its supporters"></button>
     </div>
   </section>
   </div>
@@ -227,6 +249,33 @@
       else if (e.key === 'ArrowLeft') show(i - 1);
       else if (e.key === 'ArrowRight') show(i + 1);
     });
+  })();
+  </script>
+
+  <script>
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('reveal-on');
+    var items = [].slice.call(document.querySelectorAll('.rv, .rv-l, .rv-r'));
+    var ticking = false;
+    function sweep(){
+      ticking = false;
+      var h = window.innerHeight, i = 0;
+      while (i < items.length){
+        var el = items[i], top = el.getBoundingClientRect().top;
+        // in view, or already scrolled past - either way it must end up visible
+        if (top < h * 0.88){
+          setTimeout(function(e){ return function(){ e.classList.add('in'); }; }(el),
+                     parseInt(el.getAttribute('data-d') || 0, 10));
+          items.splice(i, 1);
+        } else i++;
+      }
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(sweep); } }
+    addEventListener('scroll', onScroll, { passive:true });
+    addEventListener('resize', onScroll);
+    addEventListener('load', onScroll);
+    requestAnimationFrame(sweep);
   })();
   </script>
 

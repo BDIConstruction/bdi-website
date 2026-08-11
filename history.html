@@ -97,6 +97,28 @@
 
   footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
   footer .label{ color:var(--muted); font-weight:400; }
+
+  /* Scroll reveals — short travel, quick settle. Everything is visible by
+     default; .reveal-on is added by script only when the observer is
+     supported, so the page still reads with JS off. */
+  .reveal-on .rv{ opacity:0; transform:translateY(22px); }
+  .reveal-on .rv-l{ opacity:0; transform:translateX(-34px); }
+  .reveal-on .rv-r{ opacity:0; transform:translateX(34px); }
+  .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change:opacity, transform;
+  }
+  .reveal-on .rv.in, .reveal-on .rv-l.in, .reveal-on .rv-r.in{ opacity:1; transform:none; }
+  /* the side-entering pieces sit in two-column grids; clip so their offset
+     cannot push the page sideways while they are still out of position */
+  .reveal-on .grid{ overflow-x:clip; }
+  /* on narrow screens the columns stack, so travel vertically instead */
+  @media (max-width:860px){
+    .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(22px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{ opacity:1 !important; transform:none !important; transition:none; }
+  }
 </style>
 </head>
 <body>
@@ -124,19 +146,19 @@
   <div class="pagehead">
     <div class="year">1994</div>
     <div class="wrap inner">
-      <div class="label">About Us</div>
-      <h1>History</h1>
-      <div class="crumbs"><a href="culture.html">Culture</a> &nbsp;/&nbsp; <a href="community.html">Community</a></div>
+      <div class="rv label">About Us</div>
+      <h1 class="rv" data-d="90">History</h1>
+      <div class="rv crumbs" data-d="170"><a href="culture.html">Culture</a> &nbsp;/&nbsp; <a href="community.html">Community</a></div>
     </div>
   </div>
 
   <section class="intro">
     <div class="wrap grid">
-      <div>
+      <div class="rv-l">
         <div class="label">Our Story</div>
         <h2>Built on a foundation that goes back further than our name.</h2>
       </div>
-      <div class="col2">
+      <div class="rv-r col2">
         <p>Teobaldo Rosell Jr. founded BDI Construction Company in 1994 — with experience in construction dating back to 1974.</p>
         <p>Today, BDI is a second-generation, family-owned general contracting, design-build, and construction management firm, led by Teobaldo Rosell, III and Carlos Rosell, and serving clients statewide across Florida.</p>
         <p>More than three decades later, the standard set at our founding is still the one we hold every project to.</p>
@@ -146,12 +168,12 @@
 
   <section class="leadership">
     <div class="wrap">
-      <div class="lead-head">
+      <div class="rv lead-head">
         <div class="label">Leadership</div>
         <h2>The people behind the name</h2>
       </div>
 
-      <div class="person">
+      <div class="rv person" data-d="0">
         <div class="photo p-jr" role="img" aria-label="Teobaldo Rosell Jr."></div>
         <div>
           <div class="label">Founder</div>
@@ -161,7 +183,7 @@
         </div>
       </div>
 
-      <div class="person reverse">
+      <div class="rv person reverse" data-d="0">
         <div class="photo p-iii" role="img" aria-label="Teobaldo Rosell, III"></div>
         <div>
           <div class="label">President</div>
@@ -171,7 +193,7 @@
         </div>
       </div>
 
-      <div class="person">
+      <div class="rv person" data-d="0">
         <div class="photo p-carlos" role="img" aria-label="Carlos Rosell"></div>
         <div>
           <div class="label">Vice President / Director of Operations</div>
@@ -184,6 +206,33 @@
   </section>
 
   <footer><span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+
+  <script>
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('reveal-on');
+    var items = [].slice.call(document.querySelectorAll('.rv, .rv-l, .rv-r'));
+    var ticking = false;
+    function sweep(){
+      ticking = false;
+      var h = window.innerHeight, i = 0;
+      while (i < items.length){
+        var el = items[i], top = el.getBoundingClientRect().top;
+        // in view, or already scrolled past - either way it must end up visible
+        if (top < h * 0.88){
+          setTimeout(function(e){ return function(){ e.classList.add('in'); }; }(el),
+                     parseInt(el.getAttribute('data-d') || 0, 10));
+          items.splice(i, 1);
+        } else i++;
+      }
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(sweep); } }
+    addEventListener('scroll', onScroll, { passive:true });
+    addEventListener('resize', onScroll);
+    addEventListener('load', onScroll);
+    requestAnimationFrame(sweep);
+  })();
+  </script>
 
 </body>
 </html>

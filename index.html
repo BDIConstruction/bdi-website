@@ -116,6 +116,28 @@
   footer a:hover{ color:var(--green); }
   .fbottom{ border-top:1px solid var(--hairD); padding-top:24px; display:flex; justify-content:space-between; font-size:12px; color:rgba(255,255,255,.62); flex-wrap:wrap; gap:10px; }
   @media (max-width:860px){ .fgrid{grid-template-columns:1fr 1fr;} }
+
+  /* Scroll reveals — short travel, quick settle. Everything is visible by
+     default; .reveal-on is added by script only when the observer is
+     supported, so the page still reads with JS off. */
+  .reveal-on .rv{ opacity:0; transform:translateY(22px); }
+  .reveal-on .rv-l{ opacity:0; transform:translateX(-34px); }
+  .reveal-on .rv-r{ opacity:0; transform:translateX(34px); }
+  .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change:opacity, transform;
+  }
+  .reveal-on .rv.in, .reveal-on .rv-l.in, .reveal-on .rv-r.in{ opacity:1; transform:none; }
+  /* the side-entering pieces sit in two-column grids; clip so their offset
+     cannot push the page sideways while they are still out of position */
+  .reveal-on .grid{ overflow-x:clip; }
+  /* on narrow screens the columns stack, so travel vertically instead */
+  @media (max-width:860px){
+    .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(22px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{ opacity:1 !important; transform:none !important; transition:none; }
+  }
 </style>
 </head>
 <body>
@@ -146,10 +168,10 @@
     </div>
     <div class="wrap">
       <div class="hero-panel">
-        <div class="label">General Contracting · Design-Build · CM — Statewide, Florida</div>
-        <h1>Solid People.<br>Solid Work.<br>Solid Relationships.</h1>
-        <p>For more than three decades, BDI Construction has built the schools, homes, and communities Floridians spend their lives in — with the same people you can trust to answer the phone.</p>
-        <div class="btnrow">
+        <div class="rv label" data-d="0">General Contracting · Design-Build · CM — Statewide, Florida</div>
+        <h1 class="rv" data-d="90">Solid People.<br>Solid Work.<br>Solid Relationships.</h1>
+        <p class="rv" data-d="180">For more than three decades, BDI Construction has built the schools, homes, and communities Floridians spend their lives in — with the same people you can trust to answer the phone.</p>
+        <div class="rv btnrow" data-d="270">
           <a class="btn primary" href="#">View Our Work</a>
           <a class="btn ghost" href="contact.html">Start a Conversation</a>
         </div>
@@ -159,15 +181,15 @@
 
   <section class="stats">
     <div class="wrap stats-grid">
-      <div><div class="num">50+</div><div class="cap">Employees statewide, <b>with a footprint that keeps growing</b> across Florida.</div></div>
-      <div><div class="num">80%+</div><div class="cap">Repeat client business — <b>a reflection of the trust</b> our clients place in our team.</div></div>
-      <div><div class="num">1994</div><div class="cap">Founded in Miami. <b>Second-generation, family-owned</b>, and still building today.</div></div>
+      <div class="rv" data-d="0"><div class="num">50+</div><div class="cap">Employees statewide, <b>with a footprint that keeps growing</b> across Florida.</div></div>
+      <div class="rv" data-d="110"><div class="num">80%+</div><div class="cap">Repeat client business — <b>a reflection of the trust</b> our clients place in our team.</div></div>
+      <div class="rv" data-d="220"><div class="num">1994</div><div class="cap">Founded in Miami. <b>Second-generation, family-owned</b>, and still building today.</div></div>
     </div>
   </section>
 
   <section class="projects">
     <div class="wrap">
-      <div class="headrow">
+      <div class="rv headrow">
         <div>
           <div class="label">Featured Work</div>
           <h2>Recent projects across Florida</h2>
@@ -175,7 +197,7 @@
         <a href="#">View All Projects</a>
       </div>
       <div class="proj-grid">
-        <div class="pcard">
+        <div class="rv pcard" data-d="0">
           <div class="photo">
             <img src="proj-tucker.jpg" alt="Tucker Tower Apartments">
           </div>
@@ -183,7 +205,7 @@
           <h4>Tucker Tower Apartments</h4>
           <div class="cap">Multi-family housing</div>
         </div>
-        <div class="pcard">
+        <div class="rv pcard" data-d="120">
           <div class="photo">
             <img src="proj-c1.jpg" alt="The Fountains at Hidden Lake Apartments">
           </div>
@@ -191,7 +213,7 @@
           <h4>The Fountains at Hidden Lake Apartments</h4>
           <div class="cap">Multi-family housing</div>
         </div>
-        <div class="pcard">
+        <div class="rv pcard" data-d="240">
           <div class="photo">
             <img src="proj-b.jpg" alt="Courtside Apartments II">
           </div>
@@ -205,9 +227,9 @@
 
   <section class="culture">
     <div class="wrap">
-      <div class="label">Our Culture</div>
-      <h2>We are relationship builders — with our clients, our team, and everyone we build alongside.</h2>
-      <a class="btn primary" href="culture.html">Read Our Story</a>
+      <div class="rv label">Our Culture</div>
+      <h2 class="rv" data-d="110">We are relationship builders — with our clients, our team, and everyone we build alongside.</h2>
+      <a class="rv btn primary" data-d="220" href="culture.html">Read Our Story</a>
     </div>
   </section>
 
@@ -239,6 +261,33 @@
       </div>
     </div>
   </footer>
+
+  <script>
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('reveal-on');
+    var items = [].slice.call(document.querySelectorAll('.rv, .rv-l, .rv-r'));
+    var ticking = false;
+    function sweep(){
+      ticking = false;
+      var h = window.innerHeight, i = 0;
+      while (i < items.length){
+        var el = items[i], top = el.getBoundingClientRect().top;
+        // in view, or already scrolled past - either way it must end up visible
+        if (top < h * 0.88){
+          setTimeout(function(e){ return function(){ e.classList.add('in'); }; }(el),
+                     parseInt(el.getAttribute('data-d') || 0, 10));
+          items.splice(i, 1);
+        } else i++;
+      }
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(sweep); } }
+    addEventListener('scroll', onScroll, { passive:true });
+    addEventListener('resize', onScroll);
+    addEventListener('load', onScroll);
+    requestAnimationFrame(sweep);
+  })();
+  </script>
 
 </body>
 </html>
