@@ -8,24 +8,46 @@ Florida.
 
 ## About this repo
 
-A static HTML/CSS site, hosted on GitHub Pages. No CMS, no build step, no
-dependencies — the `.html` files in the repo root are the site. It replaces
-the previous WordPress site.
+A static HTML/CSS site. Each page is a `.html` file in the repo root and
+carries its own CSS in a `<style>` block — there is no shared stylesheet, so
+shared elements like the nav and footer must be edited in every page.
+
+Hosted on **Netlify**, which deploys automatically from `main`. It is not on
+a custom domain; `bdiconstruction.com` still points elsewhere.
 
 | File | Page |
 |---|---|
 | `index.html` | Homepage |
+| `projects.html` | Projects — generated, see below |
 | `history.html` | About Us → History |
 | `culture.html` | About Us → Culture |
 | `community.html` | About Us → Community |
 | `expertise.html` | Expertise |
 | `work-with-us.html` | Work With Us — subcontractor prequalification |
 | `contact.html` | Contact Us |
-| `images/` | Project photography |
 
-Each page carries its own CSS in a `<style>` block. There is no shared
-stylesheet, so shared elements like the nav and footer must be edited in
-all seven files.
+Photographs live in the repo root (`project-*.jpg`, `leader-*.jpg`,
+`community-*.jpg`, `proj-*.jpg`). Photos uploaded through the admin go to
+`uploads/`.
+
+## Editing projects
+
+Site administrators sign in at **`/admin`** with an email and password —
+no GitHub account needed. Netlify Identity handles the login and Git Gateway
+commits the changes, so editing a project writes to this repo and the site
+redeploys.
+
+- Each project is one file in `content/projects/` — this is the source of truth
+- `build.py` turns those files into `projects.html` on every deploy
+- The build also makes a card-sized copy of any newly uploaded photo. If Pillow
+  is unavailable it falls back to the full-size image rather than failing
+
+To add an administrator: Netlify → Identity → Invite users. Registration is
+invite-only by design.
+
+`projects.csv` is the original WordPress import — names, categories and photo
+filenames for all 58 projects. It is kept for reference and for bulk edits; the
+JSON files are what the site actually reads.
 
 ## Running it locally
 
@@ -33,24 +55,28 @@ all seven files.
 python3 -m http.server 8000
 ```
 
-Open http://localhost:8000/. Links and asset paths are all relative, so
-opening the files directly in a browser works too.
+Open http://localhost:8000/. Asset paths are relative, so opening the files
+directly in a browser works too. Run `python3 build.py` after changing
+anything in `content/projects/`.
 
 ## Design
 
-- **Headlines:** Archivo · **Body:** Inter — both from Google Fonts
+- **Headlines:** Archivo (homepage) · Fraunces (inner pages) · **Body:** Inter
 - **Navy:** `#0B1D2C` `#173352` `#28516B` · **Accent:** `#4FA8D8` ·
   **Off-white:** `#FAF9F5`
 - Sections deliberately alternate light and dark
+- Content fades and lifts into place on scroll; the effect is skipped entirely
+  for `prefers-reduced-motion`, and nothing is hidden when JavaScript is off
 
 ## Status
 
-Seven pages are built and represent the approved design. Still to come:
+Eight pages are built. Still open:
 
-- **Projects page** — 58 projects need migrating off the old WordPress site
-- **Subcontractor form** — currently front-end only; needs a form backend
-- **Custom domain** — `bdiconstruction.com` not yet pointed at GitHub Pages
-- **Real logo** — pages currently use a text wordmark placeholder
-- Contact page map and community gallery are placeholders
-
-See `CLAUDE.md` for full detail, content accuracy rules, and open questions.
+- **Project details** — every project has a name and a photo, but city, year,
+  sector and delivery method are blank. The old WordPress site never stored
+  them, so they have to be entered by hand at `/admin`
+- **Logo** — `logo.svg` is a reconstruction traced from a picture of the
+  artwork, not the original file. A rebrand is expected
+- **Subcontractor form** — front-end only; needs a form backend
+- **Contact page map** — placeholder
+- **Custom domain** — not connected
