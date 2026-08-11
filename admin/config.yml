@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Uploaded photos land in the repo root alongside the existing ones,
+# so paths match what the pages already use.
+media_folder: "uploads"
+public_folder: "/uploads"
+
+publish_mode: simple
+site_url: https://bdiconstruction.com
+logo_url: /logo.svg
+
+collections:
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: content/projects
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: "{{fields.title | lower | replace(' ', '-')}}"
+    identifier_field: title
+    summary: "{{title}}  —  {{city}}"
+    sortable_fields: [order, title, year, city]
+    view_filters:
+      - label: Missing a city
+        field: city
+        pattern: "^$"
+    fields:
+      - { name: title, label: Project name, widget: string }
+      - { name: photo, label: Photo, widget: image, required: false,
+          hint: "Full-size photograph. Drag one in — any size, it does not need cropping." }
+      - { name: city, label: City, widget: string, required: false, hint: "e.g. Miami" }
+      - { name: state, label: State, widget: string, required: false, default: "FL" }
+      - { name: sector, label: Sector, widget: select, required: false,
+          options: ["", Commercial, Educational, Medical, Multi-family housing,
+                    Government, Retail, Hospitality, Industrial, Interiors] }
+      - { name: year, label: Year completed, widget: string, required: false,
+          hint: "e.g. 2024. Leave blank if the project is still under way." }
+      - { name: delivery, label: Delivery method, widget: select, required: false,
+          options: ["", General Contracting, Design-Build, Construction Management] }
+      - { name: order, label: Position on the page, widget: number, required: false,
+          value_type: int, default: 0,
+          hint: "Lower numbers appear first. Newest work is currently at the top." }
+      - { name: photo_card, label: Card image (managed automatically), widget: hidden, required: false }
+      - { name: wp_date, label: Original date (from the old site), widget: hidden, required: false }

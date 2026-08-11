@@ -1,0 +1,8 @@
+[build]
+  command = "pip install --quiet pillow || true; python3 build.py"
+  publish = "."
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
