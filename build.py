@@ -9,6 +9,8 @@ available the build still succeeds and the full-size photo is used for the
 card instead, so a missing dependency can never take the site down.
 """
 
+from __future__ import annotations   # keeps the type hints valid on older Pythons
+
 import html
 import json
 import pathlib
