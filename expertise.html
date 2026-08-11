@@ -233,45 +233,76 @@
       });
     }
 
-    // Numbers count into place the first time they are seen.
-    function count(el){
-      if (el.dataset.counted) return;
-      el.dataset.counted = '1';
+    // --- counting figures -------------------------------------------------
+    // The target is cached on first sight, so a re-run never reads a
+    // half-counted value off the page.
+    function prep(el){
+      if (el.dataset.target) return;
       var m = (el.textContent || '').trim().match(/^(\d[\d,]*)([\s\S]*)$/);
       if (!m) return;
-      var to = parseInt(m[1].replace(/,/g, ''), 10), suffix = m[2];
-      var from = el.getAttribute('data-count') === 'now' ? new Date().getFullYear() : 0;
-      if (calm || from === to) return;
+      el.dataset.target = m[1].replace(/,/g, '');
+      el.dataset.suffix = m[2];
+    }
+    function startAt(el){
+      return el.getAttribute('data-count') === 'now' ? new Date().getFullYear() : 0;
+    }
+    function runCount(el){
+      prep(el);
+      if (!el.dataset.target || calm) return;
+      var to = parseInt(el.dataset.target, 10), suffix = el.dataset.suffix, from = startAt(el);
+      if (from === to) { el.textContent = to + suffix; return; }
+      var run = String(Number(el.dataset.run || 0) + 1);
+      el.dataset.run = run;                       // supersedes any run still going
       var dur = 1800, t0 = 0;
       requestAnimationFrame(function tick(ts){
+        if (el.dataset.run !== run) return;
         if (!t0) t0 = ts;
         var p = Math.min(1, (ts - t0) / dur);
-        var eased = 1 - Math.pow(1 - p, 4);
-        el.textContent = Math.round(from + (to - from) * eased) + suffix;
+        el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 4))) + suffix;
         if (p < 1) requestAnimationFrame(tick);
         else el.textContent = to + suffix;
       });
+    }
+    function resetCount(el){
+      prep(el);
+      if (!el.dataset.target || calm) return;
+      el.dataset.run = String(Number(el.dataset.run || 0) + 1);   // cancel in flight
+      el.textContent = startAt(el) + el.dataset.suffix;
     }
 
     if (calm) return;
     root.classList.add('reveal-on');
     requestAnimationFrame(function(){ root.classList.add('settled'); });
 
+    // --- reveals ----------------------------------------------------------
+    // Elements re-animate every time they come back into view, so they are
+    // reset once clearly off screen rather than being left revealed.
     var items = [].slice.call(document.querySelectorAll('.rv, .rv-l, .rv-r'));
+    var pending = [];
     var ticking = false;
+
     function sweep(){
       ticking = false;
-      var h = window.innerHeight, i = 0;
-      while (i < items.length){
-        var el = items[i], top = el.getBoundingClientRect().top;
-        // in view, or already scrolled past - either way it must end up visible
-        if (top < h * 0.88){
-          setTimeout(function(e){ return function(){
+      var h = window.innerHeight;
+      for (var i = 0; i < items.length; i++){
+        var el = items[i], r = el.getBoundingClientRect();
+        var shown = el.classList.contains('in');
+        var inView = r.top < h * 0.9 && r.bottom > 0;
+        var gone   = r.bottom < -40 || r.top > h + 40;
+        if (inView && !shown && !pending[i]){
+          pending[i] = setTimeout(function(e){ return function(){
             e.classList.add('in');
-            [].forEach.call(e.querySelectorAll('[data-count]'), count);
+            [].forEach.call(e.querySelectorAll('[data-count]'), runCount);
           }; }(el), parseInt(el.getAttribute('data-d') || 0, 10));
-          items.splice(i, 1);
-        } else i++;
+        } else if (gone){
+          clearTimeout(pending[i]); pending[i] = 0;
+          if (shown){
+            el.classList.remove('in');
+            [].forEach.call(el.querySelectorAll('[data-count]'), resetCount);
+          }
+        } else if (shown){
+          pending[i] = 0;
+        }
       }
     }
     function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(sweep); } }
