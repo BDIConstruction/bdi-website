@@ -81,12 +81,12 @@
   .gallery{ padding:100px 0; }
   .gallery .label{ color:var(--teal); margin-bottom:16px; }
   .gallery h2{ font-size:clamp(21px,2.4vw,27px); font-style:italic; color:var(--navy); margin-bottom:50px; }
-  .gallery-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2px; }
-  .gallery-grid .slot{
-    aspect-ratio:1/1; background:var(--paper); display:flex; align-items:center; justify-content:center;
-    font-family:'Inter',sans-serif; font-size:10px; letter-spacing:.14em; color:var(--muted); text-transform:uppercase;
-  }
-  .gallery-grid .slot.wide{ grid-column:span 2; aspect-ratio:2/1; }
+  /* Five photographs: the wide one leads so the grid fills with no gaps at
+     both three and two columns. */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+  .shot{ aspect-ratio:1/1; overflow:hidden; background:var(--paper); }
+  .shot.wide{ grid-column:span 2; aspect-ratio:2/1; }
+  .shot img{ width:100%; height:100%; object-fit:cover; display:block; }
   @media (max-width:760px){ .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
 
   footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
@@ -160,12 +160,11 @@
     <div class="label">In the Community</div>
     <h2>Photo Gallery</h2>
     <div class="gallery-grid">
-      <div class="slot wide">Photo</div>
-      <div class="slot">Photo</div>
-      <div class="slot">Photo</div>
-      <div class="slot">Photo</div>
-      <div class="slot">Photo</div>
-      <div class="slot wide">Photo</div>
+      <div class="shot wide"><img src="community-aia-tour.jpg" alt="BDI Construction hosting an AIA hard hat tour of a project under construction"></div>
+      <div class="shot"><img src="community-golf.jpg" alt="A BDI Construction team at a charity golf tournament"></div>
+      <div class="shot"><img src="community-career-fair.jpg" style="object-position:center 38%" alt="The BDI Construction stand at a university career fair"></div>
+      <div class="shot"><img src="community-award.jpg" alt="BDI Construction staff receiving a certificate of recognition"></div>
+      <div class="shot"><img src="community-sponsors.jpg" alt="An event sponsor banner listing BDI Construction among its supporters"></div>
     </div>
   </section>
   </div>
