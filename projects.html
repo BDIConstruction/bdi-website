@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BDI Construction — Projects</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
+  :root{
+    --ink:#15202B; --paper:#FAF9F5; --navy-deep:#0E2233; --navy:#1B3A54;
+    --teal:#4C7C8C; --green:#4FA8D8; --muted:#68737C; --hair:#E4E0D5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Inter',sans-serif; font-weight:300; color:var(--ink); background:#fff; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Fraunces',serif; font-weight:450; }
+  a{color:inherit; text-decoration:none;}
+  .wrap{ max-width:980px; margin:0 auto; padding:0 48px; }
+  @media (max-width:800px){ .wrap{padding:0 24px;} }
+  .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
+
+  /* relative + z-index so the dropdown paints above the page head, which is
+     positioned and would otherwise cover it */
+  .nav{ position:relative; z-index:50; background:#fff; border-bottom:1px solid var(--hair); }
+  .nav-inner{ max-width:980px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
+  /* Brand — logo mark */
+  .brand{ display:flex; align-items:center; }
+  .brand .logomark{ height:52px; width:auto; display:block; }
+  @media (max-width:520px){ .brand .logomark{height:40px;} }
+  .navlinks{ display:flex; gap:26px; }
+  .navlinks .label{ color:var(--muted); letter-spacing:.12em; white-space:nowrap; }
+  .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--navy); }
+  .navlinks > div{ position:relative; }
+  .navlinks a.active .label{ color:var(--navy); }
+  .dropdown{
+    position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:26px;
+    background:#fff; min-width:170px; padding:16px 0; border:1px solid var(--hair);
+    opacity:0; visibility:hidden; text-align:center;
+    transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
+    transition-delay:.35s;            /* forgiving on the way out */
+  }
+  /* invisible bridge over the gap between the link and the panel, so the
+     pointer does not un-hover while travelling down to the menu */
+  .dropdown::before{ content:""; position:absolute; left:0; right:0; top:-30px; height:30px; }
+  .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); transition-delay:0s; }
+  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .dropdown a.here{ color:var(--navy); }
+  .dropdown a:hover{ color:var(--navy); }
+  @media (max-width:920px){ .navlinks{display:none;} }
+
+  .pagehead{ position:relative; padding:120px 0 90px; overflow:hidden; background:var(--navy-deep); }
+  .pagehead .year{
+    position:absolute; top:0; right:0;
+    font-family:'Fraunces',serif; font-weight:400; font-style:italic;
+    font-size:min(8vw, 98px); color:rgba(160,200,235,.12); z-index:0; line-height:.9;
+    white-space:nowrap; user-select:none;
+  }
+  .pagehead .inner{ position:relative; z-index:1; }
+  .pagehead .label{ color:var(--green); margin-bottom:20px; }
+  .pagehead h1{ font-size:clamp(32px,4.2vw,50px); font-style:italic; color:#fff; }
+  .pagehead .crumbs{ margin-top:22px; color:rgba(255,255,255,.55); }
+  .pagehead .crumbs a{ font-size:12px; letter-spacing:.08em; color:rgba(255,255,255,.72); }
+  .pagehead .crumbs a:hover{ color:var(--green); }
+
+  .work{ padding:20px 0 110px; background:#fff; }
+  .work .count{ color:var(--muted); font-size:14px; margin-bottom:44px; font-weight:300; }
+  .pgrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:34px 28px; }
+  .pcard{ display:block; text-align:left; background:none; border:none; padding:0; cursor:zoom-in; font:inherit; }
+  .pcard .photo{ display:block; aspect-ratio:4/3; overflow:hidden; background:var(--paper); margin-bottom:16px; }
+  .pcard .photo img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
+  .pcard:hover .photo img{ transform:scale(1.04); }
+  .pcard:focus-visible{ outline:2px solid var(--navy); outline-offset:4px; }
+  .pcard .loc{ color:var(--teal); font-size:11px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:6px; font-weight:600; }
+  .pcard h4{ font-family:'Fraunces',serif; font-size:17px; font-weight:450; color:var(--navy); line-height:1.35; }
+  @media (max-width:860px){ .pgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 20px; } }
+  @media (max-width:560px){ .pgrid{ grid-template-columns:1fr; } }
+
+  .lb{ position:fixed; inset:0; z-index:100; background:rgba(11,29,44,.94); display:flex; align-items:center; justify-content:center; padding:5vmin; }
+  .lb[hidden]{ display:none; }
+  .lb img{ max-width:100%; max-height:100%; object-fit:contain; display:block; }
+  .lb button{ position:absolute; background:none; border:none; color:#fff; cursor:pointer; font-family:'Inter',sans-serif; font-weight:300; line-height:1; opacity:.75; padding:12px; }
+  .lb button:hover, .lb button:focus-visible{ opacity:1; }
+  .lb .lb-close{ top:12px; right:18px; font-size:40px; }
+  .lb .lb-prev, .lb .lb-next{ top:50%; transform:translateY(-50%); font-size:56px; }
+  .lb .lb-prev{ left:10px; } .lb .lb-next{ right:10px; }
+  .lb .lb-cap{ position:absolute; bottom:16px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.8); font-size:12px; letter-spacing:.1em; text-align:center; max-width:80%; }
+  @media (max-width:600px){ .lb .lb-prev, .lb .lb-next{ font-size:40px; } }
+
+  footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
+  footer .label{ color:var(--muted); font-weight:400; }
+
+  /* Scroll reveals — short travel, quick settle. Everything is visible by
+     default; .reveal-on is added by script only when the observer is
+     supported, so the page still reads with JS off. */
+  .reveal-on .rv{ opacity:0; transform:translateY(22px); }
+  .reveal-on .rv-l{ opacity:0; transform:translateX(-34px); }
+  .reveal-on .rv-r{ opacity:0; transform:translateX(34px); }
+  .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    will-change:opacity, transform;
+  }
+  .reveal-on .rv.in, .reveal-on .rv-l.in, .reveal-on .rv-r.in{ opacity:1; transform:none; }
+  /* the side-entering pieces sit in two-column grids; clip so their offset
+     cannot push the page sideways while they are still out of position */
+  .reveal-on .grid{ overflow-x:clip; }
+  /* on narrow screens the columns stack, so travel vertically instead */
+  @media (max-width:860px){
+    .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(22px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{ opacity:1 !important; transform:none !important; transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><img class="logomark" src="logo.svg" alt="BDI Construction"></a>
+      <div class="navlinks">
+        <div>
+          <a href="history.html"><span class="label">About Us</span></a>
+          <div class="dropdown">
+            <a href="history.html">History</a>
+            <a href="culture.html">Culture</a>
+            <a href="community.html">Community</a>
+          </div>
+        </div>
+        <a class="active" href="projects.html"><span class="label">Projects</span></a>
+        <a href="expertise.html"><span class="label">Expertise</span></a>
+        <a href="work-with-us.html"><span class="label">Work With Us</span></a>
+        <a href="contact.html"><span class="label">Contact Us</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pagehead">
+    <div class="year">Built</div>
+    <div class="wrap inner">
+      <div class="rv label">Our Work</div>
+      <h1 class="rv" data-d="90">Projects</h1>
+      <div class="rv crumbs" data-d="170"><a href="expertise.html">Expertise</a> &nbsp;/&nbsp; <a href="contact.html">Start a Conversation</a></div>
+    </div>
+  </div>
+
+  <section class="work">
+    <div class="wrap">
+      <div class="rv count">58 projects</div>
+      <div class="pgrid">
+      <button type="button" class="rv pcard" data-d="0" data-full="project-alper-jewish-community-center-theater.jpg" aria-label="View larger: Alper Jewish Community Center - Theater">
+        <span class="photo"><img src="project-alper-jewish-community-center-theater-card.jpg" loading="lazy" decoding="async" alt="Alper Jewish Community Center - Theater"></span>
+        <h4>Alper Jewish Community Center - Theater</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-amerant-bank-coral-way.jpg" aria-label="View larger: Amerant Bank Coral Way">
+        <span class="photo"><img src="project-amerant-bank-coral-way-card.jpg" loading="lazy" decoding="async" alt="Amerant Bank Coral Way"></span>
+        <h4>Amerant Bank Coral Way</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-bascom-palmer-marketing-development-office.jpg" aria-label="View larger: Bascom Palmer - Marketing and Development Office">
+        <span class="photo"><img src="project-bascom-palmer-marketing-development-office-card.jpg" loading="lazy" decoding="async" alt="Bascom Palmer - Marketing and Development Office"></span>
+        <h4>Bascom Palmer - Marketing and Development Office</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-belen-jesuit-prep.jpg" aria-label="View larger: Belen Jesuit Prep">
+        <span class="photo"><img src="project-belen-jesuit-prep-card.jpg" loading="lazy" decoding="async" alt="Belen Jesuit Prep"></span>
+        <h4>Belen Jesuit Prep</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-bocce-bar-restaurant.jpg" aria-label="View larger: Bocce Bar &amp; Restaurant">
+        <span class="photo"><img src="project-bocce-bar-restaurant-card.jpg" loading="lazy" decoding="async" alt="Bocce Bar &amp; Restaurant"></span>
+        <h4>Bocce Bar &amp; Restaurant</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-cerveceria-la-tropical-brewery-restaurant.jpg" aria-label="View larger: Cerveceria La Tropical Brewery &amp; Restaurant">
+        <span class="photo"><img src="project-cerveceria-la-tropical-brewery-restaurant-card.jpg" loading="lazy" decoding="async" alt="Cerveceria La Tropical Brewery &amp; Restaurant"></span>
+        <h4>Cerveceria La Tropical Brewery &amp; Restaurant</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-city-national-bank.jpg" aria-label="View larger: City National Bank">
+        <span class="photo"><img src="project-city-national-bank-card.jpg" loading="lazy" decoding="async" alt="City National Bank"></span>
+        <h4>City National Bank</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-cloisters-57-plex-townhomes.jpg" aria-label="View larger: Cloisters 57 Plex Townhomes">
+        <span class="photo"><img src="project-cloisters-57-plex-townhomes-card.jpg" loading="lazy" decoding="async" alt="Cloisters 57 Plex Townhomes"></span>
+        <h4>Cloisters 57 Plex Townhomes</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-conchita-espinosa-academy-kinder-center.jpg" aria-label="View larger: Conchita Espinosa Academy Kinder Center">
+        <span class="photo"><img src="project-conchita-espinosa-academy-kinder-center-card.jpg" loading="lazy" decoding="async" alt="Conchita Espinosa Academy Kinder Center"></span>
+        <h4>Conchita Espinosa Academy Kinder Center</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-courtside-phase-ii.jpg" aria-label="View larger: Courtside Phase II">
+        <span class="photo"><img src="project-courtside-phase-ii-card.jpg" loading="lazy" decoding="async" alt="Courtside Phase II"></span>
+        <h4>Courtside Phase II</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-doral-shoppes-winn-dixie.jpg" aria-label="View larger: Doral Shoppes">
+        <span class="photo"><img src="project-doral-shoppes-winn-dixie-card.jpg" loading="lazy" decoding="async" alt="Doral Shoppes"></span>
+        <h4>Doral Shoppes</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-dulce-vida.jpg" aria-label="View larger: Dulce Vida">
+        <span class="photo"><img src="project-dulce-vida-card.jpg" loading="lazy" decoding="async" alt="Dulce Vida"></span>
+        <h4>Dulce Vida</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-father-marquess-barry-multi-story-apartments.jpg" aria-label="View larger: Father Marquess-Barry Multi Story Apartments">
+        <span class="photo"><img src="project-father-marquess-barry-multi-story-apartments-card.jpg" loading="lazy" decoding="async" alt="Father Marquess-Barry Multi Story Apartments"></span>
+        <h4>Father Marquess-Barry Multi Story Apartments</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-felix-varela-high-school.jpg" aria-label="View larger: Felix Varela High School">
+        <span class="photo"><img src="project-felix-varela-high-school-card.jpg" loading="lazy" decoding="async" alt="Felix Varela High School"></span>
+        <h4>Felix Varela High School</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-grand-east.jpg" aria-label="View larger: Grand East">
+        <span class="photo"><img src="project-grand-east-card.jpg" loading="lazy" decoding="async" alt="Grand East"></span>
+        <h4>Grand East</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-grazianos.jpg" aria-label="View larger: Grazianos">
+        <span class="photo"><img src="project-grazianos-card.jpg" loading="lazy" decoding="async" alt="Grazianos"></span>
+        <h4>Grazianos</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-grove-bay-harbour-boat-racks.jpg" aria-label="View larger: Grove Bay Harbour Boat Racks">
+        <span class="photo"><img src="project-grove-bay-harbour-boat-racks-card.jpg" loading="lazy" decoding="async" alt="Grove Bay Harbour Boat Racks"></span>
+        <h4>Grove Bay Harbour Boat Racks</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-gulliver-preparatory-courtyard.jpg" aria-label="View larger: Gulliver Preparatory Courtyard">
+        <span class="photo"><img src="project-gulliver-preparatory-courtyard-card.jpg" loading="lazy" decoding="async" alt="Gulliver Preparatory Courtyard"></span>
+        <h4>Gulliver Preparatory Courtyard</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-havana-enclave.jpg" aria-label="View larger: Havana Enclave">
+        <span class="photo"><img src="project-havana-enclave-card.jpg" loading="lazy" decoding="async" alt="Havana Enclave"></span>
+        <h4>Havana Enclave</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-heneiken.jpg" aria-label="View larger: Heneiken">
+        <span class="photo"><img src="project-heneiken-card.jpg" loading="lazy" decoding="async" alt="Heneiken"></span>
+        <h4>Heneiken</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-henry-s-west-lab.jpg" aria-label="View larger: Henry S. West Lab">
+        <span class="photo"><img src="project-henry-s-west-lab-card.jpg" loading="lazy" decoding="async" alt="Henry S. West Lab"></span>
+        <h4>Henry S. West Lab</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-hialeah-senior-high-school-annex-buidling.jpg" aria-label="View larger: Hialeah Senior High School Annex Buidling">
+        <span class="photo"><img src="project-hialeah-senior-high-school-annex-buidling-card.jpg" loading="lazy" decoding="async" alt="Hialeah Senior High School Annex Buidling"></span>
+        <h4>Hialeah Senior High School Annex Buidling</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-information-technology-services-cat-v-hurricane-emergency-backup-building.jpg" aria-label="View larger: Information Technology Services - Cat V Hurricane and Emergency Backup Building">
+        <span class="photo"><img src="project-information-technology-services-cat-v-hurricane-emergency-backup-building-card.jpg" loading="lazy" decoding="async" alt="Information Technology Services - Cat V Hurricane and Emergency Backup Building"></span>
+        <h4>Information Technology Services - Cat V Hurricane and Emergency Backup Building</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-iprep-classroom-renovation.jpg" aria-label="View larger: Iprep Classroom Renovation">
+        <span class="photo"><img src="project-iprep-classroom-renovation-card.jpg" loading="lazy" decoding="async" alt="Iprep Classroom Renovation"></span>
+        <h4>Iprep Classroom Renovation</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-kla-schools-brickell.jpg" aria-label="View larger: Kla Schools Brickell">
+        <span class="photo"><img src="project-kla-schools-brickell-card.jpg" loading="lazy" decoding="async" alt="Kla Schools Brickell"></span>
+        <h4>Kla Schools Brickell</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-little-miracles-maternity-suites-jmh.jpg" aria-label="View larger: Little Miracles Maternity Suites - Jmh">
+        <span class="photo"><img src="project-little-miracles-maternity-suites-jmh-card.jpg" loading="lazy" decoding="async" alt="Little Miracles Maternity Suites - Jmh"></span>
+        <h4>Little Miracles Maternity Suites - Jmh</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-mater-lakes-academy-south-campus-phase.jpg" aria-label="View larger: Mater Lakes Academy, South Campus Phase I &amp; II">
+        <span class="photo"><img src="project-mater-lakes-academy-south-campus-phase-card.jpg" loading="lazy" decoding="async" alt="Mater Lakes Academy, South Campus Phase I &amp; II"></span>
+        <h4>Mater Lakes Academy, South Campus Phase I &amp; II</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-mater-lakes-gymnasium.jpg" aria-label="View larger: Mater Lakes Gymnasium">
+        <span class="photo"><img src="project-mater-lakes-gymnasium-card.jpg" loading="lazy" decoding="async" alt="Mater Lakes Gymnasium"></span>
+        <h4>Mater Lakes Gymnasium</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-mercantil-bank.jpg" aria-label="View larger: Mercantil Bank">
+        <span class="photo"><img src="project-mercantil-bank-card.jpg" loading="lazy" decoding="async" alt="Mercantil Bank"></span>
+        <h4>Mercantil Bank</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-mia-cuccina-showroom.jpg" aria-label="View larger: MIA Cuccina Showroom">
+        <span class="photo"><img src="project-mia-cuccina-showroom-card.jpg" loading="lazy" decoding="async" alt="MIA Cuccina Showroom"></span>
+        <h4>MIA Cuccina Showroom</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-miami-lakes-technical.jpg" aria-label="View larger: Miami Lakes Technical">
+        <span class="photo"><img src="project-miami-lakes-technical-card.jpg" loading="lazy" decoding="async" alt="Miami Lakes Technical"></span>
+        <h4>Miami Lakes Technical</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-miami-world-center-block-f-east.jpg" aria-label="View larger: Miami World Center Block F-East">
+        <span class="photo"><img src="project-miami-world-center-block-f-east-card.jpg" loading="lazy" decoding="async" alt="Miami World Center Block F-East"></span>
+        <h4>Miami World Center Block F-East</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-michael-krop-high-school.jpg" aria-label="View larger: Michael Krop High School">
+        <span class="photo"><img src="project-michael-krop-high-school-card.jpg" loading="lazy" decoding="async" alt="Michael Krop High School"></span>
+        <h4>Michael Krop High School</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-miele-showroom.jpg" aria-label="View larger: Miele Showroom">
+        <span class="photo"><img src="project-miele-showroom-card.jpg" loading="lazy" decoding="async" alt="Miele Showroom"></span>
+        <h4>Miele Showroom</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-mondelez-international-kraft-foods-corporate-office.jpg" aria-label="View larger: Mondelez International - Kraft Foods Corporate Office">
+        <span class="photo"><img src="project-mondelez-international-kraft-foods-corporate-office-card.jpg" loading="lazy" decoding="async" alt="Mondelez International - Kraft Foods Corporate Office"></span>
+        <h4>Mondelez International - Kraft Foods Corporate Office</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-normandy-fountain-historical-restoration.jpg" aria-label="View larger: Normandy Fountain Historical Restoration">
+        <span class="photo"><img src="project-normandy-fountain-historical-restoration-card.jpg" loading="lazy" decoding="async" alt="Normandy Fountain Historical Restoration"></span>
+        <h4>Normandy Fountain Historical Restoration</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-ofm-office-foreign-missions.jpg" aria-label="View larger: Ofm - Office of Foreign Missions">
+        <span class="photo"><img src="project-ofm-office-foreign-missions-card.jpg" loading="lazy" decoding="async" alt="Ofm - Office of Foreign Missions"></span>
+        <h4>Ofm - Office of Foreign Missions</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-palm-plaza-medical-center.jpg" aria-label="View larger: Palm Plaza Medical Center">
+        <span class="photo"><img src="project-palm-plaza-medical-center-card.jpg" loading="lazy" decoding="async" alt="Palm Plaza Medical Center"></span>
+        <h4>Palm Plaza Medical Center</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-parkway-elem-pe-shelter.jpg" aria-label="View larger: Parkway Elem PE Shelter">
+        <span class="photo"><img src="project-parkway-elem-pe-shelter-card.jpg" loading="lazy" decoding="async" alt="Parkway Elem PE Shelter"></span>
+        <h4>Parkway Elem PE Shelter</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-pike-house-coral-gables-fl.jpg" aria-label="View larger: Pike House - Coral Gables Fl - Student Housing">
+        <span class="photo"><img src="project-pike-house-coral-gables-fl-card.jpg" loading="lazy" decoding="async" alt="Pike House - Coral Gables Fl - Student Housing"></span>
+        <h4>Pike House - Coral Gables Fl - Student Housing</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-primary-learning-center.jpg" aria-label="View larger: Primary Learning Center">
+        <span class="photo"><img src="project-primary-learning-center-card.jpg" loading="lazy" decoding="async" alt="Primary Learning Center"></span>
+        <h4>Primary Learning Center</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-richemont-coral-gables.jpg" aria-label="View larger: Richemont Coral Gables Corporate Office">
+        <span class="photo"><img src="project-richemont-coral-gables-card.jpg" loading="lazy" decoding="async" alt="Richemont Coral Gables Corporate Office"></span>
+        <h4>Richemont Coral Gables Corporate Office</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-shoppes-doral-phase.jpg" aria-label="View larger: Shoppes at Doral Phase I">
+        <span class="photo"><img src="project-shoppes-doral-phase-card.jpg" loading="lazy" decoding="async" alt="Shoppes at Doral Phase I"></span>
+        <h4>Shoppes at Doral Phase I</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-shoppes-doral-phase-ii.jpg" aria-label="View larger: Shoppes at Doral Phase II">
+        <span class="photo"><img src="project-shoppes-doral-phase-ii-card.jpg" loading="lazy" decoding="async" alt="Shoppes at Doral Phase II"></span>
+        <h4>Shoppes at Doral Phase II</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-smith-warehouse-i.jpg" aria-label="View larger: Smith Warehouse I">
+        <span class="photo"><img src="project-smith-warehouse-i-card.jpg" loading="lazy" decoding="async" alt="Smith Warehouse I"></span>
+        <h4>Smith Warehouse I</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-storage-facility-warehouse.jpg" aria-label="View larger: Storage Facility Warehouse">
+        <span class="photo"><img src="project-storage-facility-warehouse-card.jpg" loading="lazy" decoding="async" alt="Storage Facility Warehouse"></span>
+        <h4>Storage Facility Warehouse</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-the-cushman-school.jpg" aria-label="View larger: The Cushman School">
+        <span class="photo"><img src="project-the-cushman-school-card.jpg" loading="lazy" decoding="async" alt="The Cushman School"></span>
+        <h4>The Cushman School</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-fountains-hidden-lake.jpg" aria-label="View larger: The Fountains at Hidden Lake">
+        <span class="photo"><img src="project-fountains-hidden-lake-card.jpg" loading="lazy" decoding="async" alt="The Fountains at Hidden Lake"></span>
+        <h4>The Fountains at Hidden Lake</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-historic-shrine-building.jpg" aria-label="View larger: The Historic Shrine Building">
+        <span class="photo"><img src="project-historic-shrine-building-card.jpg" loading="lazy" decoding="async" alt="The Historic Shrine Building"></span>
+        <h4>The Historic Shrine Building</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-tucker-tower.jpg" aria-label="View larger: Tucker Tower">
+        <span class="photo"><img src="project-tucker-tower-card.jpg" loading="lazy" decoding="async" alt="Tucker Tower"></span>
+        <h4>Tucker Tower</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-uhealth-jackson-urgent-care.jpg" aria-label="View larger: Uhealth - Jackson Urgent Care">
+        <span class="photo"><img src="project-uhealth-jackson-urgent-care-card.jpg" loading="lazy" decoding="async" alt="Uhealth - Jackson Urgent Care"></span>
+        <h4>Uhealth - Jackson Urgent Care</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-um-calder-library-basement-renovations.jpg" aria-label="View larger: UM - Calder Library Basement Renovations">
+        <span class="photo"><img src="project-um-calder-library-basement-renovations-card.jpg" loading="lazy" decoding="async" alt="UM - Calder Library Basement Renovations"></span>
+        <h4>UM - Calder Library Basement Renovations</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-um-mailman-center.jpg" aria-label="View larger: UM Mailman Center for Child Development">
+        <span class="photo"><img src="project-um-mailman-center-card.jpg" loading="lazy" decoding="async" alt="UM Mailman Center for Child Development"></span>
+        <h4>UM Mailman Center for Child Development</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-um-sylvester-cancer-clinic-comprehensive-treatment-unit.jpg" aria-label="View larger: UM Sylvester Cancer Clinic Comprehensive Treatment Unit">
+        <span class="photo"><img src="project-um-sylvester-cancer-clinic-comprehensive-treatment-unit-card.jpg" loading="lazy" decoding="async" alt="UM Sylvester Cancer Clinic Comprehensive Treatment Unit"></span>
+        <h4>UM Sylvester Cancer Clinic Comprehensive Treatment Unit</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-university-miami-dwayne-rock-johnson-locker-rooms.jpg" aria-label="View larger: University of Miami Dwayne Johnson Locker Rooms">
+        <span class="photo"><img src="project-university-miami-dwayne-rock-johnson-locker-rooms-card.jpg" loading="lazy" decoding="async" alt="University of Miami Dwayne Johnson Locker Rooms"></span>
+        <h4>University of Miami Dwayne Johnson Locker Rooms</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="90" data-full="project-university-miami-greenhouse.jpg" aria-label="View larger: University of Miami Greenhouse">
+        <span class="photo"><img src="project-university-miami-greenhouse-card.jpg" loading="lazy" decoding="async" alt="University of Miami Greenhouse"></span>
+        <h4>University of Miami Greenhouse</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="180" data-full="project-usps-united-states-post-office-new-branch-miami-fl.jpg" aria-label="View larger: USPS - United States Post Office - New Branch Miami, Fl">
+        <span class="photo"><img src="project-usps-united-states-post-office-new-branch-miami-fl-card.jpg" loading="lazy" decoding="async" alt="USPS - United States Post Office - New Branch Miami, Fl"></span>
+        <h4>USPS - United States Post Office - New Branch Miami, Fl</h4>
+      </button>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-waterford-reception-desk.jpg" aria-label="View larger: Waterford Office">
+        <span class="photo"><img src="project-waterford-reception-desk-card.jpg" loading="lazy" decoding="async" alt="Waterford Office"></span>
+        <h4>Waterford Office</h4>
+      </button>
+      </div>
+    </div>
+  </section>
+
+  <footer><span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+
+  <script>
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('reveal-on');
+    var items = [].slice.call(document.querySelectorAll('.rv, .rv-l, .rv-r'));
+    var ticking = false;
+    function sweep(){
+      ticking = false;
+      var h = window.innerHeight, i = 0;
+      while (i < items.length){
+        var el = items[i], top = el.getBoundingClientRect().top;
+        // in view, or already scrolled past - either way it must end up visible
+        if (top < h * 0.88){
+          setTimeout(function(e){ return function(){ e.classList.add('in'); }; }(el),
+                     parseInt(el.getAttribute('data-d') || 0, 10));
+          items.splice(i, 1);
+        } else i++;
+      }
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(sweep); } }
+    addEventListener('scroll', onScroll, { passive:true });
+    addEventListener('resize', onScroll);
+    addEventListener('load', onScroll);
+    requestAnimationFrame(sweep);
+  })();
+  </script>
+
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Project photo viewer">
+    <button class="lb-prev" type="button" aria-label="Previous project">&lsaquo;</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-next" type="button" aria-label="Next project">&rsaquo;</button>
+    <button class="lb-close" type="button" aria-label="Close viewer">&times;</button>
+    <span class="lb-cap" id="lb-cap"></span>
+  </div>
+
+  <script>
+  (function(){
+    var cards = [].slice.call(document.querySelectorAll('.pcard'));
+    if (!cards.length) return;
+    var lb = document.getElementById('lb'), img = document.getElementById('lb-img'),
+        cap = document.getElementById('lb-cap'), i = 0, opener = null;
+    function show(n){
+      i = (n + cards.length) % cards.length;
+      var c = cards[i];
+      img.src = c.getAttribute('data-full');
+      img.alt = c.querySelector('img').alt;
+      cap.textContent = c.querySelector('h4').textContent + '  \u00b7  ' + (i + 1) + ' / ' + cards.length;
+    }
+    function open(n, from){ opener = from; show(n); lb.hidden = false;
+      document.body.style.overflow = 'hidden'; lb.querySelector('.lb-close').focus(); }
+    function close(){ lb.hidden = true; img.src = ''; document.body.style.overflow = '';
+      if (opener) opener.focus(); }
+    cards.forEach(function(c, n){ c.addEventListener('click', function(){ open(n, c); }); });
+    lb.querySelector('.lb-close').addEventListener('click', close);
+    lb.querySelector('.lb-prev').addEventListener('click', function(e){ e.stopPropagation(); show(i - 1); });
+    lb.querySelector('.lb-next').addEventListener('click', function(e){ e.stopPropagation(); show(i + 1); });
+    lb.addEventListener('click', function(e){ if (e.target === lb || e.target === img) close(); });
+    document.addEventListener('keydown', function(e){
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(i - 1);
+      else if (e.key === 'ArrowRight') show(i + 1);
+    });
+  })();
+  </script>
+
+</body>
+</html>
