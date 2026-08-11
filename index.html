@@ -78,7 +78,7 @@
   .stats-grid{ display:grid; grid-template-columns:repeat(3,1fr); }
   .stats-grid > div{ padding:0 40px; border-left:1px solid var(--hair); }
   .stats-grid > div:first-child{ border-left:none; padding-left:0; }
-  .stats-grid .num{ font-family:'Archivo',sans-serif; font-weight:800; font-size:clamp(36px,4.2vw,52px); color:var(--navy); margin-bottom:14px; letter-spacing:-.02em; }
+  .stats-grid .num{ font-family:'Archivo',sans-serif; font-weight:800; font-variant-numeric:tabular-nums; font-size:clamp(36px,4.2vw,52px); color:var(--navy); margin-bottom:14px; letter-spacing:-.02em; }
   .stats-grid .cap{ color:var(--muted); font-size:14.5px; line-height:1.65; max-width:260px; font-weight:300; }
   .stats-grid .cap b{ color:var(--ink); font-weight:500; }
   @media (max-width:800px){ .stats-grid{grid-template-columns:1fr; gap:34px;} .stats-grid > div{border-left:none; padding-left:0; border-top:1px solid var(--hair); padding-top:30px;} .stats-grid > div:first-child{border-top:none; padding-top:0;} }
@@ -117,14 +117,15 @@
   .fbottom{ border-top:1px solid var(--hairD); padding-top:24px; display:flex; justify-content:space-between; font-size:12px; color:rgba(255,255,255,.62); flex-wrap:wrap; gap:10px; }
   @media (max-width:860px){ .fgrid{grid-template-columns:1fr 1fr;} }
 
-  /* Scroll reveals — short travel, quick settle. Everything is visible by
-     default; .reveal-on is added by script only when the observer is
-     supported, so the page still reads with JS off. */
-  .reveal-on .rv{ opacity:0; transform:translateY(22px); }
-  .reveal-on .rv-l{ opacity:0; transform:translateX(-34px); }
-  .reveal-on .rv-r{ opacity:0; transform:translateX(34px); }
+  /* MOTION
+     One long, soft ease for everything, so nothing snaps into position.
+     Elements are visible by default — .reveal-on is added by script, so with
+     JavaScript off the page simply reads normally. */
+  .reveal-on .rv  { opacity:0; transform:translateY(20px) scale(.988); }
+  .reveal-on .rv-l{ opacity:0; transform:translateX(-30px); }
+  .reveal-on .rv-r{ opacity:0; transform:translateX(30px); }
   .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{
-    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1);
     will-change:opacity, transform;
   }
   .reveal-on .rv.in, .reveal-on .rv-l.in, .reveal-on .rv-r.in{ opacity:1; transform:none; }
@@ -133,10 +134,26 @@
   .reveal-on .grid{ overflow-x:clip; }
   /* on narrow screens the columns stack, so travel vertically instead */
   @media (max-width:860px){
-    .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(22px); }
+    .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(20px); }
   }
+
+  /* photographs ease up as they decode instead of appearing all at once */
+  .fade-img{ opacity:0; transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1); }
+  .fade-img.ready{ opacity:1; }
+  @media print{ .fade-img{ opacity:1 !important; } }
+
+  /* the hero photograph settles rather than arriving at rest */
+  .reveal-on .hero .skyline img{ transform:scale(1.05); transition:transform 2s cubic-bezier(.16,1,.3,1); }
+  .reveal-on.settled .hero .skyline img{ transform:scale(1); }
+
+  /* hovers ease instead of switching */
+  a, .btn, button{ transition:color .3s cubic-bezier(.16,1,.3,1), background-color .3s cubic-bezier(.16,1,.3,1),
+                              border-color .3s cubic-bezier(.16,1,.3,1), opacity .3s cubic-bezier(.16,1,.3,1); }
+
   @media (prefers-reduced-motion:reduce){
     .reveal-on .rv, .reveal-on .rv-l, .reveal-on .rv-r{ opacity:1 !important; transform:none !important; transition:none; }
+    .fade-img{ opacity:1 !important; transition:none; }
+    .reveal-on .hero .skyline img{ transform:none !important; transition:none; }
   }
 </style>
 <script>
@@ -189,9 +206,9 @@
 
   <section class="stats">
     <div class="wrap stats-grid">
-      <div class="rv" data-d="0"><div class="num">50+</div><div class="cap">Employees statewide, <b>with a footprint that keeps growing</b> across Florida.</div></div>
-      <div class="rv" data-d="110"><div class="num">80%+</div><div class="cap">Repeat client business — <b>a reflection of the trust</b> our clients place in our team.</div></div>
-      <div class="rv" data-d="220"><div class="num">1994</div><div class="cap">Founded in Miami. <b>Second-generation, family-owned</b>, and still building today.</div></div>
+      <div class="rv" data-d="0"><div class="num" data-count="0">50+</div><div class="cap">Employees statewide, <b>with a footprint that keeps growing</b> across Florida.</div></div>
+      <div class="rv" data-d="110"><div class="num" data-count="0">80%+</div><div class="cap">Repeat client business — <b>a reflection of the trust</b> our clients place in our team.</div></div>
+      <div class="rv" data-d="220"><div class="num" data-count="now">1994</div><div class="cap">Founded in Miami. <b>Second-generation, family-owned</b>, and still building today.</div></div>
     </div>
   </section>
 
@@ -272,8 +289,54 @@
 
   <script>
   (function(){
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    document.documentElement.classList.add('reveal-on');
+    var root = document.documentElement;
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Photographs fade up as they decode. Applied from script, so with
+    // JavaScript off images are simply visible.
+    if (!calm) {
+      [].forEach.call(document.images, function(im){
+        if (im.classList.contains('logomark')) return;
+        im.classList.add('fade-img');
+        var done = function(){ im.classList.add('ready'); };
+        // listeners first, then the cached check - the other order leaves a
+        // gap where an image can finish loading and never be revealed
+        im.addEventListener('load', done, { once:true });
+        im.addEventListener('error', done, { once:true });
+        if (im.complete && im.naturalWidth) done();
+      });
+      // safety net: no photograph may stay invisible because an event was missed
+      addEventListener('load', function(){
+        [].forEach.call(document.images, function(im){
+          if (im.complete) im.classList.add('ready');
+        });
+      });
+    }
+
+    // Numbers count into place the first time they are seen.
+    function count(el){
+      if (el.dataset.counted) return;
+      el.dataset.counted = '1';
+      var m = (el.textContent || '').trim().match(/^(\d[\d,]*)([\s\S]*)$/);
+      if (!m) return;
+      var to = parseInt(m[1].replace(/,/g, ''), 10), suffix = m[2];
+      var from = el.getAttribute('data-count') === 'now' ? new Date().getFullYear() : 0;
+      if (calm || from === to) return;
+      var dur = 1800, t0 = 0;
+      requestAnimationFrame(function tick(ts){
+        if (!t0) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur);
+        var eased = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.round(from + (to - from) * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = to + suffix;
+      });
+    }
+
+    if (calm) return;
+    root.classList.add('reveal-on');
+    requestAnimationFrame(function(){ root.classList.add('settled'); });
+
     var items = [].slice.call(document.querySelectorAll('.rv, .rv-l, .rv-r'));
     var ticking = false;
     function sweep(){
@@ -283,8 +346,10 @@
         var el = items[i], top = el.getBoundingClientRect().top;
         // in view, or already scrolled past - either way it must end up visible
         if (top < h * 0.88){
-          setTimeout(function(e){ return function(){ e.classList.add('in'); }; }(el),
-                     parseInt(el.getAttribute('data-d') || 0, 10));
+          setTimeout(function(e){ return function(){
+            e.classList.add('in');
+            [].forEach.call(e.querySelectorAll('[data-count]'), count);
+          }; }(el), parseInt(el.getAttribute('data-d') || 0, 10));
           items.splice(i, 1);
         } else i++;
       }
