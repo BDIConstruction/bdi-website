@@ -156,14 +156,6 @@
     .reveal-on .hero .skyline img{ transform:none !important; transition:none; }
   }
 </style>
-<script>
-  // Netlify invite and password-reset links land on the homepage carrying a
-  // token in the URL hash. Hand it to /admin/, which loads the identity
-  // widget. A plain redirect, so no third-party script runs for visitors.
-  if (/(invite_token|recovery_token|confirmation_token|email_change_token)=/.test(location.hash)) {
-    location.replace("/admin/" + location.hash);
-  }
-</script>
 </head>
 <body>
 

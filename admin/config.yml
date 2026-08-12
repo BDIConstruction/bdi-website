@@ -1,6 +1,11 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: BDIConstruction/bdi-website
   branch: main
+  # Signing in needs a step GitHub Pages cannot do for itself - see
+  # oauth-worker/README.md. This is where that step lives.
+  base_url: https://bdi-cms-auth.dcolmenares.workers.dev
+  auth_endpoint: auth
 
 # Uploaded photos land in the repo root alongside the existing ones,
 # so paths match what the pages already use. Both of these are relative on

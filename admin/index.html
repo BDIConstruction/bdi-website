@@ -8,10 +8,8 @@
 <link href="https://unpkg.com/decap-cms@^3.3.3/dist/main.css" rel="stylesheet">
 </head>
 <body>
-<!-- The identity widget handles sign-in; Decap picks up the session itself.
-     Deliberately no redirect-on-login here: that reloads the page, which
-     re-runs sign-in and burns through Netlify Identity's rate limit. -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- Sign-in is GitHub's own, handled in a popup by the worker named in
+     config.yml, so nothing else is needed here. -->
 <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
 </body>
 </html>

@@ -12,8 +12,9 @@ A static HTML/CSS site. Each page is a `.html` file in the repo root and
 carries its own CSS in a `<style>` block — there is no shared stylesheet, so
 shared elements like the nav and footer must be edited in every page.
 
-Hosted on **Netlify**, which deploys automatically from `main`. It is not on
-a custom domain; `bdiconstruction.com` still points elsewhere.
+Hosted on **GitHub Pages**, served from `main` at
+<https://bdiconstruction.github.io/bdi-website/>. It is not on a custom
+domain; `bdiconstruction.com` still points elsewhere.
 
 | File | Page |
 |---|---|
@@ -26,24 +27,27 @@ a custom domain; `bdiconstruction.com` still points elsewhere.
 | `work-with-us.html` | Work With Us — subcontractor prequalification |
 | `contact.html` | Contact Us |
 
+`oauth-worker/` is not part of the site — it is the small service that signs
+administrators in. See its README.
+
 Photographs live in the repo root (`project-*.jpg`, `leader-*.jpg`,
 `community-*.jpg`, `proj-*.jpg`). Photos uploaded through the admin go to
 `uploads/`.
 
 ## Editing projects
 
-Site administrators sign in at **`/admin`** with an email and password —
-no GitHub account needed. Netlify Identity handles the login and Git Gateway
-commits the changes, so editing a project writes to this repo and the site
-redeploys.
+Site administrators sign in at **`/admin`** with their GitHub account. Editing
+a project commits to this repo, and the site redeploys itself.
 
 - Each project is one file in `content/projects/` — this is the source of truth
-- `build.py` turns those files into `projects.html` on every deploy
+- `build.py` turns those files into `projects.html`. The admin cannot run it,
+  so the workflow in `.github/workflows/build-projects.yml` rebuilds the page
+  and commits the result whenever a project or photo changes
 - The build also makes a card-sized copy of any newly uploaded photo. If Pillow
   is unavailable it falls back to the full-size image rather than failing
 
-To add an administrator: Netlify → Identity → Invite users. Registration is
-invite-only by design.
+To add an administrator: invite them under Settings → Collaborators. Signing in
+needs a step a static host cannot perform — see `oauth-worker/README.md`.
 
 `projects.csv` is the original WordPress import — names, categories and photo
 filenames for all 58 projects. It is kept for reference and for bulk edits; the
