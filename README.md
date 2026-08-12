@@ -81,6 +81,8 @@ Eight pages are built. Still open:
   them, so they have to be entered by hand at `/admin`
 - **Logo** — `logo.svg` is a reconstruction traced from a picture of the
   artwork, not the original file. A rebrand is expected
-- **Subcontractor form** — front-end only; needs a form backend
+- **Subcontractor form** — front-end only. `action="#"`, so a submission goes
+  nowhere at all. Needs a form service wired in before the site is announced,
+  or prequalification requests will be lost silently
 - **Contact page map** — placeholder
 - **Custom domain** — not connected

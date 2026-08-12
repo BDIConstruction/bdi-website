@@ -51,12 +51,6 @@
   .pagehead p{ color:var(--muted); font-size:16px; margin-top:18px; max-width:540px; line-height:1.8; font-weight:300; }
 
   .form-wrap{ padding:20px 0 120px; }
-  .form-note{
-    border-left:2px solid var(--teal); padding:18px 26px; margin-bottom:56px;
-    font-size:14px; color:var(--muted); line-height:1.75; font-weight:300;
-  }
-  .form-note b{ font-weight:500; color:var(--navy); }
-
   fieldset{ border:none; margin-bottom:56px; }
   legend{ padding:0; margin-bottom:30px; width:100%; }
   .row{ display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:30px; }
@@ -153,10 +147,9 @@
 
   <section class="form-wrap wrap">
 
-    <div class="rv form-note">
-      <b>Note for implementation:</b> this form submits to <b>info@bdiconstruction.com</b> as requested. A static HTML form can't send email on its own — on WordPress, this needs a form plugin (Gravity Forms, WPForms, or Contact Form 7) configured to route submissions to that address. Your current site footer lists <b>info@bdico.com</b> instead — worth confirming which inbox should actually receive these before it goes live.
-    </div>
-
+    <!-- This form has no backend yet: action="#" means a submission goes
+         nowhere. It needs a form service wired in before the site is
+         announced, or prequalification requests will be silently lost. -->
     <form action="#" method="POST">
 
       <fieldset class="rv">
