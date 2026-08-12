@@ -90,7 +90,26 @@ async function finishSignIn(request, env, url) {
  * listening.
  */
 function handshake(env, result) {
-  const origin = env.ALLOWED_ORIGIN;
+  // An origin is scheme and host only. ALLOWED_ORIGIN is written by hand, so
+  // it may well arrive with a trailing slash or the site's path attached -
+  // both of which would silently fail the comparison below and leave the
+  // popup sitting on "Signing you in". Reduce whatever was given to its
+  // origin rather than trusting it to be exact.
+  //
+  // More than one may be listed, separated by commas: while the site is
+  // moving to its own domain it answers on both the old address and the new
+  // one, and the admin has to keep working throughout.
+  const origins = (env.ALLOWED_ORIGIN || "")
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      try {
+        return new URL(entry).origin;
+      } catch {
+        return entry;   // not a URL at all; leave it so the mismatch is plain
+      }
+    });
   const message = result.token
     ? `authorization:github:success:${JSON.stringify({ token: result.token, provider: "github" })}`
     : `authorization:github:error:${JSON.stringify({ message: result.error })}`;
@@ -101,15 +120,20 @@ function handshake(env, result) {
 ${result.token ? "Signing you in&hellip;" : "Sign-in failed. You can close this window."}
 <script>
 (function () {
-  var origin  = ${JSON.stringify(origin)};
+  var origins = ${JSON.stringify(origins)};
   var message = ${JSON.stringify(message)};
   function reply(event) {
-    if (event.origin !== origin) return;   // never answer anyone else
-    window.opener.postMessage(message, origin);
+    // answer only the site itself, never whoever else may be listening
+    if (origins.indexOf(event.origin) === -1) return;
+    window.opener.postMessage(message, event.origin);
     window.removeEventListener("message", reply, false);
   }
   window.addEventListener("message", reply, false);
-  window.opener.postMessage("authorizing:github", origin);
+  // greet each address the site may be served from; only the real opener
+  // is in a position to answer
+  origins.forEach(function (origin) {
+    window.opener.postMessage("authorizing:github", origin);
+  });
 })();
 </script>
 </body></html>`;

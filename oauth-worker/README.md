@@ -25,6 +25,12 @@ Netlify Identity used to play this part.
    | `GITHUB_CLIENT_SECRET` | Secret | from the OAuth App |
    | `ALLOWED_ORIGIN` | Text | `https://bdiconstruction.github.io` |
 
+   `ALLOWED_ORIGIN` takes a comma-separated list, so during a move to a new
+   domain both addresses can be served at once:
+   `https://bdiconstruction.github.io, https://bdiconstruction.com`.
+   A trailing slash or a path is tolerated — each entry is reduced to its
+   origin — but an unrelated origin is never accepted.
+
 5. Copy the worker's address, then set the OAuth App's **Authorization
    callback URL** to that address with `/callback` on the end
 
