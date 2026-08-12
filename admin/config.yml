@@ -3,14 +3,16 @@ backend:
   branch: main
 
 # Uploaded photos land in the repo root alongside the existing ones,
-# so paths match what the pages already use.
+# so paths match what the pages already use. Both of these are relative on
+# purpose: a GitHub Pages project site is served from a subdirectory, so a
+# leading slash would point above the site and break.
 media_folder: "uploads"
-public_folder: "/uploads"
+public_folder: "uploads"
 
 publish_mode: simple
 # no site_url on purpose - the site is not on a custom domain, so Decap
 # should use whatever address it is actually being served from
-logo_url: /logo.svg
+logo_url: ../logo.svg
 
 collections:
   - name: projects
