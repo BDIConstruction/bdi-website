@@ -88,8 +88,10 @@ def rel(path: str) -> str:
 
 def card_html(d, i):
     name = html.escape(d["title"])
-    place = ", ".join(x for x in [str(d.get("city") or "").strip(),
-                                  str(d.get("state") or "").strip()] if x)
+    # state alone is meaningless - show the line only once a city is set
+    city = str(d.get("city") or "").strip()
+    state = str(d.get("state") or "").strip()
+    place = ", ".join(x for x in [city, state] if x) if city else ""
     meta = f'\n        <div class="loc">{html.escape(place)}</div>' if place else ""
     return (
         f'      <button type="button" class="rv pcard" data-d="{(i % 3) * 90}" '

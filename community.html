@@ -84,8 +84,8 @@
   /* Five photographs: the wide one leads so the grid fills with no gaps at
      both three and two columns. */
   .gallery-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
-  .shot{ aspect-ratio:1/1; overflow:hidden; background:var(--paper); padding:0; border:none; cursor:zoom-in; display:block; }
-  .shot.wide{ grid-column:span 2; aspect-ratio:2/1; }
+  /* every tile the same shape and size - no panoramic special case */
+  .shot{ aspect-ratio:3/2; overflow:hidden; background:var(--paper); padding:0; border:none; cursor:zoom-in; display:block; }
   .shot img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
   .shot:hover img{ transform:scale(1.04); }
   .shot:focus-visible{ outline:2px solid var(--navy); outline-offset:3px; }
@@ -217,7 +217,7 @@
     <div class="rv label">In the Community</div>
     <h2>Photo Gallery</h2>
     <div class="gallery-grid">
-      <button type="button" class="rv shot wide" data-d="0" data-full="community-aia-tour-2-full.jpg" aria-label="View larger: BDI Construction hosting an AIA hard hat tour of a project under construction"><img src="community-aia-tour-2.jpg" alt="BDI Construction hosting an AIA hard hat tour of a project under construction"></button>
+      <button type="button" class="rv shot" data-d="0" data-full="community-aia-tour-2-full.jpg" aria-label="View larger: BDI Construction hosting an AIA hard hat tour of a project under construction"><img src="community-aia-tour-2.jpg" alt="BDI Construction hosting an AIA hard hat tour of a project under construction"></button>
       <button type="button" class="rv shot" data-d="90" data-full="community-golf-full.jpg" aria-label="View larger: A BDI Construction team at a charity golf tournament"><img src="community-golf.jpg" alt="A BDI Construction team at a charity golf tournament"></button>
       <button type="button" class="rv shot" data-d="180" data-full="community-career-fair-full.jpg" aria-label="View larger: The BDI Construction stand at a university career fair"><img src="community-career-fair.jpg" style="object-position:center 38%" alt="The BDI Construction stand at a university career fair"></button>
       <button type="button" class="rv shot" data-d="270" data-full="community-award-full.jpg" aria-label="View larger: BDI Construction staff receiving a certificate of recognition"><img src="community-award.jpg" alt="BDI Construction staff receiving a certificate of recognition"></button>
