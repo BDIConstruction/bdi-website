@@ -1,0 +1,52 @@
+name: Rebuild projects page
+
+# The admin at /admin commits the project file and the photograph, but it
+# cannot run build.py — so projects.html would stay stale until something
+# rebuilt it. This does that, and commits the result, which means the page
+# is correct in the repo itself rather than only after a host builds it.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/projects/**'
+      - 'uploads/**'
+      - 'build.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-projects
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    # never react to our own commit
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pillow
+        run: pip install --quiet pillow
+
+      - name: Rebuild
+        run: python3 build.py
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "projects.html already up to date — nothing to commit"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Rebuild projects page [skip ci]"
+          git push
