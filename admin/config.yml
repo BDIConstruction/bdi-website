@@ -34,7 +34,8 @@ collections:
       - { name: photo, label: Photo, widget: image, required: false,
           hint: "Full-size photograph. Drag one in — any size, it does not need cropping." }
       - { name: city, label: City, widget: string, required: false, hint: "e.g. Miami" }
-      - { name: state, label: State, widget: string, required: false, default: "FL" }
+      - { name: state, label: State, widget: string, required: false, default: "FL",
+          hint: "Only shown on the card when it is somewhere other than Florida." }
       - { name: sector, label: Sector, widget: select, required: false,
           options: ["", Commercial, Educational, Medical, Multi-family housing,
                     Government, Retail, Hospitality, Industrial, Interiors] }

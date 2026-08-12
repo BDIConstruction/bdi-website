@@ -88,10 +88,12 @@ def rel(path: str) -> str:
 
 def card_html(d, i):
     name = html.escape(d["title"])
-    # state alone is meaningless - show the line only once a city is set
+    # Every project is in Florida, so the state adds nothing - show the city
+    # alone, and only append a state if it is somewhere other than FL.
     city = str(d.get("city") or "").strip()
     state = str(d.get("state") or "").strip()
-    place = ", ".join(x for x in [city, state] if x) if city else ""
+    place = city if not state or state.upper() in ("FL", "FLORIDA") else f"{city}, {state}"
+    place = place if city else ""
     meta = f'\n        <div class="loc">{html.escape(place)}</div>' if place else ""
     return (
         f'      <button type="button" class="rv pcard" data-d="{(i % 3) * 90}" '
