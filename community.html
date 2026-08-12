@@ -82,8 +82,9 @@
   .gallery{ padding:100px 0; }
   .gallery .label{ color:var(--teal); margin-bottom:16px; }
   .gallery h2{ font-size:clamp(21px,2.4vw,27px); font-style:italic; color:var(--navy); margin-bottom:50px; }
-  /* Five photographs: the wide one leads so the grid fills with no gaps at
-     both three and two columns. */
+  /* The gallery simply grows downwards as photographs are added — every tile
+     is the same 3:2 frame, so a portrait, a panorama and a phone snap all crop
+     to identical size and the rows stay level however many there are. */
   .gallery-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
   /* every tile the same shape and size - no panoramic special case */
   .shot{ aspect-ratio:3/2; overflow:hidden; background:var(--paper); padding:0; border:none; cursor:zoom-in; display:block; }
@@ -91,7 +92,20 @@
   .shot:hover img{ transform:scale(1.04); }
   .shot:focus-visible{ outline:2px solid var(--navy); outline-offset:3px; }
 
-  /* Lightbox — the grid crops to a square, so this is where a photograph
+  /* Once the gallery runs long it is folded to the first few rows behind a
+     button. The fold is applied by script, so with JavaScript off every
+     photograph is simply on the page. */
+  .gallery-grid.folded .shot.more{ display:none; }
+  .more-wrap{ margin-top:36px; text-align:center; }
+  .more-wrap[hidden]{ display:none; }
+  .btn-more{
+    font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    font-weight:500; color:var(--navy); background:none; border:1px solid var(--hair);
+    padding:15px 34px; cursor:pointer;
+  }
+  .btn-more:hover{ background:var(--navy); border-color:var(--navy); color:#fff; }
+
+  /* Lightbox — the grid crops each photograph to 3:2, so this is where one
      can be seen whole. */
   .lb{ position:fixed; inset:0; z-index:100; background:rgba(11,29,44,.94); display:flex;
        align-items:center; justify-content:center; padding:5vmin; }
@@ -231,8 +245,11 @@
       <button type="button" class="rv shot" data-d="0" data-full="community-aia-tour-2-full.jpg" aria-label="View larger: BDI Construction hosting an AIA hard hat tour of a project under construction"><img src="community-aia-tour-2.jpg" alt="BDI Construction hosting an AIA hard hat tour of a project under construction"></button>
       <button type="button" class="rv shot" data-d="90" data-full="community-golf-full.jpg" aria-label="View larger: A BDI Construction team at a charity golf tournament"><img src="community-golf.jpg" alt="A BDI Construction team at a charity golf tournament"></button>
       <button type="button" class="rv shot" data-d="180" data-full="community-career-fair-full.jpg" aria-label="View larger: The BDI Construction stand at a university career fair"><img src="community-career-fair.jpg" style="object-position:center 38%" alt="The BDI Construction stand at a university career fair"></button>
-      <button type="button" class="rv shot" data-d="270" data-full="community-award-full.jpg" aria-label="View larger: BDI Construction staff receiving a certificate of recognition"><img src="community-award.jpg" alt="BDI Construction staff receiving a certificate of recognition"></button>
-      <button type="button" class="rv shot" data-d="360" data-full="community-sponsors-full.jpg" aria-label="View larger: An event sponsor banner listing BDI Construction among its supporters"><img src="community-sponsors.jpg" alt="An event sponsor banner listing BDI Construction among its supporters"></button>
+      <button type="button" class="rv shot" data-d="0" data-full="community-award-full.jpg" aria-label="View larger: BDI Construction staff receiving a certificate of recognition"><img src="community-award.jpg" alt="BDI Construction staff receiving a certificate of recognition"></button>
+      <button type="button" class="rv shot" data-d="90" data-full="community-sponsors-full.jpg" aria-label="View larger: An event sponsor banner listing BDI Construction among its supporters"><img src="community-sponsors.jpg" alt="An event sponsor banner listing BDI Construction among its supporters"></button>
+    </div>
+    <div class="more-wrap" id="more-wrap" hidden>
+      <button class="btn-more" type="button" id="more-btn"></button>
     </div>
   </section>
   </div>
@@ -267,6 +284,29 @@
       if (opener) opener.focus(); }
 
     shots.forEach(function(s, n){ s.addEventListener('click', function(){ open(n, s); }); });
+
+    // --- folding a long gallery ------------------------------------------
+    // Four rows are shown and the rest wait behind a button, so the page
+    // stays walkable however many photographs there are. Applied here rather
+    // than in the stylesheet so nothing is hidden with JavaScript off. The
+    // lightbox still holds every photograph, folded or not, so the arrows
+    // walk the whole set.
+    var FOLD = 12, grid = document.querySelector('.gallery-grid'),
+        moreWrap = document.getElementById('more-wrap'),
+        moreBtn = document.getElementById('more-btn');
+    if (grid && shots.length > FOLD + 3){        // not worth folding one short row away
+      shots.slice(FOLD).forEach(function(s){ s.classList.add('more'); });
+      grid.classList.add('folded');
+      moreBtn.textContent = 'Show all ' + shots.length + ' photos';
+      moreWrap.hidden = false;
+      moreBtn.addEventListener('click', function(){
+        grid.classList.remove('folded');
+        moreWrap.hidden = true;
+        // the reveal sweep measures boxes, and the tiles just unfolded had
+        // none until this moment — ask it to look again
+        dispatchEvent(new Event('resize'));
+      });
+    }
     lb.querySelector('.lb-close').addEventListener('click', close);
     lb.querySelector('.lb-prev').addEventListener('click', function(e){ e.stopPropagation(); show(i - 1); });
     lb.querySelector('.lb-next').addEventListener('click', function(e){ e.stopPropagation(); show(i + 1); });
