@@ -61,14 +61,13 @@
   .detail .val{ font-family:'Fraunces',serif; font-size:19px; color:var(--ink); line-height:1.5; }
   .detail a.val:hover{ color:var(--teal); }
 
-  .map{
-    aspect-ratio:4/5;
-    background: repeating-linear-gradient(0deg, var(--hair) 0 1px, transparent 1px 44px),
-                repeating-linear-gradient(90deg, var(--hair) 0 1px, transparent 1px 44px), var(--paper);
-    position:relative;
-  }
-  .map .pin{ position:absolute; top:44%; left:52%; width:12px; height:12px; background:var(--navy); border-radius:50% 50% 50% 0; transform:rotate(-45deg) translate(-50%,-50%); }
-  .map .cap{ position:absolute; bottom:26px; left:26px; right:26px; font-size:11px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; }
+  .map{ aspect-ratio:4/5; position:relative; background:var(--paper); overflow:hidden; }
+  .map iframe{ width:100%; height:100%; border:0; display:block; }
+  /* the office address, under the map rather than floating over it, so it can
+     still be read and copied if the embed is blocked or slow to arrive */
+  .map-note{ margin-top:14px; font-size:11px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; }
+  .map-note a{ color:var(--navy); border-bottom:1px solid var(--hair); }
+  .map-note a:hover{ border-bottom-color:var(--navy); }
 
   footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
   footer .label{ color:var(--muted); font-weight:400; }
@@ -164,9 +163,19 @@
         </div>
       </div>
 
-      <div class="rv-r map">
-        <div class="pin"></div>
-        <div class="cap">Map — 7270 NW 12th St, Suite 200, Miami, FL</div>
+      <div class="rv-r">
+        <div class="map">
+          <iframe
+            title="Map showing BDI Construction at 7270 NW 12th Street, Suite 200, Miami, Florida"
+            src="https://maps.google.com/maps?q=7270%20NW%2012th%20St%20Suite%20200%2C%20Miami%2C%20FL%2033126&z=15&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+        <div class="map-note">
+          7270 NW 12th St, Suite 200, Miami, FL 33126 &nbsp;&middot;&nbsp;
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=7270+NW+12th+St+Suite+200,+Miami,+FL+33126"
+             target="_blank" rel="noopener">Directions</a>
+        </div>
       </div>
     </div>
   </section>
