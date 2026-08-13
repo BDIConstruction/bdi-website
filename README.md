@@ -82,8 +82,10 @@ anything in `content/projects/`.
 
 Eight pages are built. Still open:
 
-- **Team headshot** — Lazaro Villar has none, so his circle shows initials.
-  Adding one is a file plus a line of CSS in `expertise.html`
+- **Team section** — eight of the ten people originally listed. Lazaro Villar
+  is held back until there is a headshot, Dayana Colmenares by request. Adding
+  either is an entry in `expertise.html` and, for Lazaro, a photograph; Dayana's
+  is in the history if it is wanted back
 - **Project details** — every project has a name and a photo, but city, year,
   sector and delivery method are blank. The old WordPress site never stored
   them, so they have to be entered by hand at `/admin`
