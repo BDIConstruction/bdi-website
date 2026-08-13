@@ -67,15 +67,36 @@
   .team .head{ margin-bottom:56px; }
   .team .label{ color:var(--teal); margin-bottom:16px; }
   .team h2{ font-size:clamp(21px,2.4vw,27px); font-style:italic; color:var(--navy); }
-  .team-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
-  .exec{ display:flex; gap:24px; }
-  .exec .photo{ width:96px; height:96px; flex:none; background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3); background-size:cover; background-position:center 12%; background-repeat:no-repeat; }
-  .exec .photo.p-iii   { background-image:url('leader-rosell-iii.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }
-  .exec .photo.p-carlos{ background-image:url('leader-carlos-rosell.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }
+  /* names and titles only, so the rows are short and sit closer together
+     than they did when each carried a paragraph */
+  .team-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px 60px; }
+  .exec{ display:flex; gap:22px; align-items:center; }
+  .exec .photo{
+    width:70px; height:70px; flex:none; position:relative; border-radius:50%;
+    background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3);
+    background-size:cover; background-position:center; background-repeat:no-repeat;
+  }
+  /* the headshots are cropped square, so they fill the circle without distortion */
+  .exec .photo.p-lourdes  { background-image:url('team-lourdes-escandon.jpg'); }
+  .exec .photo.p-yamile   { background-image:url('team-yamile-dominguez.jpg'); }
+  .exec .photo.p-chris    { background-image:url('team-chris-alvarez.jpg'); }
+  .exec .photo.p-scott    { background-image:url('team-scott-lowrance.jpg'); }
+  .exec .photo.p-nez      { background-image:url('team-nez-teimouri.jpg'); }
+  .exec .photo.p-agustina { background-image:url('team-agustina-matarazzo.jpg'); }
+  .exec .photo.p-david    { background-image:url('team-david-galdeano.jpg'); }
+  .exec .photo.p-andrea   { background-image:url('team-andrea-loguzzo.jpg'); }
+  .exec .photo.p-dayana   { background-image:url('team-dayana-colmenares.jpg'); }
+  /* initials stand in until a headshot exists - a deliberate placeholder
+     rather than an empty circle. Drop the attribute when adding a photograph. */
+  .exec .photo[data-initials]::after{
+    content:attr(data-initials); position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:21px; font-style:italic;
+    color:rgba(255,255,255,.9); letter-spacing:.02em;
+  }
   .exec .label{ color:var(--teal); margin-bottom:6px; }
-  .exec h3{ font-size:19px; font-weight:450; color:var(--navy); margin-bottom:10px; }
-  .exec p{ font-size:14.5px; color:var(--muted); line-height:1.75; font-weight:300; }
-  @media (max-width:760px){ .team-grid{grid-template-columns:1fr;} }
+  .exec h3{ font-size:19px; font-weight:450; color:var(--navy); }
+  @media (max-width:760px){ .team-grid{grid-template-columns:1fr; gap:30px;} }
 
   footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
   footer .label{ color:var(--muted); font-weight:400; }
@@ -170,21 +191,78 @@
         <div class="label">Leadership</div>
         <h2>Our Team</h2>
       </div>
+      <!-- No headshots yet. Each photo carries the person's initials until one
+           arrives, so the page reads as finished rather than broken. Adding a
+           photograph means one CSS rule and removing that attribute. -->
       <div class="team-grid">
         <div class="rv exec" data-d="0">
-          <div class="photo p-iii" role="img" aria-label="Teobaldo Rosell"></div>
+          <div class="photo p-lourdes" role="img" aria-label="Lourdes Escandon"></div>
           <div>
-            <div class="label">President</div>
-            <h3>Teobaldo Rosell</h3>
-            <p>Provides executive oversight of corporate strategy, accounting, and finance, ensuring the company's financial strength as BDI continues to grow.</p>
+            <div class="label">Pre-Construction Director</div>
+            <h3>Lourdes Escandon</h3>
           </div>
         </div>
-        <div class="rv exec" data-d="130">
-          <div class="photo p-carlos" role="img" aria-label="Carlos Rosell"></div>
+        <div class="rv exec" data-d="90">
+          <div class="photo p-yamile" role="img" aria-label="Yamile Dominguez"></div>
           <div>
-            <div class="label">VP / Director of Operations</div>
-            <h3>Carlos Rosell</h3>
-            <p>Oversees BDI's day-to-day construction operations, ensuring every project is delivered safely, on schedule, and to BDI's standards for quality.</p>
+            <div class="label">Director of Construction</div>
+            <h3>Yamile Dominguez</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="0">
+          <div class="photo p-chris" role="img" aria-label="Chris Alvarez"></div>
+          <div>
+            <div class="label">Director of Construction</div>
+            <h3>Chris Alvarez</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="90">
+          <div class="photo p-scott" role="img" aria-label="Scott Lowrance"></div>
+          <div>
+            <div class="label">Director of Construction</div>
+            <h3>Scott Lowrance</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="0">
+          <div class="photo p-nez" role="img" aria-label="Nez Teimouri"></div>
+          <div>
+            <div class="label">Senior Project Manager</div>
+            <h3>Nez Teimouri</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="90">
+          <div class="photo p-agustina" role="img" aria-label="Agustina Matarazzo"></div>
+          <div>
+            <div class="label">Senior Estimator</div>
+            <h3>Agustina Matarazzo</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="0">
+          <div class="photo p-david" role="img" aria-label="David Galdeano"></div>
+          <div>
+            <div class="label">Project Manager</div>
+            <h3>David Galdeano</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="90">
+          <div class="photo" data-initials="LV" role="img" aria-label="Lazaro Villar"></div>
+          <div>
+            <div class="label">Project Manager</div>
+            <h3>Lazaro Villar</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="0">
+          <div class="photo p-andrea" role="img" aria-label="Andrea Loguzzo"></div>
+          <div>
+            <div class="label">Controller</div>
+            <h3>Andrea Loguzzo</h3>
+          </div>
+        </div>
+        <div class="rv exec" data-d="90">
+          <div class="photo p-dayana" role="img" aria-label="Dayana Colmenares"></div>
+          <div>
+            <div class="label">Marketing &amp; Business Development Manager</div>
+            <h3>Dayana Colmenares</h3>
           </div>
         </div>
       </div>

@@ -82,7 +82,10 @@
   .person.reverse .photo{ order:2; }
   /* Portraits show as soon as these files exist in the repo; until then the
      gradient layer underneath is painted instead, exactly as before. */
-  .photo{ aspect-ratio:4/5; background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3); background-size:cover; background-position:center 15%; background-repeat:no-repeat; }
+  /* circular, so square: the column is 260px wide and that is now the diameter.
+     The portraits are 2:3, so cover crops the top and bottom - hold the frame
+     high enough that it takes the head rather than the middle of the chest. */
+  .photo{ aspect-ratio:1; border-radius:50%; background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3); background-size:cover; background-position:center 18%; background-repeat:no-repeat; }
   .photo.p-jr    { background-image:url('leader-rosell-jr.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }
   .photo.p-iii   { background-image:url('leader-rosell-iii.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }
   .photo.p-carlos{ background-image:url('leader-carlos-rosell.jpg'), linear-gradient(160deg,#D8DEDF,#9FAFB3); }

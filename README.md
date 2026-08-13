@@ -37,7 +37,7 @@ Mimecast, untouched by anything here.
 administrators in. See its README.
 
 Photographs live in the repo root (`project-*.jpg`, `leader-*.jpg`,
-`community-*.jpg`, `proj-*.jpg`). Photos uploaded through the admin go to
+`team-*.jpg`, `community-*.jpg`, `proj-*.jpg`). Photos uploaded through the admin go to
 `uploads/`.
 
 ## Editing projects
@@ -82,6 +82,8 @@ anything in `content/projects/`.
 
 Eight pages are built. Still open:
 
+- **Team headshot** — Lazaro Villar has none, so his circle shows initials.
+  Adding one is a file plus a line of CSS in `expertise.html`
 - **Project details** — every project has a name and a photo, but city, year,
   sector and delivery method are blank. The old WordPress site never stored
   them, so they have to be entered by hand at `/admin`
@@ -93,7 +95,6 @@ Eight pages are built. Still open:
   `info@bdico.com`. The access key sits in `work-with-us.html` and is public by
   design: it names an inbox and grants no access to anything. Whoever watches
   that inbox should let the mail filter know to expect it
-- **Contact page map** — placeholder
 - ~~**Mail records**~~ — no mail runs on this domain and it now says so:
   `v=spf1 -all` and a DMARC policy of `reject`, so nobody can forge an address
   here. Anything later configured to send as `@bdiconstruction.com` will be
