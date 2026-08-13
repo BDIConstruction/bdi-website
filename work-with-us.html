@@ -51,6 +51,16 @@
   .pagehead p{ color:var(--muted); font-size:16px; margin-top:18px; max-width:540px; line-height:1.8; font-weight:300; }
 
   .form-wrap{ padding:20px 0 120px; }
+  /* the honeypot: off-screen rather than display:none, which some bots skip */
+  .hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+
+  .form-result{
+    margin-top:26px; padding:18px 24px; font-size:15px; line-height:1.7; font-weight:300;
+    border-left:2px solid var(--teal); background:rgba(76,124,140,.06); color:var(--ink);
+  }
+  .form-result[hidden]{ display:none; }
+  .form-result.bad{ border-left-color:#B4453C; background:rgba(180,69,60,.06); }
+
   fieldset{ border:none; margin-bottom:56px; }
   legend{ padding:0; margin-bottom:30px; width:100%; }
   .row{ display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:30px; }
@@ -147,10 +157,16 @@
 
   <section class="form-wrap wrap">
 
-    <!-- This form has no backend yet: action="#" means a submission goes
-         nowhere. It needs a form service wired in before the site is
-         announced, or prequalification requests will be silently lost. -->
-    <form action="#" method="POST">
+    <!-- A static page cannot send email, so submissions are posted to
+         Web3Forms, which relays them to the address registered against the
+         access key below. The key is public by design - it only names the
+         inbox, and cannot be used to read anything. -->
+    <form id="prequal" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
+      <input type="hidden" name="subject" value="Subcontractor prequalification - bdiconstruction.com">
+      <input type="hidden" name="from_name" value="BDI Construction website">
+      <!-- left empty by people, filled in by robots -->
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
 
       <fieldset class="rv">
         <div class="label" style="color:var(--teal); margin-bottom:26px;">Company Information</div>
@@ -198,10 +214,64 @@
         <span class="submit-note">We'll follow up if your qualifications are a fit for upcoming work.</span>
       </div>
 
+      <div class="form-result" id="form-result" role="status" aria-live="polite" hidden></div>
+
     </form>
   </section>
 
   <footer><span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+
+  <script>
+  // Submit without leaving the page, so an applicant who mistypes something
+  // gets told on the spot with everything they entered still in front of
+  // them. With JavaScript off the form posts normally and the relay shows
+  // its own confirmation page instead - slower, but never silent.
+  (function(){
+    var form = document.getElementById('prequal');
+    if (!form || !window.fetch) return;
+    var result = document.getElementById('form-result');
+    var button = form.querySelector('button[type="submit"]');
+    var label = button.textContent;
+
+    function say(message, ok){
+      result.textContent = message;
+      result.classList.toggle('bad', !ok);
+      result.hidden = false;
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      result.hidden = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      })
+        .then(function(r){ return r.json().catch(function(){ return {}; }); })
+        .then(function(data){
+          if (data.success) {
+            form.reset();
+            say('Thank you — your prequalification has been sent. We will follow up if '
+              + 'your qualifications are a fit for upcoming work.', true);
+          } else {
+            say('Something went wrong sending the form. Please email us at '
+              + 'info@bdico.com and we will pick it up from there.', false);
+          }
+        })
+        .catch(function(){
+          say('The form could not be sent — you may be offline. Please try again, or '
+            + 'email us at info@bdico.com.', false);
+        })
+        .then(function(){
+          button.disabled = false;
+          button.textContent = label;
+        });
+    });
+  })();
+  </script>
 
   <script>
   (function(){
