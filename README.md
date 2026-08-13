@@ -13,12 +13,18 @@ carries its own CSS in a `<style>` block — there is no shared stylesheet, so
 shared elements like the nav and footer must be edited in every page.
 
 Hosted on **GitHub Pages**, served from `main` at
-<https://bdiconstruction.github.io/bdi-website/>. It is not on a custom
-domain; `bdiconstruction.com` still points elsewhere.
+<https://bdiconstruction.com> — see `CNAME`. DNS is managed at Cloudflare;
+the records for the site are deliberately unproxied, because GitHub cannot
+issue a certificate for a name that resolves to somebody else's servers.
+The domain remains registered with GoDaddy, which hosts nothing.
+
+Email is not on this domain and never was. It runs on `bdico.com` through
+Mimecast, untouched by anything here.
 
 | File | Page |
 |---|---|
 | `index.html` | Homepage |
+| `404.html` | Shown for any address that does not exist, including old links |
 | `projects.html` | Projects — generated, see below |
 | `history.html` | About Us → History |
 | `culture.html` | About Us → Culture |
@@ -85,4 +91,10 @@ Eight pages are built. Still open:
   nowhere at all. Needs a form service wired in before the site is announced,
   or prequalification requests will be lost silently
 - **Contact page map** — placeholder
-- **Custom domain** — not connected
+- **`mail.bdiconstruction.com`** — the domain's MX record points at this name,
+  but no record answers for it, so anything sent to `@bdiconstruction.com`
+  will bounce. Harmless if that address is genuinely unused; worth deleting
+  the MX record if so, rather than leaving a promise nothing keeps
+- **Old WordPress links** — every previously indexed address now lands on
+  `404.html`. Redirect stubs for the most-visited ones would be better, but
+  that needs the old URL list out of Google Search Console
