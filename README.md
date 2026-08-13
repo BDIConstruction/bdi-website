@@ -92,11 +92,10 @@ Eight pages are built. Still open:
   design: it names an inbox and grants no access to anything. Whoever watches
   that inbox should let the mail filter know to expect it
 - **Contact page map** — placeholder
-- **Mail records** — no mail runs on this domain, but it still carries an MX
-  record, cPanel autodiscover entries and an SPF record authorising GoDaddy's
-  servers. A domain that sends nothing should say so: `v=spf1 -all` plus a
-  DMARC policy of `reject` stops anyone forging an address here, which matters
-  more in construction than most trades
+- ~~**Mail records**~~ — no mail runs on this domain and it now says so:
+  `v=spf1 -all` and a DMARC policy of `reject`, so nobody can forge an address
+  here. Anything later configured to send as `@bdiconstruction.com` will be
+  refused until those records are changed — deliberately
 - **Old WordPress links** — every previously indexed address now lands on
   `404.html`. Redirect stubs for the most-visited ones would be better, but
   that needs the old URL list out of Google Search Console
