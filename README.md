@@ -91,10 +91,11 @@ Eight pages are built. Still open:
   nowhere at all. Needs a form service wired in before the site is announced,
   or prequalification requests will be lost silently
 - **Contact page map** — placeholder
-- **`mail.bdiconstruction.com`** — the domain's MX record points at this name,
-  but no record answers for it, so anything sent to `@bdiconstruction.com`
-  will bounce. Harmless if that address is genuinely unused; worth deleting
-  the MX record if so, rather than leaving a promise nothing keeps
+- **Mail records** — no mail runs on this domain, but it still carries an MX
+  record, cPanel autodiscover entries and an SPF record authorising GoDaddy's
+  servers. A domain that sends nothing should say so: `v=spf1 -all` plus a
+  DMARC policy of `reject` stops anyone forging an address here, which matters
+  more in construction than most trades
 - **Old WordPress links** — every previously indexed address now lands on
   `404.html`. Redirect stubs for the most-visited ones would be better, but
   that needs the old URL list out of Google Search Console
