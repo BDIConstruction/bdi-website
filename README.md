@@ -85,8 +85,10 @@ Eight pages are built. Still open:
 - **Project details** — every project has a name and a photo, but city, year,
   sector and delivery method are blank. The old WordPress site never stored
   them, so they have to be entered by hand at `/admin`
-- **Logo** — `logo.svg` is a reconstruction traced from a picture of the
-  artwork, not the original file. A rebrand is expected
+- ~~**Logo**~~ — `logo.png` is the real artwork, scaled from
+  `bdi_logo_final_2011_high_res.png`, which is kept as the master. It replaces
+  a reconstruction traced from a photograph. A rebrand is still expected, so
+  when new artwork arrives it is one file and eight `src` attributes
 - ~~**Subcontractor form**~~ — now posts to Web3Forms, which relays to
   `info@bdico.com`. The access key sits in `work-with-us.html` and is public by
   design: it names an inbox and grants no access to anything. Whoever watches
