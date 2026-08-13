@@ -23,7 +23,7 @@ Mimecast, untouched by anything here.
 
 | File | Page |
 |---|---|
-| `index.html` | Homepage |
+| `index.html` | Homepage — the hero crossfades three projects (`hero-*.jpg`) |
 | `404.html` | Shown for any address that does not exist, including old links |
 | `projects.html` | Projects — generated, see below |
 | `history.html` | About Us → History |
