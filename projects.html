@@ -359,9 +359,9 @@
         <span class="photo"><img src="project-conchita-espinosa-academy-kinder-center-card.jpg" loading="lazy" decoding="async" alt="Conchita Espinosa Academy Kinder Center"></span>
         <h4>Conchita Espinosa Academy Kinder Center</h4>
       </button>
-      <button type="button" class="rv pcard" data-d="0" data-full="project-hialeah-senior-high-school-annex-buidling.jpg" aria-label="View larger: Hialeah Senior High School Annex Buidling">
-        <span class="photo"><img src="project-hialeah-senior-high-school-annex-buidling-card.jpg" loading="lazy" decoding="async" alt="Hialeah Senior High School Annex Buidling"></span>
-        <h4>Hialeah Senior High School Annex Buidling</h4>
+      <button type="button" class="rv pcard" data-d="0" data-full="project-hialeah-senior-high-school-annex-buidling.jpg" aria-label="View larger: Hialeah Senior High School Annex Building">
+        <span class="photo"><img src="project-hialeah-senior-high-school-annex-buidling-card.jpg" loading="lazy" decoding="async" alt="Hialeah Senior High School Annex Building"></span>
+        <h4>Hialeah Senior High School Annex Building</h4>
       </button>
       <button type="button" class="rv pcard" data-d="90" data-full="project-parkway-elem-pe-shelter.jpg" aria-label="View larger: Parkway Elem PE Shelter">
         <span class="photo"><img src="project-parkway-elem-pe-shelter-card.jpg" loading="lazy" decoding="async" alt="Parkway Elem PE Shelter"></span>
@@ -404,6 +404,26 @@
   </section>
 
   <footer><span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+
+  <script>
+  // A photograph that fails to arrive - a request dropped on a patchy phone
+  // connection - leaves a broken tile for good, because the browser never asks
+  // again. Ask again, twice, before giving up. The query string is only there
+  // to sidestep the cached failure.
+  (function(){
+    var TRIES = 2;
+    document.addEventListener('error', function(e){
+      var img = e.target;
+      if (!img || img.tagName !== 'IMG') return;
+      var tried = Number(img.getAttribute('data-retry') || 0);
+      if (tried >= TRIES) return;
+      img.setAttribute('data-retry', tried + 1);
+      var src = (img.getAttribute('src') || '').split('?')[0];
+      if (!src) return;
+      setTimeout(function(){ img.src = src + '?r=' + (tried + 1); }, 700 * (tried + 1));
+    }, true);   // capture, because error does not bubble
+  })();
+  </script>
 
   <script>
   (function(){

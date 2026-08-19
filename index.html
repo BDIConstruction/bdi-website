@@ -381,6 +381,26 @@
   </script>
 
   <script>
+  // A photograph that fails to arrive - a request dropped on a patchy phone
+  // connection - leaves a broken tile for good, because the browser never asks
+  // again. Ask again, twice, before giving up. The query string is only there
+  // to sidestep the cached failure.
+  (function(){
+    var TRIES = 2;
+    document.addEventListener('error', function(e){
+      var img = e.target;
+      if (!img || img.tagName !== 'IMG') return;
+      var tried = Number(img.getAttribute('data-retry') || 0);
+      if (tried >= TRIES) return;
+      img.setAttribute('data-retry', tried + 1);
+      var src = (img.getAttribute('src') || '').split('?')[0];
+      if (!src) return;
+      setTimeout(function(){ img.src = src + '?r=' + (tried + 1); }, 700 * (tried + 1));
+    }, true);   // capture, because error does not bubble
+  })();
+  </script>
+
+  <script>
   (function(){
     var root = document.documentElement;
     var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
