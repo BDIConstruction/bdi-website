@@ -69,7 +69,8 @@
   .team h2{ font-size:clamp(21px,2.4vw,27px); font-style:italic; color:var(--navy); }
   /* names and titles only, so the rows are short and sit closer together
      than they did when each carried a paragraph */
-  .team-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px 60px; }
+  /* one column, so the directors read as a single list going down */
+  .team-grid{ display:grid; grid-template-columns:1fr; gap:34px; }
   .exec{ display:flex; gap:22px; align-items:center; }
   .exec .photo{
     width:70px; height:70px; flex:none; position:relative; border-radius:50%;
@@ -188,18 +189,12 @@
         <div class="label">Our People</div>
         <h2>Leadership Team</h2>
       </div>
-      <!-- No headshots yet. Each photo carries the person's initials until one
-           arrives, so the page reads as finished rather than broken. Adding a
-           photograph means one CSS rule and removing that attribute. -->
+      <!-- Directors only, listed in the order the client set. Andrea Loguzzo
+           (Controller) and Nez Teimouri (Senior Project Manager) were removed
+           from this section by request; their headshots remain in the repo, so
+           adding either back is one block of markup. -->
       <div class="team-grid">
         <div class="rv exec" data-d="0">
-          <div class="photo p-yamile" role="img" aria-label="Yamile Dominguez"></div>
-          <div>
-            <div class="label">Director of Construction</div>
-            <h3>Yamile Dominguez</h3>
-          </div>
-        </div>
-        <div class="rv exec" data-d="90">
           <div class="photo p-lourdes" role="img" aria-label="Lourdes Escandon"></div>
           <div>
             <div class="label">Pre-Construction Director</div>
@@ -207,17 +202,10 @@
           </div>
         </div>
         <div class="rv exec" data-d="0">
-          <div class="photo p-chris" role="img" aria-label="Chris Alvarez"></div>
+          <div class="photo p-yamile" role="img" aria-label="Yamile Dominguez"></div>
           <div>
             <div class="label">Director of Construction</div>
-            <h3>Chris Alvarez</h3>
-          </div>
-        </div>
-        <div class="rv exec" data-d="90">
-          <div class="photo p-andrea" role="img" aria-label="Andrea Loguzzo"></div>
-          <div>
-            <div class="label">Controller</div>
-            <h3>Andrea Loguzzo</h3>
+            <h3>Yamile Dominguez</h3>
           </div>
         </div>
         <div class="rv exec" data-d="0">
@@ -227,11 +215,11 @@
             <h3>Scott Lowrance</h3>
           </div>
         </div>
-        <div class="rv exec" data-d="90">
-          <div class="photo p-nez" role="img" aria-label="Nez Teimouri"></div>
+        <div class="rv exec" data-d="0">
+          <div class="photo p-chris" role="img" aria-label="Chris Alvarez"></div>
           <div>
-            <div class="label">Senior Project Manager</div>
-            <h3>Nez Teimouri</h3>
+            <div class="label">Director of Construction</div>
+            <h3>Chris Alvarez</h3>
           </div>
         </div>
       </div>
