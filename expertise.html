@@ -61,6 +61,17 @@
   .exec h3{ font-size:19px; font-weight:450; color:var(--navy); margin-bottom:10px; }
   .exec p{ font-size:14.5px; color:var(--muted); line-height:1.75; font-weight:300; }
   @media (max-width:760px){ .team-grid{grid-template-columns:1fr;} }
+  .dir-head{ margin-top:70px; padding-top:44px; border-top:1px solid var(--hair); }
+  .dir-head .label{ color:var(--teal); }
+  .dir-list{ margin-top:30px; }
+  .dir{ display:flex; gap:24px; align-items:flex-start; padding:28px 0; border-bottom:1px solid var(--hair); }
+  .dir:last-child{ border-bottom:none; }
+  .dir .photo{ width:72px; height:72px; flex:none; background:linear-gradient(160deg,#D8DEDF,#9FAFB3); }
+  .dir .label{ color:var(--teal); margin-bottom:6px; }
+  .dir h3{ font-size:19px; font-weight:450; color:var(--navy); margin-bottom:9px; }
+  .dir p{ font-size:14.5px; color:var(--muted); line-height:1.75; font-weight:300; max-width:620px; }
+  .team-more{ display:inline-block; margin-top:46px; color:var(--teal); border-bottom:1px solid var(--hair); padding-bottom:5px; transition:color .2s ease, border-color .2s ease; }
+  .team-more:hover{ color:var(--navy); border-color:var(--navy); }
 
   .safety{ padding:80px 0; border-top:1px solid var(--hair); }
   .safety .wrap{ max-width:660px; }
@@ -84,6 +95,7 @@
             <a href="history.html">History</a>
             <a href="culture.html">Culture</a>
             <a href="community.html">Community</a>
+            <a href="team.html">Team</a>
           </div>
         </div>
         <a href="#"><span class="label">Projects</span></a>
@@ -140,6 +152,43 @@
           </div>
         </div>
       </div>
+
+      <div class="dir-head"><div class="label">Directors</div></div>
+      <div class="dir-list">
+        <div class="dir">
+          <div class="photo"></div>
+          <div class="dir-body">
+            <div class="label">Director — Pre-Construction</div>
+            <h3>Lourdes <!-- [Confirm last name] --></h3>
+            <p>Leads BDI's pre-construction team, guiding estimating and planning before a project breaks ground.</p>
+          </div>
+        </div>
+        <div class="dir">
+          <div class="photo"></div>
+          <div class="dir-body">
+            <div class="label">Director — South Florida</div>
+            <h3>Yamile <!-- [Confirm last name] --></h3>
+            <p>Leads BDI's South Florida construction operations, the company's largest division.</p>
+          </div>
+        </div>
+        <div class="dir">
+          <div class="photo"></div>
+          <div class="dir-body">
+            <div class="label">Director — Central &amp; West Florida</div>
+            <h3>Scott <!-- [Confirm last name] --></h3>
+            <p>Leads BDI's construction operations across Central and West Florida.</p>
+          </div>
+        </div>
+        <div class="dir">
+          <div class="photo"></div>
+          <div class="dir-body">
+            <div class="label">Director — Small Projects</div>
+            <h3>Chris <!-- [Confirm last name] --></h3>
+            <p>Leads BDI's small projects division, delivering the same standard at a scale built for shorter timelines.</p>
+          </div>
+        </div>
+      </div>
+      <a class="team-more" href="team.html"><span class="label">Meet the full team →</span></a>
     </div>
   </section>
 

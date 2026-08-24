@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BDI Construction — Team</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
+  :root{
+    --ink:#15202B; --paper:#FAF9F5; --navy-deep:#0E2233; --navy:#1B3A54;
+    --teal:#4C7C8C; --green:#4FA8D8; --muted:#68737C; --hair:#E4E0D5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Inter',sans-serif; font-weight:300; color:var(--ink); background:#fff; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Fraunces',serif; font-weight:450; }
+  a{color:inherit; text-decoration:none;}
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 48px; }
+  @media (max-width:800px){ .wrap{padding:0 24px;} }
+  .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
+
+  .nav{ border-bottom:1px solid var(--hair); }
+  .nav-inner{ max-width:1140px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
+  .brand{ font-family:'Fraunces',serif; font-style:italic; font-size:20px; color:var(--navy); }
+  .navlinks{ display:flex; gap:38px; }
+  .navlinks .label{ color:var(--muted); }
+  .navlinks > div{ position:relative; }
+  .navlinks a.active .label{ color:var(--navy); }
+  .dropdown{
+    position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:26px;
+    background:#fff; min-width:170px; padding:16px 0; border:1px solid var(--hair);
+    opacity:0; visibility:hidden; transition:all .2s ease; text-align:center; z-index:5;
+  }
+  .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .dropdown a:hover{ color:var(--navy); }
+  @media (max-width:920px){ .navlinks{display:none;} }
+
+  .pagehead{ position:relative; padding:120px 0 80px; overflow:hidden; }
+  .pagehead .year{
+    position:absolute; top:-6px; right:-2%; font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    font-size:min(11vw, 130px); color:var(--paper); z-index:0; line-height:1; user-select:none;
+  }
+  .pagehead .inner{ position:relative; z-index:1; }
+  .pagehead .label{ color:var(--teal); margin-bottom:20px; }
+  .pagehead h1{ font-size:clamp(38px,5.4vw,64px); font-style:italic; color:var(--navy); }
+  .pagehead .lede{ max-width:600px; margin-top:26px; color:var(--muted); font-size:16px; line-height:1.9; }
+
+  /* ---- shared person block ---- */
+  .person{ display:flex; gap:20px; align-items:flex-start; }
+  .avatar{
+    width:76px; height:76px; flex:none; background:linear-gradient(160deg,#D8DEDF,#9FAFB3);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-style:italic; font-size:24px; color:#fff;
+  }
+  .person .role{ color:var(--teal); margin-bottom:6px; }
+  .person h3{ font-size:19px; color:var(--navy); margin-bottom:9px; }
+  .person p{ font-size:14.5px; color:var(--muted); line-height:1.75; }
+
+  /* ---- leadership ---- */
+  .lead{ padding:10px 0 90px; }
+  .lead .head{ margin-bottom:50px; }
+  .lead .head .label{ color:var(--teal); margin-bottom:16px; }
+  .lead .head h2{ font-size:clamp(26px,3.2vw,34px); font-style:italic; color:var(--navy); }
+  .lead-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  @media (max-width:760px){ .lead-grid{grid-template-columns:1fr; gap:40px;} }
+
+  /* ---- operations (dark) ---- */
+  .ops{ background:var(--navy-deep); color:#fff; padding:90px 0 100px; }
+  .ops .head{ margin-bottom:58px; max-width:640px; }
+  .ops .head .label{ color:var(--green); margin-bottom:16px; }
+  .ops .head h2{ font-size:clamp(26px,3.2vw,34px); font-style:italic; color:#fff; margin-bottom:20px; }
+  .ops .head p{ color:rgba(255,255,255,.62); font-size:15.5px; line-height:1.9; }
+
+  .div-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; align-items:start; }
+  .division{
+    background:rgba(255,255,255,.045); border-top:2px solid var(--green);
+    padding:32px 30px 34px; transition:background .25s ease, transform .25s ease;
+  }
+  .division:hover{ background:rgba(255,255,255,.075); transform:translateY(-3px); }
+  .division .region{ color:var(--green); margin-bottom:22px; display:block; }
+  .division .avatar{ background:linear-gradient(160deg,#33566E,#1B3A54); }
+  .division .person h3{ color:#fff; }
+  .division .person .role{ color:rgba(255,255,255,.5); }
+  .division .person p{ color:rgba(255,255,255,.62); }
+
+  .reports{ margin-top:26px; padding-top:24px; border-top:1px solid rgba(255,255,255,.13); }
+  .reports .label{ color:rgba(255,255,255,.4); font-size:10px; margin-bottom:16px; }
+  .report{ display:flex; gap:14px; align-items:center; }
+  .report .dot{ width:30px; height:30px; flex:none; background:rgba(255,255,255,.1);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-style:italic; font-size:12px; color:rgba(255,255,255,.75); }
+  .report .nm{ font-family:'Fraunces',serif; font-size:15px; color:#fff; }
+  .report .rl{ font-size:12.5px; color:rgba(255,255,255,.5); margin-top:2px; }
+  @media (max-width:940px){ .div-grid{grid-template-columns:1fr; gap:22px;} }
+
+  /* ---- partner teams ---- */
+  .partners{ padding:90px 0 100px; }
+  .partners .head{ margin-bottom:52px; max-width:640px; }
+  .partners .head .label{ color:var(--teal); margin-bottom:16px; }
+  .partners .head h2{ font-size:clamp(26px,3.2vw,34px); font-style:italic; color:var(--navy); margin-bottom:20px; }
+  .partners .head p{ color:var(--muted); font-size:15.5px; line-height:1.9; }
+  .partner-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .partner{ border-left:2px solid var(--hair); padding-left:30px; }
+  .partner .unit{ color:var(--teal); margin-bottom:22px; display:block; }
+  @media (max-width:760px){ .partner-grid{grid-template-columns:1fr; gap:40px;} }
+
+  .closing{ background:var(--paper); padding:70px 0; border-top:1px solid var(--hair); }
+  .closing .wrap{ max-width:680px; text-align:center; }
+  .closing h2{ font-size:clamp(22px,2.6vw,28px); font-style:italic; color:var(--navy); margin-bottom:18px; }
+  .closing p{ color:var(--muted); font-size:16px; line-height:1.9; }
+
+  footer{ border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
+  footer .label{ color:var(--muted); font-weight:400; }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">BDI Construction</a>
+      <div class="navlinks">
+        <div>
+          <a class="active" href="history.html"><span class="label">About Us</span></a>
+          <div class="dropdown">
+            <a href="history.html">History</a>
+            <a href="culture.html">Culture</a>
+            <a href="community.html">Community</a>
+            <a href="team.html">Team</a>
+          </div>
+        </div>
+        <a href="#"><span class="label">Projects</span></a>
+        <a href="expertise.html"><span class="label">Expertise</span></a>
+        <a href="work-with-us.html"><span class="label">Work With Us</span></a>
+        <a href="contact.html"><span class="label">Contact Us</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pagehead">
+    <div class="year">Team</div>
+    <div class="wrap inner">
+      <div class="label">Solid People</div>
+      <h1>Our Team</h1>
+      <p class="lede">BDI is organized into focused teams — each with its own leadership, its own
+        specialty, and its own accountability. They operate independently and work together on
+        every project.</p>
+    </div>
+  </div>
+
+  <!--
+    TEAM DATA — NEEDS CLIENT CONFIRMATION BEFORE LAUNCH
+    Last names are not yet supplied for Yamile, Scott, Chris, Nez, Lourdes, and Andrea.
+    Exact job titles are confirmed only where stated by the client:
+      Yamile / Scott / Chris = Directors, Nez = Senior Project Manager, Andrea = Controller.
+    Lourdes' formal title and the division names ("Small Projects", "Pre-Construction",
+    "Finance & Accounting") are working labels — confirm before publishing.
+    Bios below are deliberately minimal: no invented experience, certifications, or metrics.
+  -->
+
+  <section class="lead">
+    <div class="wrap">
+      <div class="head">
+        <div class="label">Leadership</div>
+        <h2>Executive leadership</h2>
+      </div>
+      <div class="lead-grid">
+        <div class="person">
+          <div class="avatar">TR</div>
+          <div>
+            <div class="label role">President</div>
+            <h3>Teobaldo Rosell, III</h3>
+            <p>Provides executive oversight of corporate strategy, accounting, and finance, ensuring the company's financial strength as BDI continues to grow.</p>
+          </div>
+        </div>
+        <div class="person">
+          <div class="avatar">CR</div>
+          <div>
+            <div class="label role">VP / Director of Operations</div>
+            <h3>Carlos Rosell</h3>
+            <p>Oversees BDI's day-to-day construction operations, ensuring every project is delivered safely, on schedule, and to BDI's standards for quality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ops">
+    <div class="wrap">
+      <div class="head">
+        <div class="label">Construction Operations</div>
+        <h2>Three divisions, one standard.</h2>
+        <p>Our construction work is divided by region and project scale, so every client works
+          with a director who knows their market and a team sized to their project.</p>
+      </div>
+
+      <div class="div-grid">
+
+        <div class="division">
+          <span class="label region">South Florida</span>
+          <div class="person">
+            <div class="avatar">Y</div>
+            <div>
+              <div class="label role">Director</div>
+              <h3>Yamile <!-- [Confirm last name] --></h3>
+              <p>Leads BDI's South Florida construction operations, the company's largest division.</p>
+            </div>
+          </div>
+          <div class="reports">
+            <div class="label">Division Team</div>
+            <div class="report">
+              <div class="dot">N</div>
+              <div>
+                <div class="nm">Nez Teimouri</div>
+                <div class="rl">Senior Project Manager</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="division">
+          <span class="label region">Central &amp; West Florida</span>
+          <div class="person">
+            <div class="avatar">S</div>
+            <div>
+              <div class="label role">Director</div>
+              <h3>Scott <!-- [Confirm last name] --></h3>
+              <p>Leads BDI's construction operations across Central and West Florida.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="division">
+          <span class="label region">Small Projects</span>
+          <div class="person">
+            <div class="avatar">C</div>
+            <div>
+              <div class="label role">Director</div>
+              <h3>Chris <!-- [Confirm last name] --></h3>
+              <p>Leads BDI's small projects division, delivering the same standard at a scale built for shorter timelines.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="partners">
+    <div class="wrap">
+      <div class="head">
+        <div class="label">Specialized Teams</div>
+        <h2>Working alongside every division.</h2>
+        <p>Pre-construction and accounting run as their own teams with their own leadership,
+          supporting all three construction divisions from a project's first estimate through
+          final closeout.</p>
+      </div>
+      <div class="partner-grid">
+
+        <div class="partner">
+          <span class="label unit">Pre-Construction</span>
+          <div class="person">
+            <div class="avatar">L</div>
+            <div>
+              <div class="label role">Pre-Construction Lead</div>
+              <h3>Lourdes <!-- [Confirm last name and title] --></h3>
+              <p>Leads BDI's pre-construction team, guiding estimating and planning before a project breaks ground.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="partner">
+          <span class="label unit">Finance &amp; Accounting</span>
+          <div class="person">
+            <div class="avatar">A</div>
+            <div>
+              <div class="label role">Controller</div>
+              <h3>Andrea Loguzzo</h3>
+              <p>Leads BDI's accounting team, managing project financials and reporting across the company.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Solid People. Solid Work. Solid Relationships.</h2>
+      <p>Separate teams, one company. The people you meet at the start of a project are the same
+        people you can call at the end of it.</p>
+    </div>
+  </section>
+
+  <footer><span class="label">© 2026 BDI Construction Company — 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
+
+</body>
+</html>

@@ -21,6 +21,7 @@ type, or color should be treated as requiring explicit approval.
 | `history.html` | About Us → History (landing page for the About Us dropdown) |
 | `culture.html` | About Us → Culture |
 | `community.html` | About Us → Community |
+| `team.html` | About Us → Team — leadership, divisions, specialized teams |
 | `expertise.html` | Expertise — Project Management, Team, Safety |
 | `work-with-us.html` | Work With Us — subcontractor prequalification form |
 | `contact.html` | Contact Us |
@@ -29,7 +30,7 @@ type, or color should be treated as requiring explicit approval.
 Each page is self-contained: its CSS lives in a `<style>` block in the
 document head, and fonts load from Google Fonts via `@import`. There is no
 shared stylesheet — a change to the nav or footer has to be made in all
-seven files.
+eight files.
 
 ## Local preview
 
@@ -43,7 +44,7 @@ also works, since all links and asset paths are relative.
 ## Navigation structure (final, approved)
 
 ```
-About Us  (dropdown → History / Culture / Community)
+About Us  (dropdown → History / Culture / Community / Team)
 Projects
 Expertise
 Work With Us
@@ -52,6 +53,8 @@ Contact Us
 
 Notes:
 - Clicking "About Us" itself lands on **History**.
+- **Team** was added to the dropdown after the original signoff, to hold the
+  division structure. This is a change to the previously-final nav.
 - The old site's **Sustainability** page and standalone **Community** tab
   were intentionally removed. Do not reinstate them.
 - **Projects** has no page yet — its nav link points at `#`. See
@@ -137,6 +140,29 @@ These figures appear in print materials too and must stay consistent:
 
 Do not invent statistics, project details, certifications, or safety
 metrics. If a number is needed and not in these files, ask.
+
+### Team structure
+
+BDI is organized as four director-led teams plus accounting. Directors are
+listed on `expertise.html` in this order, which is deliberate:
+
+1. **Lourdes** — Director, Pre-Construction (her own team)
+2. **Yamile** — Director, South Florida (the largest construction division)
+3. **Scott** — Director, Central & West Florida
+4. **Chris** — Director, Small Projects
+
+Also on `team.html`, but **not** in the Expertise directors list:
+
+- **Nez Teimouri** — Senior Project Manager, reports to Yamile
+- **Andrea Loguzzo** — Controller, leads the accounting team
+
+Pre-construction and accounting run as separate teams with their own
+leadership, working alongside all three construction divisions.
+
+**Still unconfirmed — do not guess:** last names for Lourdes, Yamile,
+Scott, and Chris; Lourdes' exact title; and whether "Small Projects" is
+the right name for Chris' division. These are marked with
+`[Confirm last name]` HTML comments in the markup.
 
 ## Cautions
 
