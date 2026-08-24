@@ -14,6 +14,8 @@
   h1,h2{ font-family:'Fraunces',serif; font-weight:450; }
   a{color:inherit; text-decoration:none;}
   .wrap{ max-width:880px; margin:0 auto; padding:0 48px; }
+  /* the two columns need more room than a single column of prose does */
+  .wrap.wide{ max-width:1180px; }
   @media (max-width:800px){ .wrap{padding:0 24px;} }
   .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
 
@@ -48,9 +50,29 @@
   .pagehead{ padding:120px 0 60px; }
   .pagehead .label{ color:var(--teal); margin-bottom:20px; }
   .pagehead h1{ font-size:clamp(30px,3.8vw,44px); font-style:italic; color:var(--navy); }
-  .pagehead p{ color:var(--muted); font-size:16px; margin-top:18px; max-width:540px; line-height:1.8; font-weight:300; }
+  .pagehead p{ color:var(--muted); font-size:16px; margin-top:18px; max-width:560px; line-height:1.8; font-weight:300; }
 
   .form-wrap{ padding:20px 0 120px; }
+
+  /* THE SPLIT
+     Subcontractors on the left, people looking for a job on the right, divided
+     by a hairline. Below 940px the columns stack — subcontractors first, since
+     that is what this page has always been for — and the divider lies down
+     between them rather than disappearing. */
+  .split{ display:grid; grid-template-columns:1fr 1fr; }
+  .split > .col:first-child{ padding-right:60px; }
+  .split > .col + .col{ padding-left:60px; border-left:1px solid var(--hair); }
+  @media (max-width:940px){
+    .split{ grid-template-columns:1fr; }
+    .split > .col:first-child{ padding-right:0; padding-bottom:72px; margin-bottom:72px; border-bottom:1px solid var(--hair); }
+    .split > .col + .col{ padding-left:0; border-left:none; }
+  }
+
+  .col-head{ margin-bottom:46px; }
+  .col-head .label{ color:var(--teal); margin-bottom:16px; }
+  .col-head h2{ font-size:clamp(21px,2.2vw,26px); font-style:italic; color:var(--navy); }
+  .col-head p{ color:var(--muted); font-size:15px; margin-top:16px; line-height:1.8; font-weight:300; }
+
   /* the honeypot: off-screen rather than display:none, which some bots skip */
   .hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
 
@@ -61,10 +83,14 @@
   .form-result[hidden]{ display:none; }
   .form-result.bad{ border-left-color:#B4453C; background:rgba(180,69,60,.06); }
 
-  fieldset{ border:none; margin-bottom:56px; }
+  fieldset{ border:none; margin-bottom:44px; }
   legend{ padding:0; margin-bottom:30px; width:100%; }
-  .row{ display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:30px; }
+  .row{ display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:28px; }
   .row.full{ grid-template-columns:1fr; }
+  /* half the page width cannot carry two fields comfortably; give them their
+     own lines until the columns stack and the full width comes back */
+  @media (max-width:1080px){ .split .row{ grid-template-columns:1fr; } }
+  @media (max-width:940px) and (min-width:641px){ .split .row{ grid-template-columns:1fr 1fr; } }
   @media (max-width:640px){ .row{grid-template-columns:1fr;} }
 
   label{ display:block; font-size:12px; letter-spacing:.05em; color:var(--muted); margin-bottom:10px; font-weight:400; }
@@ -74,15 +100,51 @@
   }
   input:focus, select:focus, textarea:focus{ border-color:var(--navy); }
   textarea{ min-height:90px; resize:vertical; }
+  /* the native menu paints its own box, which would be the only boxed field on
+     the page; strip it back to the same underline and draw the chevron */
+  select{
+    appearance:none; -webkit-appearance:none; border-radius:0; cursor:pointer; padding-right:26px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2368737C' stroke-width='1.3'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 1px center; background-size:10px 6px;
+  }
+  /* required and nothing picked yet - the prompt should read as a prompt */
+  select:invalid{ color:var(--muted); }
 
-  .submit-row{ display:flex; align-items:center; gap:24px; margin-top:14px; }
+  /* RESUME UPLOAD
+     The real file input is laid transparently over the button rather than
+     hidden, so the picker opens on a plain click, the control still takes
+     focus and keyboard, and the browser's own "required" message points at
+     something the applicant can actually see. */
+  .file-field{ margin-bottom:30px; }
+  .file-wrap{ position:relative; display:inline-block; }
+  .file-wrap input[type="file"]{
+    position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; padding:0;
+  }
+  .file-btn{
+    display:inline-block; border:1px solid var(--navy); color:var(--navy); background:transparent;
+    padding:13px 30px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:500;
+  }
+  .file-wrap:hover .file-btn{ background:var(--navy); color:#fff; }
+  .file-wrap:focus-within .file-btn{ outline:2px solid var(--green); outline-offset:3px; }
+  .file-name{ display:block; margin-top:14px; font-size:14px; color:var(--ink); font-weight:300; }
+  .file-name.empty{ color:var(--muted); }
+  .file-hint{ display:block; margin-top:6px; font-size:12px; color:var(--muted); font-weight:300; line-height:1.6; }
+
+  .col-note{
+    margin-top:52px; padding-top:26px; border-top:1px solid var(--hair);
+    font-size:14px; color:var(--muted); font-weight:300; line-height:1.8;
+  }
+  .col-note a{ color:var(--teal); border-bottom:1px solid rgba(76,124,140,.35); }
+  .col-note a:hover{ color:var(--navy); border-bottom-color:var(--navy); }
+
+  .submit-row{ display:flex; align-items:center; gap:24px; margin-top:14px; flex-wrap:wrap; }
   button{
     background:var(--navy); color:#fff; border:none; padding:16px 42px;
     font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:500; cursor:pointer;
     transition:background .18s;
   }
   button:hover{ background:var(--navy-deep); }
-  .submit-note{ font-size:13px; color:var(--muted); font-weight:300; }
+  .submit-note{ font-size:13px; color:var(--muted); font-weight:300; max-width:280px; line-height:1.6; }
 
   footer{ background:#fff; border-top:1px solid var(--hair); padding:44px 0; text-align:center; }
   footer .label{ color:var(--muted); font-weight:400; }
@@ -101,7 +163,7 @@
   .reveal-on .rv.in, .reveal-on .rv-l.in, .reveal-on .rv-r.in{ opacity:1; transform:none; }
   /* the side-entering pieces sit in two-column grids; clip so their offset
      cannot push the page sideways while they are still out of position */
-  .reveal-on .grid{ overflow-x:clip; }
+  .reveal-on .grid, .reveal-on .split{ overflow-x:clip; }
   /* on narrow screens the columns stack, so travel vertically instead */
   @media (max-width:860px){
     .reveal-on .rv-l, .reveal-on .rv-r{ transform:translateY(20px); }
@@ -149,74 +211,188 @@
     </div>
   </nav>
 
-  <div class="pagehead wrap">
-    <div class="label">Work With Us</div>
-    <h1 class="rv" data-d="90">Subcontractor Prequalification</h1>
-    <p>Interested in working with BDI Construction? Complete the form below to be considered for our approved subcontractor list.</p>
+  <div class="pagehead wrap wide">
+    <div class="rv label">Join Us</div>
+    <h1 class="rv" data-d="90">Work With Us</h1>
+    <p class="rv" data-d="150">Two ways in. Subcontractors and suppliers can apply to our approved list;
+      anyone looking for their next role can send us a resume. Both reach us the same day.</p>
   </div>
 
-  <section class="form-wrap wrap">
+  <section class="form-wrap wrap wide">
+    <div class="split">
 
-    <!-- A static page cannot send email, so submissions are posted to
-         Web3Forms, which relays them to the address registered against the
-         access key below. The key is public by design - it only names the
-         inbox, and cannot be used to read anything. -->
-    <form id="prequal" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="72d67bb5-4b3c-4a9c-b164-b759d60b10c8">
-      <input type="hidden" name="subject" value="Subcontractor prequalification - bdiconstruction.com">
-      <input type="hidden" name="from_name" value="BDI Construction website">
-      <!-- left empty by people, filled in by robots -->
-      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+      <!-- ============ LEFT — SUBCONTRACTORS ============ -->
+      <div class="col">
+        <div class="col-head rv-l">
+          <div class="label">For Subcontractors</div>
+          <h2>Subcontractor Prequalification</h2>
+          <p>Interested in bidding our work? Complete the form below to be considered
+            for our approved subcontractor list.</p>
+        </div>
 
-      <fieldset class="rv">
-        <div class="label" style="color:var(--teal); margin-bottom:26px;">Company Information</div>
-        <div class="row">
-          <div><label for="company">Company Name *</label><input id="company" name="company" required></div>
-          <div><label for="trade">Primary Trade / Specialty *</label><input id="trade" name="trade" required></div>
-        </div>
-        <div class="row">
-          <div><label for="years">Years in Business</label><input id="years" name="years" type="number" min="0"></div>
-          <div><label for="license">FL License Number</label><input id="license" name="license"></div>
-        </div>
-        <div class="row full">
-          <div><label for="address">Company Address</label><input id="address" name="address"></div>
-        </div>
-      </fieldset>
+        <!-- A static page cannot send email, so submissions are posted to
+             Web3Forms, which relays them to the address registered against the
+             access key below. The key is public by design - it only names the
+             inbox, and cannot be used to read anything. -->
+        <form id="prequal" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="72d67bb5-4b3c-4a9c-b164-b759d60b10c8">
+          <input type="hidden" name="subject" value="Subcontractor prequalification - bdiconstruction.com">
+          <input type="hidden" name="from_name" value="BDI Construction website">
+          <!-- left empty by people, filled in by robots -->
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
 
-      <fieldset class="rv">
-        <div class="label" style="color:var(--teal); margin-bottom:26px;">Contact Information</div>
-        <div class="row">
-          <div><label for="contact-name">Contact Name *</label><input id="contact-name" name="contact-name" required></div>
-          <div><label for="title">Title</label><input id="title" name="title"></div>
-        </div>
-        <div class="row">
-          <div><label for="phone">Phone *</label><input id="phone" name="phone" type="tel" required></div>
-          <div><label for="email">Email *</label><input id="email" name="email" type="email" required></div>
-        </div>
-      </fieldset>
+          <fieldset class="rv">
+            <div class="label" style="color:var(--teal); margin-bottom:26px;">Company Information</div>
+            <div class="row">
+              <div><label for="company">Company Name *</label><input id="company" name="company" required></div>
+              <div><label for="trade">Primary Trade / Specialty *</label><input id="trade" name="trade" required></div>
+            </div>
+            <div class="row">
+              <div><label for="years">Years in Business</label><input id="years" name="years" type="number" min="0"></div>
+              <div><label for="license">FL License Number</label><input id="license" name="license"></div>
+            </div>
+            <div class="row full">
+              <div><label for="address">Company Address</label><input id="address" name="address"></div>
+            </div>
+          </fieldset>
 
-      <fieldset class="rv">
-        <div class="label" style="color:var(--teal); margin-bottom:26px;">Qualifications</div>
-        <div class="row">
-          <div><label for="bonding">Bonding Capacity (if applicable)</label><input id="bonding" name="bonding"></div>
-          <div><label for="insurance">General Liability Insurance Carrier</label><input id="insurance" name="insurance"></div>
-        </div>
-        <div class="row full">
-          <div><label for="references">References (Company, Contact, Phone)</label><textarea id="references" name="references"></textarea></div>
-        </div>
-        <div class="row full">
-          <div><label for="notes">Additional Notes</label><textarea id="notes" name="notes"></textarea></div>
-        </div>
-      </fieldset>
+          <fieldset class="rv">
+            <div class="label" style="color:var(--teal); margin-bottom:26px;">Contact Information</div>
+            <div class="row">
+              <div><label for="contact-name">Contact Name *</label><input id="contact-name" name="contact-name" required></div>
+              <div><label for="title">Title</label><input id="title" name="title"></div>
+            </div>
+            <div class="row">
+              <div><label for="phone">Phone *</label><input id="phone" name="phone" type="tel" required></div>
+              <div><label for="email">Email *</label><input id="email" name="email" type="email" required></div>
+            </div>
+          </fieldset>
 
-      <div class="submit-row">
-        <button type="submit">Submit for Review</button>
-        <span class="submit-note">We'll follow up if your qualifications are a fit for upcoming work.</span>
+          <fieldset class="rv">
+            <div class="label" style="color:var(--teal); margin-bottom:26px;">Qualifications</div>
+            <div class="row">
+              <div><label for="bonding">Bonding Capacity (if applicable)</label><input id="bonding" name="bonding"></div>
+              <div><label for="insurance">General Liability Insurance Carrier</label><input id="insurance" name="insurance"></div>
+            </div>
+            <div class="row full">
+              <div><label for="references">References (Company, Contact, Phone)</label><textarea id="references" name="references"></textarea></div>
+            </div>
+            <div class="row full">
+              <div><label for="notes">Additional Notes</label><textarea id="notes" name="notes"></textarea></div>
+            </div>
+          </fieldset>
+
+          <div class="submit-row">
+            <button type="submit">Submit for Review</button>
+            <span class="submit-note">We'll follow up if your qualifications are a fit for upcoming work.</span>
+          </div>
+
+          <div class="form-result" id="form-result" role="status" aria-live="polite" hidden></div>
+
+        </form>
       </div>
 
-      <div class="form-result" id="form-result" role="status" aria-live="polite" hidden></div>
+      <!-- ============ RIGHT — CAREERS ============ -->
+      <div class="col">
+        <div class="col-head rv-r">
+          <div class="label">For Job Seekers</div>
+          <h2>Join Our Team</h2>
+          <p>Solid people build solid work. Tell us about yourself, attach your resume,
+            and it goes straight to our hiring team — whether or not we have a posting open.</p>
+        </div>
 
-    </form>
+        <!-- The resume has to travel with the application, and the relay the
+             subcontractor form uses does not carry attachments on its free
+             plan. So this one posts to FormSubmit, which does, and which sends
+             the whole thing to hiring@bdico.com.
+
+             TWO THINGS TO KNOW:
+             1. The first submission after this goes live triggers a one-time
+                activation email to hiring@bdico.com. Somebody has to click the
+                link in it once - until they do, nothing is delivered. It only
+                ever happens once.
+             2. Attachments are capped at 10MB total by the relay; the form
+                stops anything over that before it is sent.
+
+             There is no AJAX here on purpose: the file-carrying endpoint is the
+             plain POST one, so the browser navigates away and _next brings the
+             applicant back to this page with ?sent=careers, which the script at
+             the bottom turns into the confirmation panel. If spam ever arrives,
+             delete the _captcha line and the relay will challenge senders. -->
+        <form id="careers" action="https://formsubmit.co/hiring@bdico.com" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_subject" value="Career application - bdiconstruction.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://bdiconstruction.com/work-with-us.html?sent=careers">
+          <!-- left empty by people, filled in by robots -->
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+
+          <fieldset class="rv">
+            <div class="label" style="color:var(--teal); margin-bottom:26px;">About You</div>
+            <div class="row full">
+              <div><label for="ca-name">Full Name *</label><input id="ca-name" name="Full Name" required autocomplete="name"></div>
+            </div>
+            <div class="row">
+              <div><label for="ca-email">Email *</label><input id="ca-email" name="email" type="email" required autocomplete="email"></div>
+              <div><label for="ca-phone">Phone *</label><input id="ca-phone" name="Phone" type="tel" required autocomplete="tel"></div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="ca-position">Position of Interest *</label>
+                <select id="ca-position" name="Position of Interest" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>Project Manager</option>
+                  <option>Assistant Project Manager</option>
+                  <option>Superintendent</option>
+                  <option>Assistant Superintendent</option>
+                  <option>Estimator</option>
+                  <option>Project Engineer</option>
+                  <option>Project Coordinator</option>
+                  <option>Safety</option>
+                  <option>Accounting / Administrative</option>
+                  <option>Internship</option>
+                  <option>Other — see message</option>
+                </select>
+              </div>
+              <div><label for="ca-years">Years of Experience</label><input id="ca-years" name="Years of Experience" type="number" min="0"></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="rv">
+            <div class="label" style="color:var(--teal); margin-bottom:26px;">Your Resume</div>
+            <div class="file-field">
+              <label for="ca-resume">Resume *</label>
+              <span class="file-wrap">
+                <input id="ca-resume" type="file" name="attachment" required
+                       accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                <span class="file-btn" aria-hidden="true">Attach Resume</span>
+              </span>
+              <span class="file-name empty" id="ca-resume-name">No file chosen</span>
+              <span class="file-hint">PDF or Word document, up to 10&nbsp;MB.</span>
+            </div>
+            <div class="row full">
+              <div><label for="ca-message">Anything Else We Should Know</label><textarea id="ca-message" name="Message"></textarea></div>
+            </div>
+          </fieldset>
+
+          <div class="submit-row">
+            <button type="submit">Send Application</button>
+            <span class="submit-note">Your application goes to hiring@bdico.com.</span>
+          </div>
+
+          <div class="form-result" id="careers-result" role="status" aria-live="polite" hidden></div>
+
+        </form>
+
+        <!-- The way through when the resume is too large for the relay, or when
+             anything here fails: it depends on nothing on this page working. -->
+        <div class="col-note rv">
+          Prefer email? Send your resume straight to
+          <a href="mailto:hiring@bdico.com?subject=Career%20application">hiring@bdico.com</a>.
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <footer><span class="label">&copy; 2026 BDI Construction Company &mdash; 7270 NW 12th St, Suite 200, Miami, FL 33126</span></footer>
@@ -270,6 +446,77 @@
           button.textContent = label;
         });
     });
+  })();
+  </script>
+
+  <script>
+  // The careers form carries a file, so it posts the ordinary way and the
+  // browser leaves the page. Everything here is about the two moments either
+  // side of that: naming the chosen file and refusing an impossible one before
+  // the applicant waits on an upload that cannot succeed, and showing the
+  // confirmation when the relay sends them back.
+  (function(){
+    var MAX = 10 * 1024 * 1024;   // the relay's ceiling for all attachments
+    var form = document.getElementById('careers');
+    if (!form) return;
+    var file   = document.getElementById('ca-resume');
+    var name   = document.getElementById('ca-resume-name');
+    var result = document.getElementById('careers-result');
+    var button = form.querySelector('button[type="submit"]');
+
+    function say(message, ok){
+      result.textContent = message;
+      result.classList.toggle('bad', !ok);
+      result.hidden = false;
+    }
+
+    // A megabyte here is the round number people recognise from their own
+    // files, not the pedantic one.
+    function size(bytes){
+      return bytes < 1024 * 1024
+        ? Math.max(1, Math.round(bytes / 1024)) + ' KB'
+        : (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    file.addEventListener('change', function(){
+      var chosen = file.files && file.files[0];
+      name.textContent = chosen ? chosen.name + ' — ' + size(chosen.size) : 'No file chosen';
+      name.classList.toggle('empty', !chosen);
+      if (chosen && chosen.size > MAX) {
+        say('That file is ' + size(chosen.size) + ' — a little over the 10 MB limit. Please '
+          + 'attach a smaller copy, or email it to hiring@bdico.com.', false);
+      } else {
+        result.hidden = true;
+      }
+    });
+
+    form.addEventListener('submit', function(e){
+      var chosen = file.files && file.files[0];
+      if (chosen && chosen.size > MAX) {
+        e.preventDefault();
+        say('That file is ' + size(chosen.size) + ' — a little over the 10 MB limit. Please '
+          + 'attach a smaller copy, or email it to hiring@bdico.com.', false);
+        file.focus();
+        return;
+      }
+      // a resume takes a moment to travel; say so rather than looking stuck
+      button.disabled = true;
+      button.textContent = 'Sending…';
+    });
+
+    // Coming back from the relay. The parameter is cleared afterwards so a
+    // refresh, or a link shared from the address bar, does not claim a second
+    // application was sent.
+    if (/[?&]sent=careers(&|$)/.test(location.search)) {
+      say('Thank you — your application and resume are on their way to our hiring team. '
+        + 'We read every one, and we will be in touch if there is a fit.', true);
+      if (window.history && history.replaceState) {
+        history.replaceState(null, '', location.pathname + location.hash);
+      }
+      addEventListener('load', function(){
+        result.scrollIntoView({ block:'center', behavior:'smooth' });
+      });
+    }
   })();
   </script>
 

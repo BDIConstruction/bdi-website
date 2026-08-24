@@ -30,7 +30,7 @@ Mimecast, untouched by anything here.
 | `culture.html` | About Us → Culture |
 | `community.html` | About Us → Community |
 | `expertise.html` | Expertise |
-| `work-with-us.html` | Work With Us — subcontractor prequalification |
+| `work-with-us.html` | Work With Us — subcontractor prequalification and careers |
 | `contact.html` | Contact Us |
 
 `oauth-worker/` is not part of the site — it is the small service that signs
@@ -97,6 +97,17 @@ Eight pages are built. Still open:
   `info@bdico.com`. The access key sits in `work-with-us.html` and is public by
   design: it names an inbox and grants no access to anything. Whoever watches
   that inbox should let the mail filter know to expect it
+- **Careers form** — the right-hand half of `work-with-us.html` takes a resume,
+  and Web3Forms does not relay attachments on the free plan, so that one form
+  posts to FormSubmit instead and lands in `hiring@bdico.com`. **One thing is
+  needed before it works:** the first submission after it goes live sends an
+  activation email to that address, and somebody has to click the link in it,
+  once. Until they do the relay accepts applications and delivers nothing.
+  Attachments are capped at 10MB and the form refuses anything larger before
+  sending rather than after, offering `hiring@bdico.com` instead. Unlike the
+  Web3Forms key, the address is necessarily in the page source; if that draws
+  spam, deleting the `_captcha` line makes the relay challenge senders
+
 - ~~**Mail records**~~ — no mail runs on this domain and it now says so:
   `v=spf1 -all` and a DMARC policy of `reject`, so nobody can forge an address
   here. Anything later configured to send as `@bdiconstruction.com` will be
