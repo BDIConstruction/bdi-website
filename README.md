@@ -101,6 +101,14 @@ Eight pages are built. Still open:
   `v=spf1 -all` and a DMARC policy of `reject`, so nobody can forge an address
   here. Anything later configured to send as `@bdiconstruction.com` will be
   refused until those records are changed — deliberately
-- **Old WordPress links** — every previously indexed address now lands on
-  `404.html`. Redirect stubs for the most-visited ones would be better, but
-  that needs the old URL list out of Google Search Console
+- ~~**Old WordPress links**~~ — the addresses Google still indexes now redirect
+  instead of falling through to `404.html`. `about-us/`, `projects/` and
+  `projects-portfolio-test/` are stubs, as is `projects/<slug>/` for all 58
+  projects — the WordPress slugs match the filenames in `content/projects/`,
+  which is how they could be generated rather than transcribed. GitHub Pages
+  cannot issue a 301, so each stub is a `<meta http-equiv="refresh">` with a
+  `rel="canonical"` pointing at the real page; Google follows both and
+  consolidates. Any old address not in this list still 404s — the full list
+  lives in Search Console under Indexing → Pages, and more stubs can be added
+  from it. New projects do not need one: only addresses WordPress published
+  are indexed
