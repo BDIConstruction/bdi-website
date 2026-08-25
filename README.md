@@ -92,12 +92,18 @@ Eight pages are built. Still open:
   cards the client asked for after seeing Moss's site. Anything bigger visibly
   softens on a high-density screen. Higher-resolution originals would let the
   row become proper photo cards; the layout is the only thing that would change
-- **Leadership biographies** — `leadership.html` describes what each *role*
-  covers, because that much follows from the job title. Nothing personal is
-  claimed about anyone: no tenure, no history, no named projects. Real
-  biographies have to come from the people themselves, and drop straight into
-  the profile blocks when they do. The three Directors of Construction share
-  one description because they share one title
+- **Leadership biographies** — `leadership.html` carries the four directors'
+  profiles, written from the resumes the client supplied and their notes on how
+  the divisions actually divide up. The three construction directors are
+  separated by division rather than by title, which is what the org chart does:
+  South Florida, Central & West Florida, and Special Projects. The org chart
+  calls that last one College | University and the resume calls it the Higher
+  Learning Division, but neither fits: it is the small-cap division — interior
+  renovations, build-outs and fit-outs from roughly $100k to $2M — of which
+  campus work is only a part. **The org chart needs the same correction**
+- **Scott Lowrance's education** — the other three profiles end with a degree.
+  His resume did not list one, so his profile has no education line. Either send
+  it, or drop the line from all four so the omission is not conspicuous
 - **Team section** — six of the ten people originally listed. The other four
   were held back by request, or in Lazaro Villar's case for want of a
   photograph. Their headshots were removed with their entries rather than left
