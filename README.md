@@ -101,9 +101,12 @@ Eight pages are built. Still open:
   Learning Division, but neither fits: it is the small-cap division — interior
   renovations, build-outs and fit-outs from roughly $100k to $2M — of which
   campus work is only a part. **The org chart needs the same correction**
-- **Scott Lowrance's education** — the other profiles end with a degree. His
-  resume did not list one, so his profile has no education line. Either it
-  arrives, or the line comes off all of them so the omission is not conspicuous
+- **Education** — removed from all six profiles by request. It was one `<p
+  class="edu">` per profile plus one rule; putting it back is a revert of the
+  commit that took it out. Note that David Galdeano's and Lazaro Villar's
+  certifications shared that line and went with it — OSHA, Procore, the Jessica
+  Lunsford Act, Green Advantage, FDEP stormwater. Those are credentials rather
+  than education and could come back on their own line
 - **Lazaro Villar's photograph** — the only one of the six without a headshot,
   so his circle carries his initials instead. That is a designed placeholder,
   not a broken image; drop the `data-initials` attribute in `expertise.html`
