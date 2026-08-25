@@ -27,10 +27,10 @@ Mimecast, untouched by anything here.
 | `404.html` | Shown for any address that does not exist, including old links |
 | `projects.html` | Projects — generated, see below |
 | `history.html` | About Us → History |
-| `leadership.html` | About Us → Leadership — the four directors, with what each role covers |
+| `leadership.html` | Leadership — **held back for review: unlinked, out of the sitemap, `noindex`** |
 | `culture.html` | About Us → Culture |
 | `community.html` | About Us → Community |
-| `expertise.html` | Expertise — the leadership row links through to `leadership.html` |
+| `expertise.html` | Expertise — the leadership row, currently without its links out |
 | `work-with-us.html` | Work With Us — subcontractor prequalification and careers |
 | `contact.html` | Contact Us |
 
@@ -86,6 +86,15 @@ anything in `content/projects/`.
 ## Status
 
 Eight pages are built. Still open:
+
+- **Leadership page is not published** — the client wants to review it with
+  their bosses first. Three things hold it back, and all three come off
+  together when it is approved: the About Us menu entry (nine pages), the
+  "Read more" links and "Meet the leadership team" link on `expertise.html`,
+  and the `noindex` plus the sitemap entry. The `noindex` is the one that
+  matters — an unlinked page on a static host is still a public URL, and
+  removing the links alone would not keep it out of search results. The CSS
+  for the links is left in place, so restoring them is markup only
 
 - **Leadership photographs** — the six headshots are 240px square, which is
   why the leadership row uses circles at 130px rather than the large photo
