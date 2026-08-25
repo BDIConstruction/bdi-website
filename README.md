@@ -101,9 +101,22 @@ Eight pages are built. Still open:
   Learning Division, but neither fits: it is the small-cap division — interior
   renovations, build-outs and fit-outs from roughly $100k to $2M — of which
   campus work is only a part. **The org chart needs the same correction**
-- **Scott Lowrance's education** — the other three profiles end with a degree.
-  His resume did not list one, so his profile has no education line. Either send
-  it, or drop the line from all four so the omission is not conspicuous
+- **Scott Lowrance's education** — the other profiles end with a degree. His
+  resume did not list one, so his profile has no education line. Either it
+  arrives, or the line comes off all of them so the omission is not conspicuous
+- **Lazaro Villar's photograph** — the only one of the six without a headshot,
+  so his circle carries his initials instead. That is a designed placeholder,
+  not a broken image; drop the `data-initials` attribute in `expertise.html`
+  and `leadership.html` when a photograph exists. David Galdeano's was restored
+  from the history, where it had gone when he came off the old team section
+- **Lazaro Villar's biography** — written from his personal resume, because his
+  BDI one does not exist yet. Everything before BDI is therefore attributed to
+  the firm he did it at — Stonehenge, Pirtle — and must stay that way: those are
+  other companies' projects and cannot be implied to be BDI's. Replace the
+  middle paragraph when the company resume is written
+- **`Jessica Lunsford`** — David Galdeano's resume spells it "Lundsford". The
+  site uses the correct spelling; the resume is worth correcting too, since the
+  Act is what lets him on a school site
 - **Team section** — six of the ten people originally listed. The other four
   were held back by request, or in Lazaro Villar's case for want of a
   photograph. Their headshots were removed with their entries rather than left

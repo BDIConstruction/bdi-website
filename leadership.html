@@ -176,6 +176,15 @@
   /* one person, photograph beside the words */
   .profile{ display:grid; grid-template-columns:200px 1fr; gap:56px; align-items:start; }
   .profile + .profile{ margin-top:64px; padding-top:64px; border-top:1px solid var(--hair); }
+  /* initials stand in until a headshot exists - a deliberate placeholder
+     rather than an empty circle. Drop the attribute when a photo arrives. */
+  .portrait[data-initials]{ position:relative; }
+  .portrait[data-initials]::after{
+    content:attr(data-initials); position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:42px; font-style:italic;
+    color:rgba(255,255,255,.9); letter-spacing:.02em;
+  }
   .profile .portrait{
     width:180px; height:180px; border-radius:50%;
     background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3);
@@ -191,7 +200,16 @@
   .profile p{ color:var(--muted); font-size:17px; line-height:1.9; font-weight:300; margin-bottom:18px; }
   @media (max-width:760px){
     .profile{ grid-template-columns:1fr; gap:28px; }
-    .profile .portrait{ width:140px; height:140px; }
+    /* initials stand in until a headshot exists - a deliberate placeholder
+     rather than an empty circle. Drop the attribute when a photo arrives. */
+  .portrait[data-initials]{ position:relative; }
+  .portrait[data-initials]::after{
+    content:attr(data-initials); position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:42px; font-style:italic;
+    color:rgba(255,255,255,.9); letter-spacing:.02em;
+  }
+  .profile .portrait{ width:140px; height:140px; }
   }
 
 
@@ -202,6 +220,7 @@
   .portrait.p-yamile { background-image:url('team-yamile-dominguez.jpg'); }
   .portrait.p-scott  { background-image:url('team-scott-lowrance.jpg'); }
   .portrait.p-chris  { background-image:url('team-chris-alvarez.jpg'); }
+  .portrait.p-david  { background-image:url('team-david-galdeano.jpg'); }
 
   /* KEEP EXPLORING — the way on, rather than a dead end at the footer */
   .explore{ background:var(--navy-deep); padding:90px 0; }
@@ -338,6 +357,72 @@
             rather than react to them. It is what has earned him the trust of clients across the
             educational and institutional sectors.</p>
           <p class="edu">Florida International University &mdash; B.S. International Relations, 2012</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="lead">
+    <div class="wrap">
+      <div class="rv head">
+        <div class="label">Public Programs</div>
+        <h2>Two divisions built around public clients</h2>
+        <p>Public work is bought differently from private work — different contracts, different
+          agencies, different rules about who may be on site and when. BDI runs two divisions
+          dedicated to it, each led by a project manager who owns the division's projects and the
+          team on them.</p>
+      </div>
+
+      <div class="rv profile" id="david-galdeano">
+        <div class="portrait p-david" role="img" aria-label="David Galdeano"></div>
+        <div class="body">
+          <h3>David Galdeano</h3>
+          <div class="label">Project Manager</div>
+          <div class="div">United States Postal Service</div>
+          <p>David has been with BDI for ten years and runs the division's postal work, with a
+            superintendent and an assistant superintendent under him. He plans every phase of the
+            construction life cycle from initiation to completion, and holds the budget, the
+            timeline and the quality control plan for each project against it.</p>
+          <p>Day to day that means coordinating architects, engineers and trade specialists,
+            keeping clients informed with progress reports, obtaining permits and approvals, and
+            checking every job against local, state and national building codes and safety
+            requirements. Testing and inspection logs, quality assurance reports and punch lists
+            are his, and he runs the schedule and project record in Procore.</p>
+          <p>His projects include the new Tamiami USPS facility, at $3.4 million; upgrades and
+            renovations to an FDOT vehicle maintenance facility in North Dade, at $2.8 million;
+            and the Amerant Bank branch on Coral Way.</p>
+          <p class="edu">Nova Southeastern University &mdash; B.S. Psychology, 2002 &nbsp;·&nbsp;
+            OSHA and Procore certified &nbsp;·&nbsp; Jessica Lunsford Act Level II</p>
+        </div>
+      </div>
+
+      <div class="rv profile" id="lazaro-villar">
+        <div class="portrait p-lazaro" role="img" data-initials="LV" aria-label="Lazaro Villar"></div>
+        <div class="body">
+          <h3>Lazaro Villar</h3>
+          <div class="label">Project Manager</div>
+          <div class="div">Government</div>
+          <p>Lazaro runs BDI's government division — public schools, municipal buildings and other
+            publicly funded work — with a team of six behind him. It is the work he has spent most
+            of a twenty-eight-year career on.</p>
+          <p>Before BDI he headed vertical operations at Stonehenge Construction, where he grew
+            the division from $4 million in annual revenue to over $40 million, largely in the
+            educational market. Earlier, over eight years at Pirtle Construction, he ran a $90
+            million modular building programme for Miami-Dade County Public Schools and managed
+            the firm's Miami satellite office for four of them. Across his career he has been
+            involved in projects totalling more than $140 million, among them the Devon Aire K-8
+            conversion, Rockway Middle, South Miami Elementary and South Hialeah Elementary, all
+            for Miami-Dade schools and all delivered CM at Risk.</p>
+          <p>That history is why the division is his: he has negotiated conventional, design-build
+            and CM at Risk contracts with agencies, owners' representatives and architects, and
+            he has spent most of his career phasing work on occupied campuses, where the building
+            has to keep running around the job. He works in Primavera and Procore, knows the SREF
+            standards Florida school construction is held to, and works in English and Spanish.</p>
+          <p class="edu">Florida International University &mdash; B.S. Interior Design &nbsp;·&nbsp;
+            Miami Dade College &mdash; A.A. Architecture &nbsp;·&nbsp; Green Advantage certified
+            &nbsp;·&nbsp; FDEP stormwater inspector &nbsp;·&nbsp; formerly adjunct professor, FIU
+            Interior Design</p>
         </div>
       </div>
     </div>

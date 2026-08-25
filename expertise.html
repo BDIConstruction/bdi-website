@@ -74,8 +74,16 @@
      it. The headshots are 240px square, so the circles stay well inside that
      even on a high-density screen - photo cards the size of Moss's would need
      photographs several times larger than the ones we hold. */
-  .team-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:48px; }
-  .exec{ text-align:center; }
+  /* Six people, so the row breaks evenly: six across on a wide monitor, then
+     three and three, then two, then one. auto-fit would strand a single card
+     on its own row at the widths in between. */
+  .team-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:48px 40px; }
+  @media (min-width:1800px){ .team-grid{ grid-template-columns:repeat(6,1fr); } }
+  @media (max-width:1100px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){  .team-grid{ grid-template-columns:1fr; } }
+  /* a column, so a title that wraps to two lines does not drop this card's
+     link below the others */
+  .exec{ text-align:center; display:flex; flex-direction:column; height:100%; }
   .exec .photo{
     width:130px; height:130px; margin:0 auto 24px; position:relative; border-radius:50%;
     background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3);
@@ -85,6 +93,7 @@
   .exec .photo.p-lourdes  { background-image:url('team-lourdes-escandon.jpg'); }
   .exec .photo.p-yamile   { background-image:url('team-yamile-dominguez.jpg'); }
   .exec .photo.p-chris    { background-image:url('team-chris-alvarez.jpg'); }
+  .exec .photo.p-david    { background-image:url('team-david-galdeano.jpg'); }
   .exec .photo.p-scott    { background-image:url('team-scott-lowrance.jpg'); }
   .exec .photo.p-nez      { background-image:url('team-nez-teimouri.jpg'); }
   .exec .photo.p-andrea   { background-image:url('team-andrea-loguzzo.jpg'); }
@@ -101,14 +110,12 @@
   /* the three directors share a title; the division is what separates them */
   .exec .div{ font-size:14px; color:var(--muted); font-weight:300; font-style:italic; margin-bottom:18px; }
   .exec .more{
+    align-self:center; margin-top:auto; padding-top:4px;
     display:inline-block; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.14em;
     text-transform:uppercase; font-weight:500; color:var(--navy);
     border-bottom:1px solid var(--hair); padding-bottom:5px;
   }
   .exec .more:hover{ color:var(--teal); border-color:var(--teal); }
-  /* two up, then one, as the circles would otherwise crowd */
-  @media (max-width:1040px){ .team-grid{grid-template-columns:1fr 1fr; gap:52px;} }
-  @media (max-width:560px){ .team-grid{grid-template-columns:1fr; gap:44px;} }
 
   /* the way on to the fuller profiles, for anyone who read across the row
      without stopping at a name */
@@ -245,6 +252,20 @@
           <div class="label">Director of Construction</div>
           <div class="div">Special Projects</div>
           <a class="more" href="leadership.html#chris-alvarez">Read more</a>
+        </div>
+        <div class="rv exec" data-d="280">
+          <div class="photo p-david" role="img" aria-label="David Galdeano"></div>
+          <h3>David Galdeano</h3>
+          <div class="label">Project Manager</div>
+          <div class="div">United States Postal Service</div>
+          <a class="more" href="leadership.html#david-galdeano">Read more</a>
+        </div>
+        <div class="rv exec" data-d="350">
+          <div class="photo p-lazaro" role="img" data-initials="LV" aria-label="Lazaro Villar"></div>
+          <h3>Lazaro Villar</h3>
+          <div class="label">Project Manager</div>
+          <div class="div">Government</div>
+          <a class="more" href="leadership.html#lazaro-villar">Read more</a>
         </div>
       </div>
       <div class="rv team-more"><a href="leadership.html">Meet the leadership team</a></div>
