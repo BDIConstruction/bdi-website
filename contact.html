@@ -13,18 +13,20 @@
   body{ font-family:'Inter',sans-serif; font-weight:300; color:var(--ink); background:#fff; -webkit-font-smoothing:antialiased; }
   h1,h2{ font-family:'Fraunces',serif; font-weight:450; }
   a{color:inherit; text-decoration:none;}
-  .wrap{ max-width:980px; margin:0 auto; padding:0 48px; }
+  /* no cap - the page is as wide as the window. Prose keeps its own
+     max-widths below, so only grids and photographs take the full width */
+  .wrap{ margin:0 auto; padding:0 56px; }
   @media (max-width:800px){ .wrap{padding:0 24px;} }
   .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
 
   /* relative + z-index so the dropdown paints above the page head, which is
      positioned and would otherwise cover it */
   .nav{ position:relative; z-index:50; background:#fff; border-bottom:1px solid var(--hair); }
-  .nav-inner{ max-width:980px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
+  .nav-inner{ max-width:none; margin:0 auto; padding:0 56px; display:flex; align-items:center; justify-content:space-between; height:104px; }
   /* Brand — logo mark */
   .brand{ display:flex; align-items:center; }
-  .brand .logomark{ height:52px; width:auto; display:block; }
-  @media (max-width:520px){ .brand .logomark{height:40px;} }
+  .brand .logomark{ height:68px; width:auto; display:block; }
+  @media (max-width:520px){ .brand .logomark{height:48px;} }
   .navlinks{ display:flex; gap:26px; }
   .navlinks .label{ color:var(--muted); letter-spacing:.12em; white-space:nowrap; }
   .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--navy); }
@@ -45,11 +47,15 @@
   .dropdown a:hover{ color:var(--navy); }
   @media (max-width:920px){ .navlinks{display:none;} }
 
-  .pagehead{ padding:120px 0 90px; }
+  /* top and bottom only - this element is also the .wrap, and the
+     shorthand would reset the side padding it needs */
+  .pagehead{ padding-top:120px; padding-bottom:90px; }
   .pagehead .label{ color:var(--teal); margin-bottom:20px; }
-  .pagehead h1{ font-size:clamp(32px,4.2vw,50px); font-style:italic; color:var(--navy); }
+  .pagehead h1{ font-size:clamp(36px,5vw,72px); font-style:italic; color:var(--navy); }
 
-  .contact{ padding:0 0 120px; }
+  /* vertical only - this element is also the .wrap, whose side padding a
+     shorthand here would reset to zero */
+  .contact{ padding-bottom:120px; }
   .grid{ display:grid; grid-template-columns:0.6fr 1fr; gap:60px; align-items:start; }
   @media (max-width:860px){ .grid{grid-template-columns:1fr; gap:50px;} }
 
@@ -61,7 +67,9 @@
   .detail .val{ font-family:'Fraunces',serif; font-size:19px; color:var(--ink); line-height:1.5; }
   .detail a.val:hover{ color:var(--teal); }
 
-  .map{ aspect-ratio:4/5; position:relative; background:var(--paper); overflow:hidden; }
+  /* the ratio sets the shape, the cap stops a full-width column turning it
+     into a thousand pixels of map */
+  .map{ aspect-ratio:4/5; max-height:640px; position:relative; background:var(--paper); overflow:hidden; }
   .map iframe{ width:100%; height:100%; border:0; display:block; }
   /* the office address, under the map rather than floating over it, so it can
      still be read and copied if the embed is blocked or slow to arrive */
@@ -122,6 +130,7 @@
           <a href="history.html"><span class="label">About Us</span></a>
           <div class="dropdown">
             <a href="history.html">History</a>
+            <a href="leadership.html">Leadership</a>
             <a href="culture.html">Culture</a>
             <a href="community.html">Community</a>
           </div>

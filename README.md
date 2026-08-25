@@ -27,9 +27,10 @@ Mimecast, untouched by anything here.
 | `404.html` | Shown for any address that does not exist, including old links |
 | `projects.html` | Projects — generated, see below |
 | `history.html` | About Us → History |
+| `leadership.html` | About Us → Leadership — the four directors, with what each role covers |
 | `culture.html` | About Us → Culture |
 | `community.html` | About Us → Community |
-| `expertise.html` | Expertise |
+| `expertise.html` | Expertise — the leadership row links through to `leadership.html` |
 | `work-with-us.html` | Work With Us — subcontractor prequalification and careers |
 | `contact.html` | Contact Us |
 
@@ -72,6 +73,10 @@ anything in `content/projects/`.
 ## Design
 
 - **Headlines:** Archivo (homepage) · Fraunces (inner pages) · **Body:** Inter
+- **Width:** pages run near full-bleed — `.wrap` caps at 1800px with 56px
+  gutters, so grids and photographs take the whole window on a normal laptop.
+  Prose does not: paragraphs carry their own `max-width` so line lengths stay
+  readable however wide the screen gets
 - **Navy:** `#0B1D2C` `#173352` `#28516B` · **Accent:** `#4FA8D8` ·
   **Off-white:** `#FAF9F5`
 - Sections deliberately alternate light and dark
@@ -82,6 +87,17 @@ anything in `content/projects/`.
 
 Eight pages are built. Still open:
 
+- **Leadership photographs** — the six headshots are 240px square, which is
+  why the leadership row uses circles at 130px rather than the large photo
+  cards the client asked for after seeing Moss's site. Anything bigger visibly
+  softens on a high-density screen. Higher-resolution originals would let the
+  row become proper photo cards; the layout is the only thing that would change
+- **Leadership biographies** — `leadership.html` describes what each *role*
+  covers, because that much follows from the job title. Nothing personal is
+  claimed about anyone: no tenure, no history, no named projects. Real
+  biographies have to come from the people themselves, and drop straight into
+  the profile blocks when they do. The three Directors of Construction share
+  one description because they share one title
 - **Team section** — six of the ten people originally listed. The other four
   were held back by request, or in Lazaro Villar's case for want of a
   photograph. Their headshots were removed with their entries rather than left

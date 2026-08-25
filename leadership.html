@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>BDI Construction — Expertise</title>
+<title>BDI Construction — Leadership</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
   :root{
@@ -45,6 +45,7 @@
   .navlinks > div:hover .dropdown{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); transition-delay:0s; }
   .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
   .dropdown a:hover{ color:var(--navy); }
+  .dropdown a.here{ color:var(--navy); }
   @media (max-width:920px){ .navlinks{display:none;} }
 
   .pagehead{ position:relative; padding:120px 0 90px; overflow:hidden; background:var(--navy-deep); }
@@ -74,7 +75,7 @@
      it. The headshots are 240px square, so the circles stay well inside that
      even on a high-density screen - photo cards the size of Moss's would need
      photographs several times larger than the ones we hold. */
-  .team-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:48px; }
+  .team-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:48px; }
   .exec{ text-align:center; }
   .exec .photo{
     width:130px; height:130px; margin:0 auto 24px; position:relative; border-radius:50%;
@@ -159,6 +160,65 @@
     .fade-img{ opacity:1 !important; transition:none; }
     .reveal-on .hero .skyline img{ transform:none !important; transition:none; }
   }
+
+  /* LEADERSHIP
+     Profiles, not a directory: each person keeps their photograph beside the
+     description of what the role covers. The three Directors of Construction
+     hold one title between them, so the role is described once above the row
+     rather than three times over. */
+  .lead{ padding:100px 0; background:#fff; }
+  .lead.alt{ background:var(--paper); }
+  .lead .head{ margin-bottom:56px; max-width:900px; }
+  .lead .head .label{ color:var(--teal); margin-bottom:16px; }
+  .lead h2{ font-size:clamp(26px,3vw,40px); font-style:italic; color:var(--navy); }
+  .lead .head p{ color:var(--muted); font-size:18px; line-height:1.9; font-weight:300; margin-top:22px; }
+
+  /* one person, photograph beside the words */
+  .profile{ display:grid; grid-template-columns:200px 1fr; gap:56px; align-items:start; }
+  .profile .portrait{
+    width:180px; height:180px; border-radius:50%;
+    background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3);
+    background-size:cover; background-position:center; background-repeat:no-repeat;
+  }
+  .profile .body{ max-width:820px; }
+  .profile h3{ font-family:'Fraunces',serif; font-size:clamp(23px,2.2vw,30px); font-weight:450; color:var(--navy); margin-bottom:10px; }
+  .profile .label{ color:var(--teal); margin-bottom:24px; }
+  .profile p{ color:var(--muted); font-size:17px; line-height:1.9; font-weight:300; margin-bottom:18px; }
+  @media (max-width:760px){
+    .profile{ grid-template-columns:1fr; gap:28px; }
+    .profile .portrait{ width:140px; height:140px; }
+  }
+
+  /* the three who share a title, side by side under the one description */
+  .dir-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:52px; margin-top:56px; }
+  .dir{ text-align:center; }
+  .dir .portrait{
+    width:150px; height:150px; margin:0 auto 22px; border-radius:50%;
+    background-image:linear-gradient(160deg,#D8DEDF,#9FAFB3);
+    background-size:cover; background-position:center; background-repeat:no-repeat;
+  }
+  .dir h3{ font-family:'Fraunces',serif; font-size:23px; font-weight:450; color:var(--navy); margin-bottom:8px; }
+  .dir .label{ color:var(--teal); }
+  @media (max-width:860px){ .dir-row{ grid-template-columns:1fr; gap:46px; } }
+
+  /* anchors land clear of the top of the window rather than flush against it */
+  [id]{ scroll-margin-top:40px; }
+
+  .portrait.p-lourdes{ background-image:url('team-lourdes-escandon.jpg'); }
+  .portrait.p-yamile { background-image:url('team-yamile-dominguez.jpg'); }
+  .portrait.p-scott  { background-image:url('team-scott-lowrance.jpg'); }
+  .portrait.p-chris  { background-image:url('team-chris-alvarez.jpg'); }
+
+  /* KEEP EXPLORING — the way on, rather than a dead end at the footer */
+  .explore{ background:var(--navy-deep); padding:90px 0; }
+  .explore .label{ color:var(--green); margin-bottom:30px; }
+  .explore a{
+    display:block; border-top:1px solid rgba(255,255,255,.16); padding:22px 0;
+    font-family:'Inter',sans-serif; font-size:15px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:500; color:rgba(255,255,255,.9); max-width:640px;
+  }
+  .explore a:last-child{ border-bottom:1px solid rgba(255,255,255,.16); }
+  .explore a:hover{ color:var(--green); }
 </style>
 </head>
 <body>
@@ -168,16 +228,16 @@
       <a class="brand" href="index.html"><img class="logomark" src="logo.png" alt="BDI Construction"></a>
       <div class="navlinks">
         <div>
-          <a href="history.html"><span class="label">About Us</span></a>
+          <a class="active" href="history.html"><span class="label">About Us</span></a>
           <div class="dropdown">
             <a href="history.html">History</a>
-            <a href="leadership.html">Leadership</a>
+            <a class="here" href="leadership.html">Leadership</a>
             <a href="culture.html">Culture</a>
             <a href="community.html">Community</a>
           </div>
         </div>
         <a href="projects.html"><span class="label">Projects</span></a>
-        <a class="active" href="expertise.html"><span class="label">Expertise</span></a>
+        <a href="expertise.html"><span class="label">Expertise</span></a>
         <a href="work-with-us.html"><span class="label">Work With Us</span></a>
         <a href="contact.html"><span class="label">Contact Us</span></a>
       </div>
@@ -185,64 +245,81 @@
   </nav>
 
   <div class="pagehead">
-    <div class="year">Expertise</div>
+    <div class="year">Leadership</div>
     <div class="wrap inner">
-      <div class="rv label">What Sets Us Apart</div>
-      <h1 class="rv" data-d="90">Expertise</h1>
+      <div class="rv label">Our People</div>
+      <h1 class="rv" data-d="90">Leadership Team</h1>
     </div>
   </div>
 
-  <section class="pm">
-    <div class="wrap grid">
-      <div class="rv-l">
-        <div class="label">Project Management</div>
-        <h2>Creating value for clients at every project level.</h2>
+  <section class="lead">
+    <div class="wrap">
+      <div class="rv head">
+        <div class="label">Pre-Construction</div>
+        <h2>Where the budget and the schedule are decided</h2>
+        <p>Most of what a project will cost, and most of what can still be changed about it,
+          is settled before anyone breaks ground. Pre-construction is that work.</p>
       </div>
-      <div>
-        <p class="rv-r">Creating value for clients and being accountable at all project levels is paramount to us. This requires sound project management that intelligently aligns people, process, and technology.</p>
-        <p>We start each project by understanding our client's ultimate goal. Communication is a key element to a project's success — we keep open lines of communication with owners, architects, engineers, and subcontractors throughout.</p>
-        <p>Our high rate of successful projects is primarily a result of everyone working in the same direction, with our team consistently optimizing communication among stakeholders to achieve proper planning and successful completions.</p>
+
+      <div class="rv profile" id="lourdes-escandon">
+        <div class="portrait p-lourdes" role="img" aria-label="Lourdes Escandon"></div>
+        <div class="body">
+          <h3>Lourdes Escandon</h3>
+          <div class="label">Pre-Construction Director</div>
+          <p>Lourdes leads pre-construction at BDI. The role covers a project from the
+            earliest drawings through buyout: conceptual budgeting and estimating as the
+            design develops, constructability review alongside the architect and engineers,
+            value engineering where a detail can be built better or for less, and the
+            scheduling and phasing that a client's own deadlines depend on.</p>
+          <p>It also covers the bid: assembling scopes, soliciting and levelling
+            subcontractor pricing, and handing a fully bought-out project to the field team
+            who will build it — so that what was promised at award is what actually gets
+            built.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="team">
+  <section class="lead alt">
     <div class="wrap">
       <div class="rv head">
-        <div class="label">Our People</div>
-        <h2>Leadership Team</h2>
+        <div class="label">Construction</div>
+        <h2>Three directors, one job description</h2>
+        <p>A Director of Construction owns delivery. Each carries their own portfolio of
+          projects and the teams running them — superintendents and project managers in the
+          field, the subcontractors alongside them, and the schedule, budget, safety and
+          quality of everything under their name. They are the people a client's questions
+          reach when a project is under way, and the ones accountable for the answer.</p>
       </div>
-      <!-- Directors only, listed in the order the client set. Andrea Loguzzo
-           (Controller) and Nez Teimouri (Senior Project Manager) were removed
-           from this section by request; their headshots remain in the repo, so
-           adding either back is one block of markup. -->
-      <div class="team-grid">
-        <div class="rv exec" data-d="0">
-          <div class="photo p-lourdes" role="img" aria-label="Lourdes Escandon"></div>
-          <h3>Lourdes Escandon</h3>
-          <div class="label">Pre-Construction Director</div>
-          <a class="more" href="leadership.html#lourdes-escandon">Read more</a>
-        </div>
-        <div class="rv exec" data-d="70">
-          <div class="photo p-yamile" role="img" aria-label="Yamile Dominguez"></div>
+
+      <div class="dir-row">
+        <div class="rv dir" id="yamile-dominguez" data-d="0">
+          <div class="portrait p-yamile" role="img" aria-label="Yamile Dominguez"></div>
           <h3>Yamile Dominguez</h3>
           <div class="label">Director of Construction</div>
-          <a class="more" href="leadership.html#yamile-dominguez">Read more</a>
         </div>
-        <div class="rv exec" data-d="140">
-          <div class="photo p-scott" role="img" aria-label="Scott Lowrance"></div>
+        <div class="rv dir" id="scott-lowrance" data-d="70">
+          <div class="portrait p-scott" role="img" aria-label="Scott Lowrance"></div>
           <h3>Scott Lowrance</h3>
           <div class="label">Director of Construction</div>
-          <a class="more" href="leadership.html#scott-lowrance">Read more</a>
         </div>
-        <div class="rv exec" data-d="210">
-          <div class="photo p-chris" role="img" aria-label="Chris Alvarez"></div>
+        <div class="rv dir" id="chris-alvarez" data-d="140">
+          <div class="portrait p-chris" role="img" aria-label="Chris Alvarez"></div>
           <h3>Chris Alvarez</h3>
           <div class="label">Director of Construction</div>
-          <a class="more" href="leadership.html#chris-alvarez">Read more</a>
         </div>
       </div>
-      <div class="rv team-more"><a href="leadership.html">Meet the leadership team</a></div>
+    </div>
+  </section>
+
+  <section class="explore">
+    <div class="wrap">
+      <div class="rv label">Keep Exploring</div>
+      <div class="rv" data-d="60">
+        <a href="expertise.html">Expertise</a>
+        <a href="culture.html">Culture</a>
+        <a href="work-with-us.html">Join our team</a>
+      </div>
     </div>
   </section>
 

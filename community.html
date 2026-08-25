@@ -13,18 +13,20 @@
   body{ font-family:'Inter',sans-serif; font-weight:300; color:var(--ink); background:#fff; -webkit-font-smoothing:antialiased; }
   h1,h2,h3{ font-family:'Fraunces',serif; font-weight:450; }
   a{color:inherit; text-decoration:none;}
-  .wrap{ max-width:980px; margin:0 auto; padding:0 48px; }
+  /* no cap - the page is as wide as the window. Prose keeps its own
+     max-widths below, so only grids and photographs take the full width */
+  .wrap{ margin:0 auto; padding:0 56px; }
   @media (max-width:800px){ .wrap{padding:0 24px;} }
   .label{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
 
   /* relative + z-index so the dropdown paints above the page head, which is
      positioned and would otherwise cover it */
   .nav{ position:relative; z-index:50; background:#fff; border-bottom:1px solid var(--hair); }
-  .nav-inner{ max-width:980px; margin:0 auto; padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:90px; }
+  .nav-inner{ max-width:none; margin:0 auto; padding:0 56px; display:flex; align-items:center; justify-content:space-between; height:104px; }
   /* Brand — logo mark */
   .brand{ display:flex; align-items:center; }
-  .brand .logomark{ height:52px; width:auto; display:block; }
-  @media (max-width:520px){ .brand .logomark{height:40px;} }
+  .brand .logomark{ height:68px; width:auto; display:block; }
+  @media (max-width:520px){ .brand .logomark{height:48px;} }
   .navlinks{ display:flex; gap:26px; }
   .navlinks .label{ color:var(--muted); letter-spacing:.12em; white-space:nowrap; }
   .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--navy); }
@@ -55,7 +57,7 @@
   }
   .pagehead .inner{ position:relative; z-index:1; }
   .pagehead .label{ color:var(--green); margin-bottom:20px; }
-  .pagehead h1{ font-size:clamp(32px,4.2vw,50px); font-style:italic; color:#fff; }
+  .pagehead h1{ font-size:clamp(36px,5vw,72px); font-style:italic; color:#fff; }
   .pagehead .crumbs{ margin-top:22px; color:rgba(255,255,255,.55); }
   .pagehead .crumbs a{ font-size:12px; letter-spacing:.08em; color:rgba(255,255,255,.72); }
   .pagehead .crumbs a:hover{ color:var(--green); }
@@ -64,7 +66,9 @@
      background lives on banding wrappers around them */
   .band-navy{ background:var(--navy-deep); padding-bottom:70px; }
   .band-light{ background:#fff; }
-  .intro-block{ max-width:640px; padding:0 0 70px; }
+  /* vertical only - this element is also the .wrap, whose side padding a
+     shorthand here would reset to zero */
+  .intro-block{ max-width:640px; padding-bottom:70px; }
   .intro-block p{ color:rgba(255,255,255,.82); font-size:17px; line-height:1.85; font-weight:300; }
   .intro-block p + p{ margin-top:20px; }   /* the opening runs to three paragraphs now */
 
@@ -79,13 +83,15 @@
   .group .items span:not(:last-child)::after{ content:"·"; position:absolute; right:8px; color:rgba(255,255,255,.42); }
   @media (max-width:760px){ .group{ grid-template-columns:1fr; gap:14px; } }
 
-  .gallery{ padding:100px 0; }
+  /* vertical only - this element is also the .wrap, whose side padding a
+     shorthand here would reset to zero */
+  .gallery{ padding-top:100px; padding-bottom:100px; }
   .gallery .label{ color:var(--teal); margin-bottom:16px; }
   .gallery h2{ font-size:clamp(21px,2.4vw,27px); font-style:italic; color:var(--navy); margin-bottom:50px; }
   /* The gallery simply grows downwards as photographs are added — every tile
      is the same 3:2 frame, so a portrait, a panorama and a phone snap all crop
      to identical size and the rows stay level however many there are. */
-  .gallery-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:4px; }
   /* every tile the same shape and size - no panoramic special case */
   .shot{ aspect-ratio:3/2; overflow:hidden; background:var(--paper); padding:0; border:none; cursor:zoom-in; display:block; }
   .shot img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
@@ -175,6 +181,7 @@
           <a href="history.html"><span class="label">About Us</span></a>
           <div class="dropdown">
             <a href="history.html">History</a>
+            <a href="leadership.html">Leadership</a>
             <a href="culture.html">Culture</a>
             <a class="here" href="community.html">Community</a>
           </div>
