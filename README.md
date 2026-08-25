@@ -113,10 +113,12 @@ Eight pages are built. Still open:
   and `leadership.html` when a photograph exists. David Galdeano's was restored
   from the history, where it had gone when he came off the old team section
 - **Lazaro Villar's biography** — written from his personal resume, because his
-  BDI one does not exist yet. Everything before BDI is therefore attributed to
-  the firm he did it at — Stonehenge, Pirtle — and must stay that way: those are
-  other companies' projects and cannot be implied to be BDI's. Replace the
-  middle paragraph when the company resume is written
+  BDI one does not exist yet. It deliberately names no former employer and no
+  past project: the client asked for the company names out, and once they are
+  gone the projects and dollar figures cannot stay either — unattributed, work
+  he did elsewhere reads as BDI's, which is exactly what a prequalification
+  would catch. It describes what he runs now and the experience he brought,
+  nothing more. Replace it when the company resume is written
 - **`Jessica Lunsford`** — David Galdeano's resume spells it "Lundsford". The
   site uses the correct spelling; the resume is worth correcting too, since the
   Act is what lets him on a school site
