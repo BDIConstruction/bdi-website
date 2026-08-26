@@ -123,6 +123,14 @@ Eight pages are built. Still open:
   have read larger than everyone else's, any wider and the backdrop would have
   had to be invented. His backdrop is a dark studio grey where the others are
   bright blurred interiors; that is the photograph, not the crop
+- **David Galdeano's crop** — his first one used the full width of his
+  photograph and left his hair against the top edge. Re-cropped wider so he
+  carries the same headroom as the others, which needed 126px more width
+  than the photograph holds: each row extends its own edge pixel outward, so
+  backdrop stays backdrop and fabric stays fabric rather than one column
+  being smeared down the whole side. It is invisible in any case — the
+  photographs render as circles, which clip the corners where the padding
+  is, and at mid-height the edge being extended is plain backdrop
 - **Lazaro Villar's biography** — written from his personal resume, because his
   BDI one does not exist yet. It deliberately names no former employer and no
   past project: the client asked for the company names out, and once they are
