@@ -116,11 +116,13 @@ Eight pages are built. Still open:
   certifications shared that line and went with it — OSHA, Procore, the Jessica
   Lunsford Act, Green Advantage, FDEP stormwater. Those are credentials rather
   than education and could come back on their own line
-- **Lazaro Villar's photograph** — the only one of the six without a headshot,
-  so his circle carries his initials instead. That is a designed placeholder,
-  not a broken image; drop the `data-initials` attribute in `expertise.html`
-  and `leadership.html` when a photograph exists. David Galdeano's was restored
-  from the history, where it had gone when he came off the old team section
+- **Leadership photographs** — all six now have one. Lazaro Villar's arrived
+  last and was cropped to match the rest: crown eight per cent down the frame,
+  chin at fifty-six, 240px square. His source photograph is a tighter shot than
+  the others, so the crop uses its full width — any narrower and his head would
+  have read larger than everyone else's, any wider and the backdrop would have
+  had to be invented. His backdrop is a dark studio grey where the others are
+  bright blurred interiors; that is the photograph, not the crop
 - **Lazaro Villar's biography** — written from his personal resume, because his
   BDI one does not exist yet. It deliberately names no former employer and no
   past project: the client asked for the company names out, and once they are
