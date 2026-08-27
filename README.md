@@ -94,18 +94,20 @@ Eight pages are built. Still open:
   matters — an unlinked page on a static host is still a public URL, and
   removing links alone would not keep it out of search results. The CSS for the
   links is left in place, so restoring them is markup only
-- **Who is on it** — Andrea Loguzzo (Controller), Dayana Colmenares (Marketing &
-  Business Development), Lourdes Escandon (Pre-Construction), then the four
-  construction directors, one to a division:
+- **Who is on it** — Carlos Rosell (Operations), Andrea Loguzzo (Controller),
+  Dayana Colmenares (Marketing & Business Development), Lourdes Escandon
+  (Pre-Construction), then the four construction directors, one to a division:
   Yamile Dominguez in South Florida, Scott Lowrance in Central & West Florida,
   Christopher Alvarez in Special Projects, Lazaro Villar in Government. That
   order is the client's. David Galdeano came off — the USPS work is service
   rather than construction — and his headshot went with him, into the history
-- **Dayana Colmenares has no headshot** — her circle carries her initials, the
-  same placeholder Lazaro Villar's used. There is an old photograph in the
-  history from when her entry came off the earlier team section, but she does
-  not want it used. Add `.exec .photo.p-dayana` and `.portrait.p-dayana` with a
-  new one and drop the two `data-initials` attributes
+- **Headshots** — all eight are 240px square on the same framing: crown eight
+  per cent down, chin at fifty-six. Carlos Rosell's was cut from the 700x1050
+  portrait `history.html` uses, and Dayana Colmenares's from a 1024x1536
+  original. Faces are centred within about one per cent of the frame; the two
+  most recent were checked against a drawn centre line, because an automated
+  measurement of the widest non-background span reads hair and backdrop and
+  gets it wrong
 - **Special Projects** — the org chart calls Christopher Alvarez's division
   College | University and his resume calls it the Higher Learning Division;
   neither fits, because it is the small-cap division, projects under $5M:

@@ -181,8 +181,6 @@
   /* one person, photograph beside the words */
   .profile{ display:grid; grid-template-columns:200px 1fr; gap:56px; align-items:start; }
   .profile + .profile{ margin-top:64px; padding-top:64px; border-top:1px solid var(--hair); }
-  /* initials stand in until a headshot exists - a deliberate placeholder
-     rather than an empty circle. Drop the attribute when a photo arrives. */
   .portrait[data-initials]{ position:relative; }
   .portrait[data-initials]::after{
     content:attr(data-initials); position:absolute; inset:0;
@@ -202,9 +200,7 @@
   .profile p{ color:var(--muted); font-size:17px; line-height:1.9; font-weight:300; margin-bottom:18px; }
   @media (max-width:760px){
     .profile{ grid-template-columns:1fr; gap:28px; }
-    /* initials stand in until a headshot exists - a deliberate placeholder
-     rather than an empty circle. Drop the attribute when a photo arrives. */
-  .portrait[data-initials]{ position:relative; }
+    .portrait[data-initials]{ position:relative; }
   .portrait[data-initials]::after{
     content:attr(data-initials); position:absolute; inset:0;
     display:flex; align-items:center; justify-content:center;
@@ -218,6 +214,8 @@
   /* anchors land clear of the top of the window rather than flush against it */
   [id]{ scroll-margin-top:40px; }
 
+  .portrait.p-carlos { background-image:url('team-carlos-rosell.jpg'); }
+  .portrait.p-dayana { background-image:url('team-dayana-colmenares.jpg'); }
   .portrait.p-andrea { background-image:url('team-andrea-loguzzo.jpg'); }
   .portrait.p-lourdes{ background-image:url('team-lourdes-escandon.jpg'); }
   .portrait.p-yamile { background-image:url('team-yamile-dominguez.jpg'); }
@@ -270,6 +268,30 @@
   <section class="lead">
     <div class="wrap">
       <div class="rv head">
+        <div class="label">Operations</div>
+        <h2>Delivery across every division</h2>
+        <p>Four divisions build under one standard. Operations is where that consistency is
+          held.</p>
+      </div>
+
+      <div class="rv profile" id="carlos-rosell">
+        <div class="portrait p-carlos" role="img" aria-label="Carlos Rosell"></div>
+        <div class="body">
+          <h3>Carlos Rosell</h3>
+          <div class="label">Vice President / Director of Operations</div>
+          <p>A Certified General Contractor in the State of Florida, Carlos oversees BDI's
+            construction operations across every division, including project management,
+            scheduling and the allocation of people and equipment.</p>
+          <p>Delivery sits with him: that each project is built safely, to schedule, and to the
+            standard the company holds itself to. He leads BDI alongside Teobaldo Rosell.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lead alt">
+    <div class="wrap">
+      <div class="rv head">
         <div class="label">Accounting</div>
         <h2>Financial oversight across the portfolio</h2>
         <p>Budgets, owner billing and subcontractor compliance are managed centrally, so that
@@ -291,7 +313,7 @@
     </div>
   </section>
 
-  <section class="lead alt">
+  <section class="lead">
     <div class="wrap">
       <div class="rv head">
         <div class="label">Marketing &amp; Business Development</div>
@@ -302,7 +324,7 @@
       </div>
 
       <div class="rv profile" id="dayana-colmenares">
-        <div class="portrait p-dayana" role="img" data-initials="DC" aria-label="Dayana Colmenares"></div>
+        <div class="portrait p-dayana" role="img" aria-label="Dayana Colmenares"></div>
         <div class="body">
           <h3>Dayana Colmenares</h3>
           <div class="label">Marketing &amp; Business Development Director</div>
@@ -317,7 +339,7 @@
     </div>
   </section>
 
-  <section class="lead">
+  <section class="lead alt">
     <div class="wrap">
       <div class="rv head">
         <div class="label">Pre-Construction</div>
@@ -346,7 +368,7 @@
     </div>
   </section>
 
-  <section class="lead alt">
+  <section class="lead">
     <div class="wrap">
       <div class="rv head">
         <div class="label">Construction</div>
