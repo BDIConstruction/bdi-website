@@ -87,67 +87,44 @@ anything in `content/projects/`.
 
 Eight pages are built. Still open:
 
-- **Leadership page is not published** — the client wants to review it with
-  their bosses first. Three things hold it back, and all three come off
-  together when it is approved: the About Us menu entry (nine pages), the
-  "Read more" links and "Meet the leadership team" link on `expertise.html`,
-  and the `noindex` plus the sitemap entry. The `noindex` is the one that
+- **Leadership page is not published** — the client is reviewing it with their
+  bosses first. Three things hold it back and come off together when it is
+  approved: the About Us menu entry (nine pages), the links out of the Expertise
+  row, and the `noindex` plus the sitemap entry. The `noindex` is the one that
   matters — an unlinked page on a static host is still a public URL, and
-  removing the links alone would not keep it out of search results. The CSS
-  for the links is left in place, so restoring them is markup only
-
-- **Leadership photographs** — the six headshots are 240px square, which is
-  why the leadership row uses circles at 130px rather than the large photo
-  cards the client asked for after seeing Moss's site. Anything bigger visibly
-  softens on a high-density screen. Higher-resolution originals would let the
-  row become proper photo cards; the layout is the only thing that would change
-- **Leadership biographies** — `leadership.html` carries the four directors'
-  profiles, written from the resumes the client supplied and their notes on how
-  the divisions actually divide up. The three construction directors are
-  separated by division rather than by title, which is what the org chart does:
-  South Florida, Central & West Florida, and Special Projects. The org chart
-  calls that last one College | University and the resume calls it the Higher
-  Learning Division, but neither fits: it is the small-cap division — interior
-  renovations, build-outs and fit-outs from roughly $100k to $2M — of which
-  campus work is only a part. **The org chart needs the same correction**
-- **Education** — removed from all six profiles by request. It was one `<p
-  class="edu">` per profile plus one rule; putting it back is a revert of the
-  commit that took it out. Note that David Galdeano's and Lazaro Villar's
-  certifications shared that line and went with it — OSHA, Procore, the Jessica
-  Lunsford Act, Green Advantage, FDEP stormwater. Those are credentials rather
-  than education and could come back on their own line. Christopher Alvarez's
-  Certified General Contractor licence is the exception and is stated in his
-  profile: it is a licence to build in Florida rather than a training
-  credential, and it is worded to match Carlos Rosell's on `history.html`
-- **Leadership photographs** — all six now have one. Lazaro Villar's arrived
-  last and was cropped to match the rest: crown eight per cent down the frame,
-  chin at fifty-six, 240px square. His source photograph is a tighter shot than
-  the others, so the crop uses its full width — any narrower and his head would
-  have read larger than everyone else's, any wider and the backdrop would have
-  had to be invented. His backdrop is a dark studio grey where the others are
-  bright blurred interiors; that is the photograph, not the crop
-- **David Galdeano's crop** — his first one used the full width of his
-  photograph and left his hair against the top edge. Re-cropped wider so he
-  carries the same headroom as the others, which needed 126px more width
-  than the photograph holds: each row extends its own edge pixel outward, so
-  backdrop stays backdrop and fabric stays fabric rather than one column
-  being smeared down the whole side. It is invisible in any case — the
-  photographs render as circles, which clip the corners where the padding
-  is, and at mid-height the edge being extended is plain backdrop
+  removing links alone would not keep it out of search results. The CSS for the
+  links is left in place, so restoring them is markup only
+- **Who is on it** — Andrea Loguzzo (Controller), Lourdes Escandon
+  (Pre-Construction), then the four construction directors, one to a division:
+  Yamile Dominguez in South Florida, Scott Lowrance in Central & West Florida,
+  Christopher Alvarez in Special Projects, Lazaro Villar in Government. That
+  order is the client's. David Galdeano came off — the USPS work is service
+  rather than construction — and his headshot went with him, into the history
+- **Special Projects** — the org chart calls Christopher Alvarez's division
+  College | University and his resume calls it the Higher Learning Division;
+  neither fits, because it is the small-cap division, projects under $5M:
+  interior renovations, build-outs and fit-outs, of which campus work is only a
+  part. The client is renaming it on the chart to match the site
+- **Leadership photographs** — all six are 240px square, framed the same way:
+  crown eight per cent down the frame, chin at fifty-six. That size is why the
+  row uses circles at 130px rather than the large photo cards the client asked
+  for after seeing Moss's site — anything bigger visibly softens. Higher
+  resolution originals would let the row become photo cards; only the layout
+  would change. Two were cropped from originals recovered out of the history,
+  which is where the uploaded source files end up once they are removed from the
+  repository root
+- **Education and certifications** — kept off every profile by request. Training
+  that bears on the work is stated in the prose instead ("an architect by
+  training", "a civil engineer by training"). Christopher Alvarez's Certified
+  General Contractor licence is the one exception: it is a licence to build in
+  Florida rather than a training credential, and it is worded to match Carlos
+  Rosell's on `history.html`
 - **Lazaro Villar's biography** — written from his personal resume, because his
   BDI one does not exist yet. It deliberately names no former employer and no
   past project: the client asked for the company names out, and once they are
   gone the projects and dollar figures cannot stay either — unattributed, work
   he did elsewhere reads as BDI's, which is exactly what a prequalification
-  would catch. It describes what he runs now and the experience he brought,
-  nothing more. Replace it when the company resume is written
-- **`Jessica Lunsford`** — David Galdeano's resume spells it "Lundsford". The
-  site uses the correct spelling; the resume is worth correcting too, since the
-  Act is what lets him on a school site
-- **Team section** — six of the ten people originally listed. The other four
-  were held back by request, or in Lazaro Villar's case for want of a
-  photograph. Their headshots were removed with their entries rather than left
-  on the site unshown; all of it is in the history if anyone is added back
+  would catch. Replace it when the company resume is written
 - **Project details** — every project has a name and a photo, but city, year,
   sector and delivery method are blank. The old WordPress site never stored
   them, so they have to be entered by hand at `/admin`

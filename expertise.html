@@ -90,14 +90,13 @@
     background-size:cover; background-position:center; background-repeat:no-repeat;
   }
   /* the headshots are cropped square, so they fill the circle without distortion */
+  .exec .photo.p-andrea   { background-image:url('team-andrea-loguzzo.jpg'); }
   .exec .photo.p-lourdes  { background-image:url('team-lourdes-escandon.jpg'); }
   .exec .photo.p-yamile   { background-image:url('team-yamile-dominguez.jpg'); }
   .exec .photo.p-chris    { background-image:url('team-chris-alvarez.jpg'); }
-  .exec .photo.p-david    { background-image:url('team-david-galdeano.jpg'); }
   .exec .photo.p-lazaro   { background-image:url('team-lazaro-villar.jpg'); }
   .exec .photo.p-scott    { background-image:url('team-scott-lowrance.jpg'); }
   .exec .photo.p-nez      { background-image:url('team-nez-teimouri.jpg'); }
-  .exec .photo.p-andrea   { background-image:url('team-andrea-loguzzo.jpg'); }
   /* initials stand in until a headshot exists - a deliberate placeholder
      rather than an empty circle. Drop the attribute when adding a photograph. */
   .exec .photo[data-initials]::after{
@@ -228,38 +227,37 @@
            adding either back is one block of markup. -->
       <div class="team-grid">
         <div class="rv exec" data-d="0">
+          <div class="photo p-andrea" role="img" aria-label="Andrea Loguzzo"></div>
+          <h3>Andrea Loguzzo</h3>
+          <div class="label">Controller</div>
+        </div>
+        <div class="rv exec" data-d="70">
           <div class="photo p-lourdes" role="img" aria-label="Lourdes Escandon"></div>
           <h3>Lourdes Escandon</h3>
           <div class="label">Director of Pre-Construction</div>
         </div>
-        <div class="rv exec" data-d="70">
+        <div class="rv exec" data-d="140">
           <div class="photo p-yamile" role="img" aria-label="Yamile Dominguez"></div>
           <h3>Yamile Dominguez</h3>
           <div class="label">Director of Construction</div>
           <div class="div">South Florida</div>
         </div>
-        <div class="rv exec" data-d="140">
+        <div class="rv exec" data-d="210">
           <div class="photo p-scott" role="img" aria-label="Scott Lowrance"></div>
           <h3>Scott Lowrance</h3>
           <div class="label">Director of Construction</div>
           <div class="div">Central &amp; West Florida</div>
         </div>
-        <div class="rv exec" data-d="210">
+        <div class="rv exec" data-d="280">
           <div class="photo p-chris" role="img" aria-label="Christopher Alvarez"></div>
           <h3>Christopher Alvarez</h3>
           <div class="label">Director of Construction</div>
           <div class="div">Special Projects</div>
         </div>
-        <div class="rv exec" data-d="280">
-          <div class="photo p-david" role="img" aria-label="David Galdeano"></div>
-          <h3>David Galdeano</h3>
-          <div class="label">Project Manager</div>
-          <div class="div">United States Postal Service</div>
-        </div>
         <div class="rv exec" data-d="350">
           <div class="photo p-lazaro" role="img" aria-label="Lazaro Villar"></div>
           <h3>Lazaro Villar</h3>
-          <div class="label">Project Manager</div>
+          <div class="label">Director of Construction</div>
           <div class="div">Government</div>
         </div>
       </div>
