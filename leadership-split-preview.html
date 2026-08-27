@@ -235,6 +235,24 @@
   }
   .explore a:last-child{ border-bottom:1px solid rgba(255,255,255,.16); }
   .explore a:hover{ color:var(--green); }
+
+  /* PREVIEW: the page as two columns - company-wide roles on the left,
+     construction on the right. */
+  .split{ display:grid; grid-template-columns:1fr 1fr; align-items:start; }
+  .split > .col:first-child{ padding-right:56px; }
+  .split > .col + .col{ padding-left:56px; border-left:1px solid var(--hair); }
+  @media (max-width:1100px){
+    .split{ grid-template-columns:1fr; }
+    .split > .col:first-child{ padding-right:0; padding-bottom:64px; margin-bottom:64px; border-bottom:1px solid var(--hair); }
+    .split > .col + .col{ padding-left:0; border-left:none; }
+  }
+  /* the portrait gives up room the half-width column needs for the words */
+  .split .profile{ grid-template-columns:130px 1fr; gap:32px; }
+  .split .profile .portrait{ width:120px; height:120px; }
+  .split .profile + .profile{ margin-top:44px; padding-top:44px; }
+  .split .profile h3{ font-size:clamp(20px,1.8vw,24px); }
+  .split .profile p{ font-size:16px; }
+  .split .col > .head{ margin-bottom:38px; }
 </style>
 </head>
 <body>
@@ -268,14 +286,15 @@
   </div>
 
   <section class="lead">
-    <div class="wrap">
-      <div class="rv head">
-        <div class="label">Operations</div>
-        <h2>Delivery across every division</h2>
-        <p>Four divisions build under one standard. Operations is where that consistency is
-          held.</p>
-      </div>
+    <div class="wrap split">
 
+      <div class="col">
+        <div class="rv head">
+          <div class="label">Operations &amp; Support</div>
+          <h2>Running the company</h2>
+          <p>Operations, accounting, marketing and pre-construction sit across every division
+            rather than inside one.</p>
+        </div>
       <div class="rv profile" id="carlos-rosell">
         <div class="portrait p-carlos" role="img" aria-label="Carlos Rosell"></div>
         <div class="body">
@@ -288,18 +307,6 @@
             standard the company holds itself to. He leads BDI alongside Teobaldo Rosell.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="lead alt">
-    <div class="wrap">
-      <div class="rv head">
-        <div class="label">Accounting</div>
-        <h2>Financial oversight across the portfolio</h2>
-        <p>Budgets, owner billing and subcontractor compliance are managed centrally, so that
-          every project is measured against the same standard from award through closeout.</p>
-      </div>
-
       <div class="rv profile" id="andrea-loguzzo">
         <div class="portrait p-andrea" role="img" aria-label="Andrea Loguzzo"></div>
         <div class="body">
@@ -313,18 +320,6 @@
             compliance — and supports the annual audit.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="lead">
-    <div class="wrap">
-      <div class="rv head">
-        <div class="label">Marketing &amp; Business Development</div>
-        <h2>How BDI presents itself</h2>
-        <p>Marketing and business development sits across the company rather than inside one
-          division, supporting the teams that estimate, build and account for the work.</p>
-      </div>
-
       <div class="rv profile" id="dayana-colmenares">
         <div class="portrait p-dayana" role="img" aria-label="Dayana Colmenares"></div>
         <div class="body">
@@ -338,18 +333,6 @@
             represents BDI at industry and community functions.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="lead alt">
-    <div class="wrap">
-      <div class="rv head">
-        <div class="label">Pre-Construction</div>
-        <h2>Where the budget and the schedule take shape</h2>
-        <p>Cost and schedule are largely determined before construction begins, and that is the
-          window in which either can still be influenced. Pre-construction is that work.</p>
-      </div>
-
       <div class="rv profile" id="lourdes-escandon">
         <div class="portrait p-lourdes" role="img" aria-label="Lourdes Escandon"></div>
         <div class="body">
@@ -367,19 +350,15 @@
             that gaps are resolved in design rather than in change orders.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="lead">
-    <div class="wrap">
-      <div class="rv head">
-        <div class="label">Construction</div>
-        <h2>Four divisions, four directors</h2>
-        <p>BDI is organized into divisions, each with its own project types, schedules and
-          budgets. Four directors lead construction, one to a division, and each is accountable
-          for delivery within it.</p>
       </div>
 
+      <div class="col">
+        <div class="rv head">
+          <div class="label">Construction</div>
+          <h2>Four divisions, four directors</h2>
+          <p>BDI is organized into divisions, each with its own project types, schedules and
+            budgets. Four directors lead construction, one to a division.</p>
+        </div>
       <div class="rv profile" id="yamile-dominguez">
         <div class="portrait p-yamile" role="img" aria-label="Yamile Dominguez"></div>
         <div class="body">
@@ -396,7 +375,6 @@
             after handover.</p>
         </div>
       </div>
-
       <div class="rv profile" id="scott-lowrance">
         <div class="portrait p-scott" role="img" aria-label="Scott Lowrance"></div>
         <div class="body">
@@ -411,7 +389,6 @@
             and to standard.</p>
         </div>
       </div>
-
       <div class="rv profile" id="chris-alvarez">
         <div class="portrait p-chris" role="img" aria-label="Christopher Alvarez"></div>
         <div class="body">
@@ -428,7 +405,6 @@
             planning through closeout.</p>
         </div>
       </div>
-
       <div class="rv profile" id="lazaro-villar">
         <div class="portrait p-lazaro" role="img" aria-label="Lazaro Villar"></div>
         <div class="body">
@@ -444,6 +420,8 @@
             representatives and architects.</p>
         </div>
       </div>
+      </div>
+
     </div>
   </section>
 

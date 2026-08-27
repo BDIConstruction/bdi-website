@@ -108,6 +108,12 @@ Eight pages are built. Still open:
   most recent were checked against a drawn centre line, because an automated
   measurement of the widest non-background span reads hair and backdrop and
   gets it wrong
+- **`leadership-split-preview.html`** — the same eight people as two columns,
+  company-wide roles on the left and construction on the right, built so the
+  client could see the shape before deciding. It carries the same `noindex` as
+  the leadership page and nothing links to it. **Delete it once the layout is
+  settled** - it is a copy, so any edit to `leadership.html` has to be made
+  twice while it exists
 - **Special Projects** — the org chart calls Christopher Alvarez's division
   College | University and his resume calls it the Higher Learning Division;
   neither fits, because it is the small-cap division, projects under $5M:
