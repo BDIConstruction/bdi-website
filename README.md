@@ -115,7 +115,10 @@ Eight pages are built. Still open:
   commit that took it out. Note that David Galdeano's and Lazaro Villar's
   certifications shared that line and went with it — OSHA, Procore, the Jessica
   Lunsford Act, Green Advantage, FDEP stormwater. Those are credentials rather
-  than education and could come back on their own line
+  than education and could come back on their own line. Christopher Alvarez's
+  Certified General Contractor licence is the exception and is stated in his
+  profile: it is a licence to build in Florida rather than a training
+  credential, and it is worded to match Carlos Rosell's on `history.html`
 - **Leadership photographs** — all six now have one. Lazaro Villar's arrived
   last and was cropped to match the rest: crown eight per cent down the frame,
   chin at fifty-six, 240px square. His source photograph is a tighter shot than
