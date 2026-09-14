@@ -38,8 +38,13 @@ collections:
         pattern: "^$"
     fields:
       - { name: title, label: Project name, widget: string }
-      - { name: photo, label: Photo, widget: image, required: false,
-          hint: "Full-size photograph. Drag one in — any size, it does not need cropping." }
+      - { name: photo, label: Cover photo, widget: image, required: false,
+          hint: "Full-size photograph. Shown on the Projects grid and first on the project's own page." }
+      - { name: description, label: Description, widget: text, required: false,
+          hint: "A few sentences about the project. Shown on the project's own page. Leave a blank line between paragraphs." }
+      - { name: gallery, label: More photos, widget: list, required: false,
+          field: { label: Photo, name: image, widget: image },
+          hint: "Additional photos for the project's own page, shown after the cover photo." }
       - { name: city, label: City, widget: string, required: false, hint: "e.g. Miami" }
       - { name: state, label: State, widget: string, required: false, default: "FL",
           hint: "Only shown on the card when it is somewhere other than Florida." }

@@ -68,6 +68,7 @@ def load():
             continue
         if not d.get("title"):
             continue
+        d["_slug"] = f.stem
         d["_card"] = card_for(d.get("photo", ""))
         items.append(d)
     # position first, then newest-first as the old site ordered them
@@ -86,22 +87,92 @@ def rel(path: str) -> str:
     return (path or "").lstrip("/")
 
 
-def card_html(d, i):
-    name = html.escape(d["title"])
+def place_for(d):
     # Every project is in Florida, so the state adds nothing - show the city
     # alone, and only append a state if it is somewhere other than FL.
     city = str(d.get("city") or "").strip()
     state = str(d.get("state") or "").strip()
     place = city if not state or state.upper() in ("FL", "FLORIDA") else f"{city}, {state}"
-    place = place if city else ""
+    return place if city else ""
+
+
+def card_html(d, i):
+    name = html.escape(d["title"])
+    place = place_for(d)
     meta = f'\n        <div class="loc">{html.escape(place)}</div>' if place else ""
+    href = f"project-{d['_slug']}.html"
     return (
-        f'      <button type="button" class="rv pcard" data-d="{(i % 3) * 90}" '
-        f'data-full="{html.escape(rel(d.get("photo", "")))}" aria-label="View larger: {name}">\n'
+        f'      <a class="rv pcard" data-d="{(i % 3) * 90}" href="{html.escape(href)}">\n'
         f'        <span class="photo"><img src="{html.escape(rel(d["_card"]))}" loading="lazy" '
         f'decoding="async" alt="{name}"></span>{meta}\n'
-        f'        <h4>{name}</h4>\n      </button>'
+        f'        <h4>{name}</h4>\n      </a>'
     )
+
+
+def gallery_images(d):
+    photos = []
+    cover = d.get("photo") or ""
+    if cover:
+        photos.append(cover)
+    for p in d.get("gallery") or []:
+        if p and p not in photos:
+            photos.append(p)
+    return photos
+
+
+def gallery_html(d):
+    imgs = gallery_images(d)
+    name = html.escape(d["title"])
+    cells = []
+    for idx, photo in enumerate(imgs):
+        thumb = card_for(photo)
+        alt = f"{name} — photo {idx + 1}" if len(imgs) > 1 else name
+        cells.append(
+            f'        <button type="button" class="rv gcard" data-d="{(idx % 3) * 90}" '
+            f'data-full="{html.escape(rel(photo))}" aria-label="View larger: {alt}">\n'
+            f'          <img src="{html.escape(rel(thumb))}" loading="lazy" decoding="async" '
+            f'alt="{alt}"></button>'
+        )
+    return "\n".join(cells)
+
+
+def location_block(d):
+    place = place_for(d)
+    if not place:
+        return ""
+    return f'      <div class="rv loc" data-d="130">{html.escape(place)}</div>'
+
+
+def description_block(d):
+    desc = str(d.get("description") or "").strip()
+    if not desc:
+        return ""
+    paras = [p.strip() for p in desc.split("\n\n") if p.strip()]
+    body = "\n".join(f'      <p class="rv" data-d="{(i % 2) * 90}">{html.escape(p)}</p>'
+                      for i, p in enumerate(paras))
+    return f'  <section class="intro">\n    <div class="wrap">\n{body}\n    </div>\n  </section>'
+
+
+DETAIL_TEMPLATE = (ROOT / "content" / "project-template.html").read_text()
+
+
+def detail_html(d):
+    name = html.escape(d["title"])
+    first_para = str(d.get("description") or "").strip().split("\n\n")[0][:160]
+    meta_desc = first_para or f"{d['title']} — a project by BDI Construction."
+    page = DETAIL_TEMPLATE
+    page = page.replace("__TITLE__", name)
+    page = page.replace("__META_DESC__", html.escape(meta_desc))
+    page = page.replace("__SLUG_PAGE__", f"project-{d['_slug']}.html")
+    page = page.replace("__LOCATION_BLOCK__", location_block(d))
+    page = page.replace("__DESCRIPTION_BLOCK__", description_block(d))
+    page = page.replace("__GALLERY__", gallery_html(d))
+    return page
+
+
+def write_detail_pages(items):
+    for d in items:
+        (ROOT / f"project-{d['_slug']}.html").write_text(detail_html(d))
 
 
 def main():
@@ -121,8 +192,9 @@ def main():
                   rf'\g<1>{len(items)} projects\g<2>', page)
 
     (ROOT / "projects.html").write_text(page)
+    write_detail_pages(items)
     missing = sum(1 for d in items if not local(d.get("photo", "")))
-    print(f"projects.html rebuilt — {len(items)} projects"
+    print(f"projects.html rebuilt — {len(items)} projects, {len(items)} project pages written"
           + (f", {missing} without a photo on disk" if missing else ""))
 
 
