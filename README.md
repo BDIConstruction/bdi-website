@@ -87,6 +87,18 @@ anything in `content/projects/`.
 
 Eight pages are built. Still open:
 
+- **Who owns what** — worth settling before it matters. The site itself is
+  free to run: GitHub Pages hosts it, both form relays are on free plans, and
+  the sign-in worker is within Cloudflare's free tier. The only recurring costs
+  are the domain and whatever tool is used to edit the site. But `/admin`
+  sign-in depends on a Cloudflare Worker at
+  `bdi-cms-auth.dcolmenares.workers.dev` — a personal-looking subdomain. If that
+  Cloudflare account is an individual's rather than the company's, the public
+  site would survive losing it but **nobody could sign in to `/admin` again**.
+  Same question for the GitHub account that owns this repository. Moving the
+  worker is a redeploy plus one line in `admin/config.yml`; see
+  `oauth-worker/README.md`
+
 - **Leadership page is not published** — the client is reviewing it with their
   bosses first. Three things hold it back and come off together when it is
   approved: the About Us menu entry (nine pages), the links out of the Expertise
@@ -113,17 +125,9 @@ Eight pages are built. Still open:
   neither fits, because it is the small-cap division, projects under $5M:
   interior renovations, build-outs and fit-outs, of which campus work is only a
   part. The client is renaming it on the chart to match the site
-- **Leadership photographs** — all six are 240px square, framed the same way:
-  crown eight per cent down the frame, chin at fifty-six. That size is why the
-  row uses circles at 130px rather than the large photo cards the client asked
-  for after seeing Moss's site — anything bigger visibly softens. Higher
-  resolution originals would let the row become photo cards; only the layout
-  would change. Two were cropped from originals recovered out of the history,
-  which is where the uploaded source files end up once they are removed from the
-  repository root
 - **Education and certifications** — kept off every profile by request. Training
-  that bears on the work is stated in the prose instead ("an architect by
-  training", "a civil engineer by training"). Christopher Alvarez's Certified
+  that bears on the work is stated in the prose instead ("with a background in
+  architecture", "with a background in civil engineering"). Christopher Alvarez's Certified
   General Contractor licence is the one exception: it is a licence to build in
   Florida rather than a training credential, and it is worded to match Carlos
   Rosell's on `history.html`
