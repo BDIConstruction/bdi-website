@@ -31,7 +31,7 @@ Mimecast, untouched by anything here.
 | `culture.html` | About Us → Culture |
 | `community.html` | About Us → Community |
 | `expertise.html` | Expertise — the leadership row, currently without its links out |
-| `work-with-us.html` | Work With Us — subcontractor prequalification and careers |
+| `work-with-us.html` | Work With Us — careers only; the subcontractor prequalification form was removed |
 | `contact.html` | Contact Us |
 
 `oauth-worker/` is not part of the site — it is the small service that signs
@@ -144,13 +144,13 @@ Eight pages are built. Still open:
   `bdi_logo_final_2011_high_res.png`, which is kept as the master. It replaces
   a reconstruction traced from a photograph. A rebrand is still expected, so
   when new artwork arrives it is one file and eight `src` attributes
-- ~~**Subcontractor form**~~ — now posts to Web3Forms, which relays to
-  `info@bdico.com`. The access key sits in `work-with-us.html` and is public by
-  design: it names an inbox and grants no access to anything. Whoever watches
-  that inbox should let the mail filter know to expect it
-- **Careers form** — the right-hand half of `work-with-us.html` takes a resume,
-  and Web3Forms does not relay attachments on the free plan, so that one form
-  posts to FormSubmit instead and lands in `hiring@bdico.com`. **One thing is
+- ~~**Subcontractor prequalification form**~~ — removed from `work-with-us.html`
+  at the client's request; the page is careers-only now. It used to post to
+  Web3Forms via a public access key (that key named an inbox and granted no
+  other access, so its removal is cosmetic, not a credential rotation)
+- **Careers form** — `work-with-us.html` takes a resume, and Web3Forms does not
+  relay attachments on the free plan, so that form posts to FormSubmit instead
+  and lands in `hiring@bdico.com`. **One thing is
   needed before it works:** the first submission after it goes live sends an
   activation email to that address, and somebody has to click the link in it,
   once. Until they do the relay accepts applications and delivers nothing.
