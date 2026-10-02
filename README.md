@@ -144,20 +144,27 @@ Eight pages are built. Still open:
   `bdi_logo_final_2011_high_res.png`, which is kept as the master. It replaces
   a reconstruction traced from a photograph. A rebrand is still expected, so
   when new artwork arrives it is one file and eight `src` attributes
-- ~~**Subcontractor form**~~ — now posts to Web3Forms, which relays to
-  `info@bdico.com`. The access key sits in `work-with-us.html` and is public by
-  design: it names an inbox and grants no access to anything. Whoever watches
-  that inbox should let the mail filter know to expect it
+- **Subcontractor form** — the left-hand half of `work-with-us.html` posts to
+  FormSubmit's AJAX endpoint and lands in `precon@bdico.com`. It was briefly on
+  Web3Forms relaying to `info@bdico.com`; moved to FormSubmit when the
+  destination changed to `precon@bdico.com`, since a Web3Forms access key's
+  destination lives in an account this repo has no login for, while FormSubmit
+  takes the address straight in the form's `action` URL. **One thing is needed
+  before it works:** the first submission after it goes live sends an
+  activation email to `precon@bdico.com`, and somebody has to click the link
+  in it, once. Until they do the relay accepts submissions and delivers
+  nothing. The address is necessarily in the page source; if that draws spam,
+  deleting the `_captcha` line makes the relay challenge senders
 - **Careers form** — the right-hand half of `work-with-us.html` takes a resume,
-  and Web3Forms does not relay attachments on the free plan, so that one form
-  posts to FormSubmit instead and lands in `hiring@bdico.com`. **One thing is
-  needed before it works:** the first submission after it goes live sends an
-  activation email to that address, and somebody has to click the link in it,
-  once. Until they do the relay accepts applications and delivers nothing.
-  Attachments are capped at 10MB and the form refuses anything larger before
-  sending rather than after, offering `hiring@bdico.com` instead. Unlike the
-  Web3Forms key, the address is necessarily in the page source; if that draws
-  spam, deleting the `_captcha` line makes the relay challenge senders
+  and FormSubmit's AJAX endpoint does not accept attachments, so that one form
+  posts to FormSubmit's plain (non-AJAX) endpoint instead and lands in
+  `hiring@bdico.com`. **One thing is needed before it works:** the first
+  submission after it goes live sends an activation email to that address, and
+  somebody has to click the link in it, once. Until they do the relay accepts
+  applications and delivers nothing. Attachments are capped at 10MB and the
+  form refuses anything larger before sending rather than after, offering
+  `hiring@bdico.com` instead. If spam ever arrives, deleting the `_captcha`
+  line makes the relay challenge senders
 
 - ~~**Mail records**~~ — no mail runs on this domain and it now says so:
   `v=spf1 -all` and a DMARC policy of `reject`, so nobody can forge an address

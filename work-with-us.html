@@ -235,15 +235,18 @@
         </div>
 
         <!-- A static page cannot send email, so submissions are posted to
-             Web3Forms, which relays them to the address registered against the
-             access key below. The key is public by design - it only names the
-             inbox, and cannot be used to read anything. -->
-        <form id="prequal" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="72d67bb5-4b3c-4a9c-b164-b759d60b10c8">
-          <input type="hidden" name="subject" value="Subcontractor prequalification - bdiconstruction.com">
-          <input type="hidden" name="from_name" value="BDI Construction website">
+             FormSubmit, which relays them to precon@bdico.com.
+
+             ONE THING TO KNOW: the first submission after this goes live
+             triggers a one-time activation email to precon@bdico.com.
+             Somebody there has to click the link in it once - until they
+             do, nothing is delivered. It only ever happens once. -->
+        <form id="prequal" action="https://formsubmit.co/ajax/precon@bdico.com" method="POST">
+          <input type="hidden" name="_subject" value="Subcontractor prequalification - bdiconstruction.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
           <!-- left empty by people, filled in by robots -->
-          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
 
           <fieldset class="rv">
             <div class="label" style="color:var(--teal); margin-bottom:26px;">Company Information</div>
@@ -432,18 +435,21 @@
       })
         .then(function(r){ return r.json().catch(function(){ return {}; }); })
         .then(function(data){
-          if (data.success) {
+          // FormSubmit's AJAX endpoint returns success as the *string*
+          // "true", not a boolean - a loose truthy check would also pass
+          // on the string "false".
+          if (data.success === 'true') {
             form.reset();
             say('Thank you — your prequalification has been sent. We will follow up if '
               + 'your qualifications are a fit for upcoming work.', true);
           } else {
             say('Something went wrong sending the form. Please email us at '
-              + 'info@bdico.com and we will pick it up from there.', false);
+              + 'precon@bdico.com and we will pick it up from there.', false);
           }
         })
         .catch(function(){
           say('The form could not be sent — you may be offline. Please try again, or '
-            + 'email us at info@bdico.com.', false);
+            + 'email us at precon@bdico.com.', false);
         })
         .then(function(){
           button.disabled = false;
