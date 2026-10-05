@@ -7,5 +7,9 @@
   "year": "",
   "delivery": "",
   "photo": "/project-legacy-park-ii.jpg",
-  "photo_card": "/project-legacy-park-ii-card.jpg"
+  "photo_card": "/project-legacy-park-ii-card.jpg",
+  "gallery": [
+    "/uploads/legacy-park-ii-rooftop-aerial.jpg",
+    "/uploads/legacy-park-ii-structure-progress.jpg"
+  ]
 }
