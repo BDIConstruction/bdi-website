@@ -1,12 +1,18 @@
 {
   "title": "Dulce Vida",
   "order": 0,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Current Projects",
   "year": "",
   "delivery": "",
+  "address": "1785 NW 35th Street\nMiami, Florida 33142\nUnited States",
   "photo": "/project-dulce-vida.jpg",
   "photo_card": "/project-dulce-vida-card.jpg",
+  "gallery": [
+    "/uploads/dulce-vida-aerial-structure-1.jpg",
+    "/uploads/dulce-vida-aerial-structure-2.jpg",
+    "/uploads/dulce-vida-aerial-structure-3.jpg"
+  ],
   "wp_date": "2025-02-01"
 }
