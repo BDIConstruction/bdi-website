@@ -9,5 +9,8 @@
   "address": "3950 Columbia St\nOrlando, Florida 32805\nUnited States",
   "photo": "/project-grand-east.jpg",
   "photo_card": "/project-grand-east-card.jpg",
+  "gallery": [
+    "/uploads/grand-east-village-aerial-progress.jpg"
+  ],
   "wp_date": "2025-01-12"
 }
