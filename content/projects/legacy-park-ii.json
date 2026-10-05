@@ -1,11 +1,12 @@
 {
   "title": "Legacy Park II",
   "order": -1,
-  "city": "",
+  "city": "Fort Myers",
   "state": "FL",
   "sector": "Current Projects",
   "year": "",
   "delivery": "",
+  "address": "2682 Oak Ridge Court\nFort Myers, Florida 33901\nUnited States",
   "photo": "/project-legacy-park-ii.jpg",
   "photo_card": "/project-legacy-park-ii-card.jpg",
   "gallery": [

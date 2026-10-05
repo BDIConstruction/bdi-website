@@ -59,8 +59,13 @@
   .pagehead .crumbs a{ font-size:12px; letter-spacing:.08em; color:rgba(255,255,255,.72); }
   .pagehead .crumbs a:hover{ color:var(--green); }
 
-  .intro{ padding:64px 0 20px; background:#fff; }
-  .intro p{ max-width:720px; font-size:17px; line-height:1.75; color:var(--ink); margin-bottom:18px; }
+  .details{ padding:64px 0 20px; background:#fff; }
+  .details .dgrid{ display:grid; grid-template-columns:2fr 1fr; gap:56px; }
+  .details .dgrid.solo{ grid-template-columns:1fr; }
+  @media (max-width:860px){ .details .dgrid{ grid-template-columns:1fr; gap:36px; } }
+  .details .desc p{ max-width:720px; font-size:17px; line-height:1.75; color:var(--ink); margin-bottom:18px; }
+  .details .addr .label{ color:var(--teal); margin-bottom:14px; }
+  .details .addr .lines{ font-size:15px; line-height:1.85; color:var(--ink); font-weight:300; }
 
   .gallery{ padding:40px 0 110px; background:#fff; }
   .ggrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:28px; }
@@ -134,12 +139,21 @@
     <div class="wrap inner">
       <div class="rv label">Our Work</div>
       <h1 class="rv" data-d="90">Legacy Park II</h1>
-
+      <div class="rv loc" data-d="130">Fort Myers</div>
       <div class="rv crumbs" data-d="170"><a href="projects.html">All Projects</a> &nbsp;/&nbsp; <a href="contact.html">Start a Conversation</a></div>
     </div>
   </div>
 
-
+  <section class="details">
+    <div class="wrap">
+      <div class="dgrid solo">
+      <div class="rv addr" data-d="90">
+        <div class="label">Project Address</div>
+        <div class="lines">2682 Oak Ridge Court<br>Fort Myers, Florida 33901<br>United States</div>
+      </div>
+      </div>
+    </div>
+  </section>
 
   <section class="gallery">
     <div class="wrap">

@@ -42,6 +42,8 @@ collections:
           hint: "Full-size photograph. Shown on the Projects grid and first on the project's own page." }
       - { name: description, label: Description, widget: text, required: false,
           hint: "A few sentences about the project. Shown on the project's own page. Leave a blank line between paragraphs." }
+      - { name: address, label: Project address, widget: text, required: false,
+          hint: "Shown on the project's own page. One line each, e.g.:\n2682 Oak Ridge Court\nFort Myers, Florida 33901\nUnited States" }
       - { name: gallery, label: More photos, widget: list, required: false,
           field: { label: Photo, name: image, widget: image },
           hint: "Additional photos for the project's own page, shown after the cover photo." }

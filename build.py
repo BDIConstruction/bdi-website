@@ -143,14 +143,38 @@ def location_block(d):
     return f'      <div class="rv loc" data-d="130">{html.escape(place)}</div>'
 
 
-def description_block(d):
+def description_inner(d):
     desc = str(d.get("description") or "").strip()
     if not desc:
         return ""
     paras = [p.strip() for p in desc.split("\n\n") if p.strip()]
-    body = "\n".join(f'      <p class="rv" data-d="{(i % 2) * 90}">{html.escape(p)}</p>'
-                      for i, p in enumerate(paras))
-    return f'  <section class="intro">\n    <div class="wrap">\n{body}\n    </div>\n  </section>'
+    body = "\n".join(f'        <p>{html.escape(p)}</p>' for p in paras)
+    return f'      <div class="rv desc">\n{body}\n      </div>'
+
+
+def address_inner(d):
+    addr = str(d.get("address") or "").strip()
+    if not addr:
+        return ""
+    lines = [l.strip() for l in addr.split("\n") if l.strip()]
+    rendered = "<br>".join(html.escape(l) for l in lines)
+    return (
+        '      <div class="rv addr" data-d="90">\n'
+        '        <div class="label">Project Address</div>\n'
+        f'        <div class="lines">{rendered}</div>\n'
+        '      </div>'
+    )
+
+
+def details_block(d):
+    parts = [p for p in (description_inner(d), address_inner(d)) if p]
+    if not parts:
+        return ""
+    solo = " solo" if len(parts) == 1 else ""
+    inner = "\n".join(parts)
+    return (f'  <section class="details">\n    <div class="wrap">\n'
+            f'      <div class="dgrid{solo}">\n{inner}\n      </div>\n'
+            f'    </div>\n  </section>')
 
 
 DETAIL_TEMPLATE = (ROOT / "content" / "project-template.html").read_text()
@@ -165,7 +189,7 @@ def detail_html(d):
     page = page.replace("__META_DESC__", html.escape(meta_desc))
     page = page.replace("__SLUG_PAGE__", f"project-{d['_slug']}.html")
     page = page.replace("__LOCATION_BLOCK__", location_block(d))
-    page = page.replace("__DESCRIPTION_BLOCK__", description_block(d))
+    page = page.replace("__DETAILS_BLOCK__", details_block(d))
     page = page.replace("__GALLERY__", gallery_html(d))
     return page
 
