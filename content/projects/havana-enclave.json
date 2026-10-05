@@ -1,11 +1,12 @@
 {
   "title": "Havana Enclave",
   "order": 2,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Current Projects",
   "year": "",
   "delivery": "",
+  "address": "315 NW 27th Ave\nMiami, Florida 33125\nUnited States",
   "photo": "/project-havana-enclave.jpg",
   "photo_card": "/project-havana-enclave-card.jpg",
   "wp_date": "2025-01-08"
