@@ -3,8 +3,7 @@
   "city": "Coral Gables",
   "order": 3,
   "state": "FL",
-  "address": "The Plaza\nCoconut Grove Drive, Suite 228\nCoral Gables, Florida 33134\nUnited States",
-  "photo": "/uploads/heineken-americas-office-lobby.jpg",
+  "photo": "uploads/heineken-4.jpg",
   "gallery": [
     "/uploads/heineken-americas-office-reception.jpg",
     "/uploads/heineken-americas-office-bottle-wall.jpg",
@@ -23,6 +22,7 @@
   ],
   "wp_date": "2025-01-05",
   "delivery": "",
+  "address": "The Plaza\nCoconut Grove Drive, Suite 228\nCoral Gables, Florida 33134\nUnited States",
   "title": "Heineken America's Office",
   "year": ""
 }
