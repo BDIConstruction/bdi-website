@@ -1,12 +1,13 @@
 {
   "sector": "Current Projects",
-  "city": "",
+  "city": "Coral Gables",
   "order": 3,
   "state": "FL",
+  "address": "The Plaza\nCoconut Grove Drive, Suite 228\nCoral Gables, Florida 33134\nUnited States",
   "photo": "/uploads/tpghein19-scaled.jpg",
   "wp_date": "2025-01-05",
   "delivery": "",
-  "title": "Heineken",
+  "title": "Heineken America's Office",
   "year": "",
   "photo_card": "/project-heneiken-card.jpg"
 }
