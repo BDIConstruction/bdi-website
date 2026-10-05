@@ -1,12 +1,17 @@
 {
   "title": "Forest Glen",
   "order": 0,
-  "city": "",
+  "city": "Titusville",
   "state": "FL",
   "sector": "Current Projects",
   "year": "",
   "delivery": "",
+  "address": "2001 South Street\nTitusville, Florida 32780\nUnited States",
   "photo": "/project-forest-glen.jpg",
   "photo_card": "/project-forest-glen-card.jpg",
+  "gallery": [
+    "/uploads/forest-glen-entrance-canopy.jpg",
+    "/uploads/forest-glen-courtyard-progress.jpg"
+  ],
   "wp_date": "2025-01-20"
 }
