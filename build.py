@@ -88,12 +88,11 @@ def rel(path: str) -> str:
 
 
 def place_for(d):
-    # Every project is in Florida, so the state adds nothing - show the city
-    # alone, and only append a state if it is somewhere other than FL.
     city = str(d.get("city") or "").strip()
     state = str(d.get("state") or "").strip()
-    place = city if not state or state.upper() in ("FL", "FLORIDA") else f"{city}, {state}"
-    return place if city else ""
+    if not city:
+        return ""
+    return f"{city}, {state}" if state else city
 
 
 def card_html(d, i):
