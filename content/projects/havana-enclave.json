@@ -9,5 +9,11 @@
   "address": "315 NW 27th Ave\nMiami, Florida 33125\nUnited States",
   "photo": "/project-havana-enclave.jpg",
   "photo_card": "/project-havana-enclave-card.jpg",
+  "gallery": [
+    "/uploads/havana-enclave-aerial-street-1.jpg",
+    "/uploads/havana-enclave-aerial-street-2.jpg",
+    "/uploads/havana-enclave-aerial-courtyard.jpg",
+    "/uploads/havana-enclave-aerial-rooftop.jpg"
+  ],
   "wp_date": "2025-01-08"
 }
