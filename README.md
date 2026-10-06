@@ -145,15 +145,16 @@ Eight pages are built. Still open:
   a reconstruction traced from a photograph. A rebrand is still expected, so
   when new artwork arrives it is one file and eight `src` attributes
 - **Subcontractor form** — the left-hand half of `work-with-us.html` posts to
-  FormSubmit's AJAX endpoint and lands in `precon@bdico.com`. It was briefly on
-  Web3Forms relaying to `info@bdico.com`; moved to FormSubmit when the
-  destination changed to `precon@bdico.com`, since a Web3Forms access key's
-  destination lives in an account this repo has no login for, while FormSubmit
-  takes the address straight in the form's `action` URL. **One thing is needed
-  before it works:** the first submission after it goes live sends an
-  activation email to `precon@bdico.com`, and somebody has to click the link
-  in it, once. Until they do the relay accepts submissions and delivers
-  nothing. The address is necessarily in the page source; if that draws spam,
+  FormSubmit's AJAX endpoint and lands in `preconstruction@bdico.com`. It was
+  briefly on Web3Forms relaying to `info@bdico.com`, then FormSubmit relaying
+  to `precon@bdico.com`; moved to `preconstruction@bdico.com` on request. A
+  Web3Forms access key's destination lives in an account this repo has no
+  login for, while FormSubmit takes the address straight in the form's
+  `action` URL. **One thing is needed before it works:** the first submission
+  after it goes live sends an activation email to `preconstruction@bdico.com`,
+  and somebody has to click the link in it, once. Until they do the relay
+  accepts submissions and delivers nothing. The address is necessarily in the
+  page source; if that draws spam,
   deleting the `_captcha` line makes the relay challenge senders
 - **Careers form** — the right-hand half of `work-with-us.html` takes a resume,
   and FormSubmit's AJAX endpoint does not accept attachments, so that one form

@@ -235,13 +235,13 @@
         </div>
 
         <!-- A static page cannot send email, so submissions are posted to
-             FormSubmit, which relays them to precon@bdico.com.
+             FormSubmit, which relays them to preconstruction@bdico.com.
 
              ONE THING TO KNOW: the first submission after this goes live
-             triggers a one-time activation email to precon@bdico.com.
+             triggers a one-time activation email to preconstruction@bdico.com.
              Somebody there has to click the link in it once - until they
              do, nothing is delivered. It only ever happens once. -->
-        <form id="prequal" action="https://formsubmit.co/ajax/precon@bdico.com" method="POST">
+        <form id="prequal" action="https://formsubmit.co/ajax/preconstruction@bdico.com" method="POST">
           <input type="hidden" name="_subject" value="Subcontractor prequalification - bdiconstruction.com">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
@@ -444,12 +444,12 @@
               + 'your qualifications are a fit for upcoming work.', true);
           } else {
             say('Something went wrong sending the form. Please email us at '
-              + 'precon@bdico.com and we will pick it up from there.', false);
+              + 'preconstruction@bdico.com and we will pick it up from there.', false);
           }
         })
         .catch(function(){
           say('The form could not be sent — you may be offline. Please try again, or '
-            + 'email us at precon@bdico.com.', false);
+            + 'email us at preconstruction@bdico.com.', false);
         })
         .then(function(){
           button.disabled = false;
