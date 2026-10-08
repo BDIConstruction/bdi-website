@@ -8,5 +8,10 @@
   "delivery": "",
   "photo": "/project-cloisters-57-plex-townhomes.jpg",
   "photo_card": "/project-cloisters-57-plex-townhomes-card.jpg",
-  "wp_date": "2023-05-21"
+  "wp_date": "2023-05-21",
+  "gallery": [
+    "/uploads/cloisters-aerial-overview.jpg",
+    "/uploads/cloisters-building-entrance.jpg",
+    "/uploads/cloisters-unit-kitchen.jpg"
+  ]
 }
