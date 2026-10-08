@@ -8,5 +8,10 @@
   "delivery": "",
   "photo": "/project-ofm-office-foreign-missions.jpg",
   "photo_card": "/project-ofm-office-foreign-missions-card.jpg",
-  "wp_date": "2023-05-19"
+  "wp_date": "2023-05-19",
+  "gallery": [
+    "/uploads/ofm-ceiling-acoustic-panels.jpg",
+    "/uploads/ofm-lobby-conference-room.jpg",
+    "/uploads/ofm-program-officer-office.jpg"
+  ]
 }
