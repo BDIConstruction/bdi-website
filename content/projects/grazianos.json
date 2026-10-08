@@ -1,12 +1,18 @@
 {
-  "title": "Grazianos",
+  "title": "Graziano's at The Lifetime Building",
   "order": 10,
-  "city": "",
+  "city": "Coral Gables",
   "state": "FL",
   "sector": "",
   "year": "",
   "delivery": "",
   "photo": "/project-grazianos.jpg",
   "photo_card": "/project-grazianos-card.jpg",
-  "wp_date": "2023-05-18"
+  "wp_date": "2023-05-18",
+  "address": "229 S Dixie Hwy\nCoral Gables, Florida 33133\nUnited States",
+  "gallery": [
+    "/uploads/grazianos-butcher-counter.jpg",
+    "/uploads/grazianos-wine-shop-panini.jpg",
+    "/uploads/grazianos-open-kitchen.jpg"
+  ]
 }
