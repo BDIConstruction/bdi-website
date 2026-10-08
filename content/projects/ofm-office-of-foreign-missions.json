@@ -1,7 +1,7 @@
 {
   "title": "Ofm - Office of Foreign Missions",
   "order": 9,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "",
   "year": "",
@@ -9,9 +9,14 @@
   "photo": "/project-ofm-office-foreign-missions.jpg",
   "photo_card": "/project-ofm-office-foreign-missions-card.jpg",
   "wp_date": "2023-05-19",
+  "address": "1501 Biscayne Blvd Ste 350\nMiami, Florida 33132\nUnited States",
   "gallery": [
     "/uploads/ofm-ceiling-acoustic-panels.jpg",
     "/uploads/ofm-lobby-conference-room.jpg",
-    "/uploads/ofm-program-officer-office.jpg"
+    "/uploads/ofm-program-officer-office.jpg",
+    "/uploads/ofm-conference-room.jpg",
+    "/uploads/ofm-reception-lobby.jpg",
+    "/uploads/ofm-kitchenette.jpg",
+    "/uploads/ofm-hallway-copy-room.jpg"
   ]
 }
