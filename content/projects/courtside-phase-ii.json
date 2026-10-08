@@ -1,12 +1,13 @@
 {
   "title": "Courtside Phase II",
   "order": 4,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Current Projects",
   "year": "",
   "delivery": "",
   "photo": "/project-courtside-phase-ii.jpg",
   "photo_card": "/project-courtside-phase-ii-card.jpg",
-  "wp_date": "2025-01-01"
+  "wp_date": "2025-01-01",
+  "address": "1698 NW 3rd Ave\nMiami, Florida 33136\nUnited States"
 }
