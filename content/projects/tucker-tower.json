@@ -1,12 +1,19 @@
 {
   "title": "Tucker Tower",
   "order": 6,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Current Projects",
   "year": "",
   "delivery": "",
   "photo": "/project-tucker-tower.jpg",
   "photo_card": "/project-tucker-tower-card.jpg",
-  "wp_date": "2023-06-02"
+  "wp_date": "2023-06-02",
+  "address": "9910 Hibiscus St\nMiami, Florida 33157\nUnited States",
+  "gallery": [
+    "/uploads/tucker-tower-street-view.jpg",
+    "/uploads/tucker-tower-pool-building.jpg",
+    "/uploads/tucker-tower-pool-deck.jpg",
+    "/uploads/tucker-tower-spa.jpg"
+  ]
 }
