@@ -1,12 +1,20 @@
 {
   "title": "The Fountains at Hidden Lake",
   "order": 5,
-  "city": "",
+  "city": "Crystal River",
   "state": "FL",
   "sector": "Current Projects",
   "year": "",
   "delivery": "",
   "photo": "/project-fountains-hidden-lake.jpg",
   "photo_card": "/project-fountains-hidden-lake-card.jpg",
-  "wp_date": "2023-10-16"
+  "wp_date": "2023-10-16",
+  "address": "10456 W. Ashburn Lane\nCrystal River, Florida 34428\nUnited States",
+  "gallery": [
+    "/uploads/fountains-hidden-lake-entrance.jpg",
+    "/uploads/fountains-hidden-lake-pool-patio.jpg",
+    "/uploads/fountains-hidden-lake-pool-courtyard.jpg",
+    "/uploads/fountains-hidden-lake-lobby.jpg",
+    "/uploads/fountains-hidden-lake-clubhouse-kitchen.jpg"
+  ]
 }
