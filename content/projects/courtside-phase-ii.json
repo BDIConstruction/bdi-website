@@ -9,5 +9,11 @@
   "photo": "/project-courtside-phase-ii.jpg",
   "photo_card": "/project-courtside-phase-ii-card.jpg",
   "wp_date": "2025-01-01",
-  "address": "1698 NW 3rd Ave\nMiami, Florida 33136\nUnited States"
+  "address": "1698 NW 3rd Ave\nMiami, Florida 33136\nUnited States",
+  "gallery": [
+    "/uploads/courtside-phase-ii-aerial-courtyard.jpg",
+    "/uploads/courtside-phase-ii-clubhouse-lounge.jpg",
+    "/uploads/courtside-phase-ii-game-room.jpg",
+    "/uploads/courtside-phase-ii-lounge-seating.jpg"
+  ]
 }
