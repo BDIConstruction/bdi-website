@@ -1,7 +1,7 @@
 {
   "title": "The Cushman School",
   "order": 14,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Educational",
   "year": "",
@@ -9,5 +9,6 @@
   "photo": "/project-the-cushman-school.jpg",
   "photo_card": "/project-the-cushman-school-card.jpg",
   "wp_date": "2022-06-02",
-  "description": "This project, part of The Cushman School's Play to Learn capital campaign, built a two-story, 25,000-plus-square-foot facility combining indoor arts, athletics, and multi-purpose space.\n\nThe new building supports several of the school's signature programs: the Society and Me (SAM) Challenge, a four-year curriculum where students research global issues and design community-impact projects that culminate in the annual SAMx Showcase; the Young Coders Initiative, a student-founded nonprofit teaching coding to youth through local and international chapters; and the Innovation Center and AI Atelier, maker spaces built around robotics, digital design, and other emerging technology."
+  "address": "592 NE 60th St\nMiami, Florida 33137\nUnited States",
+  "description": "This project, part of The Cushman School's Play to Learn capital campaign, built a 24,400-square-foot, two-story multi-purpose building. It houses an indoor gymnasium, a stage and performing arts center, a dance studio, and a rooftop soccer and track field, giving the school a home for events, athletic competitions, and annual traditions — like the 5th-grade Spring Play — that previously had to be held off campus.\n\nThe building also supports several of the school's signature programs: the Society and Me (SAM) Challenge, a four-year curriculum where students research global issues and design community-impact projects that culminate in the annual SAMx Showcase; the Young Coders Initiative, a student-founded nonprofit teaching coding to youth through local and international chapters; and the Innovation Center and AI Atelier, maker spaces built around robotics, digital design, and other emerging technology."
 }
