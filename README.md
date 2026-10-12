@@ -155,7 +155,9 @@ Eight pages are built. Still open:
   and somebody has to click the link in it, once. Until they do the relay
   accepts submissions and delivers nothing. The address is necessarily in the
   page source; if that draws spam,
-  deleting the `_captcha` line makes the relay challenge senders
+  deleting the `_captcha` line makes the relay challenge senders. Submitters
+  get an automatic confirmation email via FormSubmit's `_autoresponse` field —
+  no reply needed on our end unless the submission warrants a personal one
 - **Careers form** — the right-hand half of `work-with-us.html` takes a resume,
   and FormSubmit's AJAX endpoint does not accept attachments, so that one form
   posts to FormSubmit's plain (non-AJAX) endpoint instead and lands in
@@ -165,7 +167,9 @@ Eight pages are built. Still open:
   applications and delivers nothing. Attachments are capped at 10MB and the
   form refuses anything larger before sending rather than after, offering
   `hiring@bdico.com` instead. If spam ever arrives, deleting the `_captcha`
-  line makes the relay challenge senders
+  line makes the relay challenge senders. Applicants get an automatic
+  confirmation email via FormSubmit's `_autoresponse` field — no reply needed
+  on our end unless the application warrants a personal one
 
 - ~~**Mail records**~~ — no mail runs on this domain and it now says so:
   `v=spf1 -all` and a DMARC policy of `reject`, so nobody can forge an address
