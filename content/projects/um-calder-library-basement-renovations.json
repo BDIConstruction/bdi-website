@@ -1,12 +1,13 @@
 {
-  "title": "UM - Calder Library Basement Renovations",
+  "title": "UM Calder Library",
   "order": 34,
   "city": "",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-um-calder-library-basement-renovations.jpg",
   "photo_card": "/project-um-calder-library-basement-renovations-card.jpg",
-  "wp_date": "2021-11-28"
+  "wp_date": "2021-11-28",
+  "description": "This project converted 1,842 square feet of meeting room space in the basement of the University of Miami's Louis Calder Memorial Library into modern study and workspace facilities, reconfigured into six collaboration spaces and eight individual Zoom rooms.\n\nThe renovation included new doors, ceilings, and flooring, along with added emergency power, airflow sensors, and heat lamps."
 }
