@@ -1,12 +1,14 @@
 {
-  "title": "MIA Cuccina Showroom",
+  "title": "MiaCucina",
   "order": 39,
-  "city": "",
+  "city": "Coral Gables",
   "state": "FL",
-  "sector": "Medical",
+  "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-mia-cuccina-showroom.jpg",
   "photo_card": "/project-mia-cuccina-showroom-card.jpg",
-  "wp_date": "2021-10-16"
+  "wp_date": "2021-10-16",
+  "address": "105 Miracle Mile\nCoral Gables, Florida 33134\nUnited States",
+  "description": "This project renovated MiaCucina's showroom on Miracle Mile in Coral Gables, where the brand displays bespoke Italian kitchens, custom closets, spa-inspired bathrooms, architectural interior and exterior doors, wall paneling, and living space furnishings.\n\nThe space showcases Italian craftsmanship and precision engineering through warm woodwork, natural stone, and integrated modern lighting."
 }
