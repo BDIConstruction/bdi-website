@@ -1,12 +1,14 @@
 {
   "title": "Gulliver Preparatory Courtyard",
   "order": 28,
-  "city": "",
+  "city": "Coral Gables",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-gulliver-preparatory-courtyard.jpg",
   "photo_card": "/project-gulliver-preparatory-courtyard-card.jpg",
-  "wp_date": "2021-12-17"
+  "wp_date": "2021-12-17",
+  "address": "12595 Red Rd\nCoral Gables, Florida 33165\nUnited States",
+  "description": "The Goldstrich Family Courtyard at Gulliver Preparatory School's Marian C. Krutulis PK-8 Campus in Coral Gables was built as part of the school's centennial campaign, just outside the historic Manor House.\n\nThe courtyard now serves as the campus's main outdoor gathering space, connecting newer facilities like the LEED Silver-certified Center for Student Life."
 }
