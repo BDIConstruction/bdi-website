@@ -1,12 +1,14 @@
 {
   "title": "The Historic Shrine Building",
   "order": 20,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-historic-shrine-building.jpg",
   "photo_card": "/project-historic-shrine-building-card.jpg",
-  "wp_date": "2022-05-22"
+  "wp_date": "2022-05-22",
+  "address": "1401-1417 Biscayne Boulevard\nMiami, Florida 33132\nUnited States",
+  "description": "Known locally as the Boulevard Shops, The Historic Shrine Building is a landmark Art Deco commercial building dating to 1930, sitting directly across from the Adrienne Arsht Center for the Performing Arts on Biscayne Boulevard.\n\nThe two-to-three-story structure totals 20,571 square feet and carries details specific to South Florida's take on Art Deco, including an oolitic limestone and coral rock veneer and sculptural reliefs drawn from Seminole imagery."
 }
