@@ -1,12 +1,14 @@
 {
-  "sector": "",
-  "city": "",
+  "sector": "Commercial",
+  "city": "Miami",
   "order": 27,
-  "state": "",
+  "state": "FL",
   "photo": "/project-waterford-reception-desk.jpg",
   "wp_date": "2021-12-19",
   "delivery": "",
   "title": "Waterford Office",
   "year": "",
-  "photo_card": "/project-waterford-reception-desk-card.jpg"
+  "photo_card": "/project-waterford-reception-desk-card.jpg",
+  "address": "703 Waterford Way\nMiami, Florida 33126\nUnited States",
+  "description": "BDI Construction built a conference table for a reception office inside the Waterford Business District, a 250-acre corporate park next to Miami International Airport with more than 3 million square feet of Class A office space across multiple buildings."
 }
