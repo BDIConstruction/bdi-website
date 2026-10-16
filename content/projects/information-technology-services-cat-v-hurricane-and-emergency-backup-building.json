@@ -1,5 +1,5 @@
 {
-  "title": "Information Technology Services - Cat V Hurricane and Emergency Backup Building",
+  "title": "Information Technology Services",
   "order": 40,
   "city": "",
   "state": "FL",
@@ -8,5 +8,6 @@
   "delivery": "",
   "photo": "/project-information-technology-services-cat-v-hurricane-emergency-backup-building.jpg",
   "photo_card": "/project-information-technology-services-cat-v-hurricane-emergency-backup-building-card.jpg",
-  "wp_date": "2020-12-28"
+  "wp_date": "2020-12-28",
+  "description": "This project renovated a Category 5 hurricane-rated emergency backup building for Information Technology Services, built to protect critical IT infrastructure, server systems, and emergency operations against severe, catastrophic weather.\n\nThe building is engineered to withstand extreme wind loads, water intrusion, and power grid failures, keeping data and communication systems running during and after major storms."
 }
