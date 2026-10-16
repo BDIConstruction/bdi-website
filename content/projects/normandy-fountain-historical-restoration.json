@@ -1,12 +1,14 @@
 {
   "title": "Normandy Fountain Historical Restoration",
   "order": 37,
-  "city": "",
+  "city": "Miami Beach",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-normandy-fountain-historical-restoration.jpg",
   "photo_card": "/project-normandy-fountain-historical-restoration-card.jpg",
-  "wp_date": "2021-11-05"
+  "wp_date": "2021-11-05",
+  "address": "7802 Rue Vendome\nMiami Beach, Florida 33141\nUnited States",
+  "description": "Also known as the Vendome Fountain, this Miami Beach landmark is built from cast stone and local limestone with Mediterranean Revival details, including colorful ceramic tile work and lion-head water spouts.\n\nRestoration work removed old over-paint and grouted concrete cracks, treated exposed rebar with phosphoric acid and a zinc-rich primer, and rebuilt damaged decorative elements using conservation mortars and conservation-grade paints. Crews sourced and refabricated replacement tiles for missing or damaged sections.\n\nThe project also overhauled the fountain's interior plumbing and electrical systems, restoring water flow through the lion-head spouts for the first time in decades, and added modern lighting to the fountain and surrounding walkways."
 }
