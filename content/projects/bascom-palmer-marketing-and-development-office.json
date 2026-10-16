@@ -1,12 +1,14 @@
 {
   "title": "Bascom Palmer - Marketing and Development Office",
   "order": 46,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
-  "sector": "",
+  "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-bascom-palmer-marketing-development-office.jpg",
   "photo_card": "/project-bascom-palmer-marketing-development-office-card.jpg",
-  "wp_date": "2020-11-26"
+  "wp_date": "2020-11-26",
+  "address": "900 NW 17th Street\nMiami, Florida 33136\nUnited States",
+  "description": "This project renovated and built out office space at 900 NW 17th Street for the Bascom Palmer Eye Institute's Marketing, Communications, and Development teams, who handle public relations, media requests, brand strategy, and philanthropic giving for the institute."
 }

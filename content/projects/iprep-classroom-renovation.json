@@ -1,7 +1,7 @@
 {
   "title": "iPrep Academy",
   "order": 42,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Educational",
   "year": "",
@@ -9,5 +9,6 @@
   "photo": "/project-iprep-classroom-renovation.jpg",
   "photo_card": "/project-iprep-classroom-renovation-card.jpg",
   "wp_date": "2020-12-15",
+  "address": "1500 Biscayne Blvd\nMiami, Florida 33132\nUnited States",
   "description": "This renovation transformed traditional classrooms at iPrep Academy into an open, multi-use, high-tech learning space. Crews demolished and remodeled two to three conventional classrooms into a single, expansive 2,000-square-foot open learning environment."
 }
