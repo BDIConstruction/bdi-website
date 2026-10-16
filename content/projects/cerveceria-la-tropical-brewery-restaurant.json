@@ -1,12 +1,14 @@
 {
   "title": "Cerveceria La Tropical Brewery & Restaurant",
   "order": 16,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-cerveceria-la-tropical-brewery-restaurant.jpg",
   "photo_card": "/project-cerveceria-la-tropical-brewery-restaurant-card.jpg",
-  "wp_date": "2022-05-30"
+  "wp_date": "2022-05-30",
+  "address": "42 NE 25th St\nMiami, Florida 33137\nUnited States",
+  "description": "Cerveceria La Tropical is a 28,000-square-foot brewery, restaurant, and botanical garden in Wynwood, reviving Cuba's oldest brewery — founded in Havana in 1888 by the Blanco Herrera family. CEO Manny Portuondo developed the project in partnership with Heineken, building out a 32,000-hectoliter annual brewing capacity and seating for up to 800 guests.\n\nOutside, a 10,000-square-foot tropical botanical garden was designed with Fairchild Tropical Botanic Garden to echo Los Jardines de La Tropical, the original brewery's garden set in Havana's La Selva neighborhood. It includes plantings from the Million Orchid Project and self-guided tours by QR code.\n\nChef Cindy Hutson leads a Cuban-Caribbean fusion menu, paired with a full liquor bar and more than 20 house brews served straight from the tank."
 }
