@@ -1,12 +1,14 @@
 {
   "title": "University of Miami Greenhouse",
   "order": 25,
-  "city": "",
+  "city": "Coral Gables",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-university-miami-greenhouse.jpg",
   "photo_card": "/project-university-miami-greenhouse-card.jpg",
-  "wp_date": "2021-12-24"
+  "wp_date": "2021-12-24",
+  "address": "Cox Science Building\n1301 Memorial Dr\nCoral Gables, Florida 33146\nUnited States",
+  "description": "This project built a 3,000-square-foot research greenhouse for the University of Miami's John C. Gifford Arboretum, which became operational in the fall of 2020. The arboretum itself is a 3-acre botanical garden and outdoor living laboratory on the northwest corner of UM's Coral Gables campus, at San Amaro Drive and Campo Sano Avenue, holding more than 500 species of trees, palms, figs, and tropical plants from around the world — including rare specimens like the baobab, lignum vitae, and floss silk tree, plus a food forest and trees tagged with QR codes for mobile learning.\n\nThe greenhouse splits into a 1,500-square-foot air-conditioned space and a 1,200-square-foot evaporative-cooled space, run by a programmable weather station for automated climate control. Researchers use it to study climate change adaptation, seed germination, and the propagation of endangered tropical species, as well as how plant-microbiome interactions affect both individual plants and native South Florida populations — work that feeds into urban and Everglades habitat restoration.\n\nThe adjacent Sustainability Garden hosts weekly volunteer hours for students and the surrounding community."
 }
