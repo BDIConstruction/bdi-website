@@ -1,12 +1,14 @@
 {
   "title": "Richemont Coral Gables Corporate Office",
   "order": 26,
-  "city": "",
+  "city": "Coral Gables",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-richemont-coral-gables.jpg",
   "photo_card": "/project-richemont-coral-gables-card.jpg",
-  "wp_date": "2021-12-22"
+  "wp_date": "2021-12-22",
+  "address": "550 Biltmore Way\nCoral Gables, Florida 33134\nUnited States",
+  "description": "BDI Construction completed an interior office build-out and renovation in Coral Gables for Compagnie Financière Richemont, the luxury goods group behind brands like Cartier and Van Cleef & Arpels."
 }
