@@ -1,12 +1,14 @@
 {
   "title": "Miele Showroom",
   "order": 36,
-  "city": "",
+  "city": "Coral Gables",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-miele-showroom.jpg",
   "photo_card": "/project-miele-showroom-card.jpg",
-  "wp_date": "2021-11-10"
+  "wp_date": "2021-11-10",
+  "address": "4218 Ponce De Leon Blvd\nCoral Gables, Florida 33146\nUnited States",
+  "description": "BDI Construction completed the initial build-out for Miele's Experience Center in Coral Gables, a showroom that's become a prominent hub for luxury appliances in South Florida. The 4,766-square-foot space includes fully functional live kitchens, custom cabinetry, and interactive workshop zones."
 }
