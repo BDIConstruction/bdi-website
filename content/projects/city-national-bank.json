@@ -1,12 +1,14 @@
 {
   "title": "City National Bank",
   "order": 19,
-  "city": "",
+  "city": "Coral Gables",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-city-national-bank.jpg",
   "photo_card": "/project-city-national-bank-card.jpg",
-  "wp_date": "2022-05-23"
+  "wp_date": "2022-05-23",
+  "address": "2701 South Le Jeune Road\nCoral Gables, Florida 33134\nUnited States",
+  "description": "City National Bank consolidated its operations into a new 145,000-square-foot corporate headquarters across 16 stories in Coral Gables, bringing together roughly 800 employees previously spread across Downtown Miami, Brickell, and the bank's former Coral Gables office. The project ties into the bank's broader commercial real estate financing business and a multi-year partnership with the University of Miami.\n\nMultimillion-dollar renovations added a conference center, a fitness center, an on-site café, a redesigned lobby, and a first-floor Client Experience Center."
 }
