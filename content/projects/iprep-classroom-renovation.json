@@ -1,12 +1,13 @@
 {
-  "title": "Iprep Classroom Renovation",
+  "title": "iPrep Academy",
   "order": 42,
   "city": "",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-iprep-classroom-renovation.jpg",
   "photo_card": "/project-iprep-classroom-renovation-card.jpg",
-  "wp_date": "2020-12-15"
+  "wp_date": "2020-12-15",
+  "description": "This renovation transformed traditional classrooms at iPrep Academy into an open, multi-use, high-tech learning space. Crews demolished and remodeled two to three conventional classrooms into a single, expansive 2,000-square-foot open learning environment."
 }
