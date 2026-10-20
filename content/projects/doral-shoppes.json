@@ -1,12 +1,14 @@
 {
   "title": "Doral Shoppes",
   "order": 43,
-  "city": "",
+  "city": "Doral",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-doral-shoppes-winn-dixie.jpg",
   "photo_card": "/project-doral-shoppes-winn-dixie-card.jpg",
-  "wp_date": "2020-12-14"
+  "wp_date": "2020-12-14",
+  "address": "10425 NW 41st St\nDoral, Florida 33178\nUnited States",
+  "description": "This project renovated Doral Shoppes, the Winn-Dixie-anchored retail center, and included parking lot improvements."
 }
