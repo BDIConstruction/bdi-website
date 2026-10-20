@@ -1,12 +1,14 @@
 {
-  "title": "Primary Learning Center",
+  "title": "Auburndale Elementary Primary Learning Center",
   "order": 58,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-primary-learning-center.jpg",
   "photo_card": "/project-primary-learning-center-card.jpg",
-  "wp_date": "2018-02-01"
+  "wp_date": "2018-02-01",
+  "address": "3255 SW 6th Street\nMiami, Florida 33135\nUnited States",
+  "description": "The Auburndale Elementary Primary Learning Center in Miami received modular additions and facility improvements, including a new classroom addition and extra parking spaces.\n\nThe project also resurfaced play areas, added a covered walkway, and updated the building's mechanical, electrical, and plumbing systems."
 }
