@@ -1,12 +1,14 @@
 {
   "title": "Hialeah Senior High School Annex Building",
   "order": 49,
-  "city": "",
+  "city": "Hialeah",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-hialeah-senior-high-school-annex-buidling.jpg",
   "photo_card": "/project-hialeah-senior-high-school-annex-buidling-card.jpg",
-  "wp_date": "2019-12-24"
+  "wp_date": "2019-12-24",
+  "address": "251 E 47th St\nHialeah, Florida 33013\nUnited States",
+  "description": "The Annex Building at Hialeah Senior High School holds a secondary cafeteria with an estimated capacity of 237 people, used for school functions, meetings, and community rentals. The structure has been part of the campus's ongoing facility updates."
 }
