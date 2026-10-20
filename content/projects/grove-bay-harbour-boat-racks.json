@@ -10,5 +10,10 @@
   "photo_card": "/project-grove-bay-harbour-boat-racks-card.jpg",
   "wp_date": "2022-05-20",
   "address": "2640 S Bayshore Dr\nMiami, Florida 33133\nUnited States",
-  "description": "Grove Bay Harbour's boat racks are one piece of a multi-phase, 9.5-acre waterfront redevelopment in Coconut Grove, built on the site of the former Grove Key Marina along the historic Dinner Key/Bayshore footprint. The storage structure combines hangar storage and dry-stack racks, designed to hold more than 400 vessels."
+  "description": "Grove Bay Harbour's boat racks are one piece of a multi-phase, 9.5-acre waterfront redevelopment in Coconut Grove, built on the site of the former Grove Key Marina along the historic Dinner Key/Bayshore footprint. The storage structure combines hangar storage and dry-stack racks, designed to hold more than 400 vessels.",
+  "gallery": [
+    "/uploads/grove-bay-harbour-boat-racks-aerial-view.jpg",
+    "/uploads/grove-bay-harbour-boat-racks-marina-exterior.jpg",
+    "/uploads/grove-bay-harbour-boat-racks-stacked-boats.jpg"
+  ]
 }
