@@ -1,12 +1,14 @@
 {
-  "title": "Miami Lakes Technical",
+  "title": "Miami Lakes Educational Center",
   "order": 57,
-  "city": "",
+  "city": "Miami Lakes",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-miami-lakes-technical.jpg",
   "photo_card": "/project-miami-lakes-technical-card.jpg",
-  "wp_date": "2018-10-26"
+  "wp_date": "2018-10-26",
+  "address": "5780 NW 158th St\nMiami Lakes, Florida 33014\nUnited States",
+  "description": "Miami Lakes Educational Center is a vocational-technical training center in Miami Lakes. Its campus went through multi-phase upgrades and renovations.\n\nWork included exterior stucco repairs and painting, a new covered walkway at the bus drop-off zone, flooring replacements in the auditorium and general areas, upgraded fire alarm and security networks, and new classroom space."
 }
