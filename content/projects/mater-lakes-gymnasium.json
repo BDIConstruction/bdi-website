@@ -10,5 +10,10 @@
   "photo_card": "/project-mater-lakes-gymnasium-card.jpg",
   "wp_date": "2022-05-25",
   "address": "17300 NW 87th Avenue\nHialeah, Florida 33015\nUnited States",
-  "description": "BDI Construction built this state-of-the-art gymnasium for Mater Academy Lakes Middle High School, one of Miami-Dade County's top-rated high schools. Later phases, including the Mater Lakes Academy Gymnasium Annex, were designed in collaboration with Civica Architecture."
+  "description": "BDI Construction built this state-of-the-art gymnasium for Mater Academy Lakes Middle High School, one of Miami-Dade County's top-rated high schools. Later phases, including the Mater Lakes Academy Gymnasium Annex, were designed in collaboration with Civica Architecture.",
+  "gallery": [
+    "/uploads/mater-lakes-gymnasium-aerial-campus.jpg",
+    "/uploads/mater-lakes-gymnasium-aerial-courtyard.jpg",
+    "/uploads/mater-lakes-gymnasium-sports-court.jpg"
+  ]
 }
