@@ -10,5 +10,10 @@
   "photo_card": "/project-storage-facility-warehouse-card.jpg",
   "wp_date": "2021-12-15",
   "address": "5713 NW 27th Avenue\nMiami, Florida 33142\nUnited States",
-  "description": "Tuck It Away Storage Warehouse is a 59,644-square-foot self-storage building with 20-foot ceilings and 422 storage units."
+  "description": "Tuck It Away Storage Warehouse is a 59,644-square-foot self-storage building with 20-foot ceilings and 422 storage units.",
+  "gallery": [
+    "/uploads/tuck-it-away-storage-mezzanine-units.jpg",
+    "/uploads/tuck-it-away-storage-unit-corridor.jpg",
+    "/uploads/tuck-it-away-storage-framing-progress.jpg"
+  ]
 }
