@@ -10,5 +10,10 @@
   "photo_card": "/project-bocce-bar-restaurant-card.jpg",
   "wp_date": "2022-05-18",
   "address": "3252 NE 1st Ave, Unit 107\nMiami, Florida 33137\nUnited States",
-  "description": "Bocce Bar & Restaurant opened in Midtown Miami in December 2013 under Samba Brands Management, the group also behind SushiSamba and Sugarcane Raw Bar & Grill. The Italian enoteca and bistro blends a dramatic, modern look with rustic touches across 4,900 square feet of indoor and outdoor seating.\n\nIt was built around Miami's first official outdoor bocce ball court, with a dedicated Vespa parking area out front."
+  "description": "Bocce Bar & Restaurant opened in Midtown Miami in December 2013 under Samba Brands Management, the group also behind SushiSamba and Sugarcane Raw Bar & Grill. The Italian enoteca and bistro blends a dramatic, modern look with rustic touches across 4,900 square feet of indoor and outdoor seating.\n\nIt was built around Miami's first official outdoor bocce ball court, with a dedicated Vespa parking area out front.",
+  "gallery": [
+    "/uploads/bocce-bar-restaurant-storefront-court.jpg",
+    "/uploads/bocce-bar-restaurant-open-kitchen.jpg",
+    "/uploads/bocce-bar-restaurant-dining-room.jpg"
+  ]
 }
