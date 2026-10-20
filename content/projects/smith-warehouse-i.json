@@ -1,12 +1,14 @@
 {
   "title": "Smith Warehouse I",
   "order": 55,
-  "city": "",
+  "city": "Medley",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-smith-warehouse-i.jpg",
   "photo_card": "/project-smith-warehouse-i-card.jpg",
-  "wp_date": "2019-06-20"
+  "wp_date": "2019-06-20",
+  "address": "10800 NW 97th St #102\nMedley, Florida 33178\nUnited States",
+  "description": "Smith Warehouse I is home to Smith Terminal Distribution, a logistics and supply chain company in Medley. This project upgraded and renovated the facility."
 }
