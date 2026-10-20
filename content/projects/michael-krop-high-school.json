@@ -1,12 +1,14 @@
 {
   "title": "Michael Krop High School",
   "order": 52,
-  "city": "",
+  "city": "North Miami Beach",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-michael-krop-high-school.jpg",
   "photo_card": "/project-michael-krop-high-school-card.jpg",
-  "wp_date": "2019-11-28"
+  "wp_date": "2019-11-28",
+  "address": "1410 NE 215th St\nNorth Miami Beach, Florida 33179\nUnited States",
+  "description": "This project covered renovations and repairs across the existing campus at Michael Krop High School."
 }
