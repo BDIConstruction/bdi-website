@@ -1,12 +1,14 @@
 {
-  "title": "Parkway Elem PE Shelter",
+  "title": "Parkway Elementary",
   "order": 50,
-  "city": "",
+  "city": "Miami Gardens",
   "state": "FL",
-  "sector": "",
+  "sector": "Educational",
   "year": "",
   "delivery": "",
   "photo": "/project-parkway-elem-pe-shelter.jpg",
   "photo_card": "/project-parkway-elem-pe-shelter-card.jpg",
-  "wp_date": "2019-12-10"
+  "wp_date": "2019-12-10",
+  "address": "1320 NW 188th St\nMiami Gardens, Florida 33169\nUnited States",
+  "description": "This project added a new P.E. shelter, covered walkway, and storage building at Parkway Elementary School, using a prototype physical education shelter layout. The work also upgraded the primary and kindergarten play areas and hardcourts."
 }
