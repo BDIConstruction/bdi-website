@@ -1,6 +1,9 @@
-# Everything here is public and worth indexing, apart from the editor.
+# Everything here is public and worth indexing, apart from the editor and
+# the private employee merch order page (unlisted, login-gated — reachable
+# only by direct link).
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /merch/
 
 Sitemap: https://bdiconstruction.com/sitemap.xml
