@@ -462,7 +462,7 @@ function orderText(){
   if (!c.lines.length) lines.push("  none");
   c.lines.forEach(it => { const d = describe(it); lines.push("  " + it.qty + " x " + d.title + " | " + d.detail + " | " + money(it.total)); });
   lines.push("");
-  lines.push("Shirts total: " + money(c.total));
+  lines.push("Order total: " + money(c.total));
   lines.push("BDI pays: " + money(c.bdi));
   lines.push("Payroll deduction: " + money(c.you));
   lines.push(state.agree ? "AUTHORIZED: I authorize BDI Construction to deduct " + money(c.you) + " from my paycheck for this order. (" + new Date().toLocaleDateString("en-US") + ")" : "NOT AUTHORIZED YET");
@@ -501,7 +501,7 @@ function renderCart(){
       ${c.lines.length ? c.lines.map(lineHTML).join("") : `<div class="empty">No shirts yet. Pick a size and tap “Add to order”.</div>`}
     </div>
     ${c.lines.length ? `<div class="group" style="gap:4px;border-top:1px solid var(--line);padding-top:10px">
-      <div class="nums num" style="display:flex;justify-content:space-between"><span>Shirts total</span><span>${money(c.total)}</span></div>
+      <div class="nums num" style="display:flex;justify-content:space-between"><span>Order total</span><span>${money(c.total)}</span></div>
       <div class="nums num" style="display:flex;justify-content:space-between;color:var(--ok)"><span>BDI pays</span><span>−${money(c.bdi)}</span></div>
       <div class="num" style="display:flex;justify-content:space-between;font-weight:800;font-size:16px"><span>Deducted from your paycheck</span><span>${money(c.you)}</span></div>
     </div>` : ""}
@@ -600,7 +600,7 @@ function runTally(){
     <h3 style="font-size:18px;margin-top:8px">Bulk order</h3>
     <div class="tablebox"><table><thead><tr><th>Shirt</th><th>Fit</th><th>Color</th><th>Size</th><th class="r">Qty</th><th class="r">Cost</th></tr></thead><tbody id="tb1"></tbody></table></div>
     <h3 style="font-size:18px;margin-top:8px">What each person owes</h3>
-    <div class="tablebox"><table><thead><tr><th>Name</th><th>Role</th><th class="r">Shirts total</th><th class="r">BDI pays</th><th class="r">Payroll deduction</th><th>Authorized</th></tr></thead><tbody id="tb2"></tbody></table></div>`;
+    <div class="tablebox"><table><thead><tr><th>Name</th><th>Role</th><th class="r">Order total</th><th class="r">BDI pays</th><th class="r">Payroll deduction</th><th>Authorized</th></tr></thead><tbody id="tb2"></tbody></table></div>`;
   const tb1 = $("#tb1"), tb2 = $("#tb2");
   tallyRows.forEach(r => { const tr = document.createElement("tr"); [r.title,r.fit,r.color,r.size].forEach(v => { const td = document.createElement("td"); td.textContent = v; tr.appendChild(td); });
     tr.insertAdjacentHTML("beforeend", `<td class="r num">${r.qty}</td><td class="r num">${money(r.qty*r.price)}</td>`); tb1.appendChild(tr); });
@@ -614,7 +614,7 @@ function runTally(){
 $("#tallyRun").addEventListener("click", runTally);
 $("#tallyCopy").addEventListener("click", () => {
   const tsv = ["BULK ORDER","Shirt\tFit\tColor\tSize\tQty\tCost"].concat(tallyRows.map(r => [r.title,r.fit,r.color,r.size,r.qty,r.qty*r.price].join("\t")),
-    ["","WHAT EACH PERSON OWES","Name\tRole\tShirts total\tBDI pays\tPayroll deduction\tAuthorized"], tallyPeople.map(p => [p.name,p.role,p.total,p.bdi,p.you,p.auth?"Yes":"No"].join("\t"))).join("\n");
+    ["","WHAT EACH PERSON OWES","Name\tRole\tOrder total\tBDI pays\tPayroll deduction\tAuthorized"], tallyPeople.map(p => [p.name,p.role,p.total,p.bdi,p.you,p.auth?"Yes":"No"].join("\t"))).join("\n");
   const tm = $("#tallyMsg");
   const fail = () => { tm.className = "msg err"; tm.textContent = "Copy was blocked. Select the tables and copy them instead."; };
   try { navigator.clipboard.writeText(tsv).then(() => { tm.className = "msg"; tm.textContent = "Copied. Paste into Excel."; }, fail); } catch(e){ fail(); }
