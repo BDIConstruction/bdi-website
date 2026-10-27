@@ -1,7 +1,7 @@
 {
   "title": "UM Calder Library",
   "order": 34,
-  "city": "",
+  "city": "Miami",
   "state": "FL",
   "sector": "Educational",
   "year": "",
@@ -9,7 +9,8 @@
   "photo": "/project-um-calder-library-basement-renovations.jpg",
   "photo_card": "/project-um-calder-library-basement-renovations-card.jpg",
   "wp_date": "2021-11-28",
-  "description": "This project converted 1,842 square feet of meeting room space in the basement of the University of Miami's Louis Calder Memorial Library into modern study and workspace facilities, reconfigured into six collaboration spaces and eight individual Zoom rooms.\n\nThe renovation included new doors, ceilings, and flooring, along with added emergency power, airflow sensors, and heat lamps.",
+  "address": "1601 NW 10th Ave\nMiami, Florida 33136\nUnited States",
+  "description": "The Louis Calder Memorial Library is the medical and health sciences library for the University of Miami Miller School of Medicine. This project converted 1,842 square feet of meeting room space in the library's basement into modern study and workspace facilities, reconfigured into six collaboration spaces and eight individual Zoom rooms.\n\nThe renovation included new doors, ceilings, and flooring, along with added emergency power, airflow sensors, and heat lamps.",
   "gallery": [
     "/uploads/um-calder-library-conference-room.jpg",
     "/uploads/um-calder-library-computer-lab.jpg",
