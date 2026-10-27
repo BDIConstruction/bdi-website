@@ -10,5 +10,10 @@
   "photo_card": "/project-pike-house-coral-gables-fl-card.jpg",
   "wp_date": "2021-12-01",
   "address": "5800 San Amaro Drive\nCoral Gables, Florida 33146\nUnited States",
-  "description": "The Pi Kappa Alpha (Pike) fraternity house provides student housing near the University of Miami in Coral Gables. The building is owned by West Range Coral Gables LLC, a private entity run by Pike alumni officers rather than the fraternity's national headquarters.\n\nThe house includes a chapter room for meetings and sports, shared common living areas, a pool deck, and multi-room suites with private bedrooms and bathrooms."
+  "description": "The Pi Kappa Alpha (Pike) fraternity house provides student housing near the University of Miami in Coral Gables. The building is owned by West Range Coral Gables LLC, a private entity run by Pike alumni officers rather than the fraternity's national headquarters.\n\nThe house includes a chapter room for meetings and sports, shared common living areas, a pool deck, and multi-room suites with private bedrooms and bathrooms.",
+  "gallery": [
+    "/uploads/pike-house-coral-gables-pool-deck.jpg",
+    "/uploads/pike-house-coral-gables-building-entrance.jpg",
+    "/uploads/pike-house-coral-gables-patio-pergola.jpg"
+  ]
 }
