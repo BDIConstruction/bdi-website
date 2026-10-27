@@ -10,5 +10,10 @@
   "photo_card": "/project-palm-plaza-medical-center-card.jpg",
   "wp_date": "2019-11-30",
   "address": "16795 NW 67th Ave\nHialeah, Florida 33015\nUnited States",
-  "description": "Also known as Palm Medical Centers \u2013 Miami Lakes, Palm Plaza Medical Center is a senior primary care provider on the Hialeah/Miami Lakes border. BDI Construction completed an interior build-out and renovation of the facility."
+  "description": "Also known as Palm Medical Centers \u2013 Miami Lakes, Palm Plaza Medical Center is a senior primary care provider on the Hialeah/Miami Lakes border. BDI Construction completed an interior build-out and renovation of the facility.",
+  "gallery": [
+    "/uploads/palm-plaza-medical-center-logo-wall.jpg",
+    "/uploads/palm-plaza-medical-center-waiting-room.jpg",
+    "/uploads/palm-plaza-medical-center-reception-desk.jpg"
+  ]
 }
