@@ -10,5 +10,10 @@
   "photo_card": "/project-um-mailman-center-card.jpg",
   "wp_date": "2021-10-20",
   "address": "1601 NW 12th Ave\nMiami, Florida 33136\nUnited States",
-  "description": "The Mailman Center for Child Development is an academic center within the University of Miami Miller School of Medicine focused on developmental disabilities and children with special health care needs. This renovation modernized its nine-story, 115,000-square-foot Brutalist building on the UM/Jackson Memorial Medical Center campus in Miami.\n\nThe refresh brought vibrant, child-friendly color palettes, upgraded integrated technology, and expanded accessibility features to the clinical and learning spaces throughout the building."
+  "description": "The Mailman Center for Child Development is an academic center within the University of Miami Miller School of Medicine focused on developmental disabilities and children with special health care needs. This renovation modernized its nine-story, 115,000-square-foot Brutalist building on the UM/Jackson Memorial Medical Center campus in Miami.\n\nThe refresh brought vibrant, child-friendly color palettes, upgraded integrated technology, and expanded accessibility features to the clinical and learning spaces throughout the building.",
+  "gallery": [
+    "/uploads/um-mailman-center-waiting-room.jpg",
+    "/uploads/um-mailman-center-waiting-room-seating.jpg",
+    "/uploads/um-mailman-center-mural-hallway.jpg"
+  ]
 }
