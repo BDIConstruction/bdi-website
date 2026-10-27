@@ -1,15 +1,19 @@
 {
-  "title": "University of Miami Health System - Clinic 1",
+  "title": "University of Miami Health System - SCCC",
   "order": 35,
-  "city": "",
+  "city": "Kendall",
   "state": "FL",
   "sector": "Commercial",
   "year": "",
   "delivery": "",
   "photo": "/project-university-of-miami-health-system.jpg",
   "photo_card": "/project-university-of-miami-health-system-card.jpg",
-  "description": "University of Miami Health System serves patients of the UM Sylvester Comprehensive Cancer Center at University of Miami Hospital & Clinics. BDI Construction renovated an office and patient treatment rooms within the facility.\n\nThe scope covered curtained infusion bays with reclining treatment chairs, a central nurses' station and supply area, and an updated reception and waiting room.",
+  "description": "University of Miami Health System - SCCC is the UM Sylvester Comprehensive Cancer Center's Kendall location, a hospital-based facility of University of Miami Hospital & Clinics. BDI Construction renovated an office and patient treatment rooms within the facility.\n\nThe scope covered curtained infusion bays with reclining treatment chairs, a central nurses' station and supply area, and an updated reception and waiting room.",
   "gallery": [
-    "/uploads/university-of-miami-health-system-nurse-station.jpg"
+    "/uploads/university-of-miami-health-system-nurse-station.jpg",
+    "/uploads/university-of-miami-health-system-sink-recliner-corner.jpg",
+    "/uploads/university-of-miami-health-system-reception-desk.jpg",
+    "/uploads/university-of-miami-health-system-exam-room.jpg",
+    "/uploads/university-of-miami-health-system-office-hallway.jpg"
   ]
 }
