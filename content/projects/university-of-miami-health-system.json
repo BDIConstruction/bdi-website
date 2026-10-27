@@ -1,0 +1,18 @@
+{
+  "title": "University of Miami Health System",
+  "order": 59,
+  "city": "",
+  "state": "FL",
+  "sector": "Commercial",
+  "year": "",
+  "delivery": "",
+  "photo": "/project-university-of-miami-health-system.jpg",
+  "photo_card": "/project-university-of-miami-health-system-card.jpg",
+  "description": "BDI Construction completed a clinical renovation for a University of Miami Health System facility, including Sylvester Comprehensive Cancer Center patient infusion space. The scope covered curtained infusion bays with reclining treatment chairs, a central nurses' station and supply area, and an updated reception and waiting room.",
+  "gallery": [
+    "/uploads/university-of-miami-health-system-infusion-bay.jpg",
+    "/uploads/university-of-miami-health-system-nurse-station.jpg",
+    "/uploads/university-of-miami-health-system-two-chair-room.jpg",
+    "/uploads/university-of-miami-health-system-waiting-room.jpg"
+  ]
+}
