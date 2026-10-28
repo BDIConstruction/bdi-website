@@ -1,6 +1,6 @@
 {
   "title": "Juliet Cosmetics",
-  "order": 63,
+  "order": 3,
   "city": "South Miami",
   "state": "FL",
   "sector": "Commercial",
@@ -12,6 +12,8 @@
   "description": "Juliet Cosmetics is a cosmetics and wellness boutique in South Miami offering skincare and injectables. BDI Construction completed the interior build-out and renovation of the space.",
   "gallery": [
     "/uploads/juliet-cosmetics-reception-sign.jpg",
-    "/uploads/juliet-cosmetics-lounge-storefront.jpg"
+    "/uploads/juliet-cosmetics-lounge-storefront.jpg",
+    "/uploads/juliet-cosmetics-hallway-sign.jpg",
+    "/uploads/juliet-cosmetics-treatment-room.jpg"
   ]
 }
