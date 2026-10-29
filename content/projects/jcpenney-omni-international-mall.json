@@ -1,6 +1,7 @@
 {
   "title": "JCPenney - Omni International Mall",
-  "order": 64,
+  "order": 0,
+  "wp_date": "2025-02-02",
   "city": "Miami",
   "state": "FL",
   "sector": "Commercial",
@@ -9,5 +10,10 @@
   "photo": "/project-jcpenney-omni-international-mall.jpg",
   "photo_card": "/project-jcpenney-omni-international-mall-card.jpg",
   "address": "1701 Biscayne Blvd\nMiami, Florida 33132\nUnited States",
-  "description": "BDI Construction completed a full building demolition of the former JCPenney department store at Omni International Mall in Miami, bringing down the multi-level structure to clear the site for its next phase.\n\nThe project also included remodeling and repair work across the broader mall property, supporting redevelopment of this landmark Biscayne Boulevard site."
+  "description": "BDI Construction completed a full building demolition of the former JCPenney department store at Omni International Mall in Miami, bringing down the multi-level structure to clear the site for its next phase.\n\nThe project also included remodeling and repair work across the broader mall property, supporting redevelopment of this landmark Biscayne Boulevard site.",
+  "gallery": [
+    "/uploads/jcpenney-omni-international-mall-structural-framing.jpg",
+    "/uploads/jcpenney-omni-international-mall-interior-scaffolding.jpg",
+    "/uploads/jcpenney-omni-international-mall-site-excavation.jpg"
+  ]
 }
