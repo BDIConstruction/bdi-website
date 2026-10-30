@@ -33,6 +33,7 @@
   .navlinks .label{ color:var(--muted); letter-spacing:.12em; white-space:nowrap; }
   .navlinks > a:hover .label, .navlinks > div:hover > a .label{ color:var(--navy); }
   .navlinks > div{ position:relative; }
+  @media (min-width:921px){ .navlinks .label{ font-size:13px; } }
   .navlinks a.active .label, .navlinks a.active{ color:var(--navy); }
   .dropdown{
     position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(-4px); margin-top:26px;
@@ -48,7 +49,36 @@
   .dropdown a{ display:block; padding:9px 22px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
   .dropdown a.here{ color:var(--navy); }
   .dropdown a:hover{ color:var(--navy); }
-  @media (max-width:920px){ .navlinks{display:none;} }
+  /* MOBILE NAV — a toggleable menu, so the links stay reachable below the
+     920px breakpoint instead of just disappearing with the horizontal bar */
+  .nav-toggle{
+    display:none; width:40px; height:40px; margin:-8px; padding:8px;
+    background:none; border:none; cursor:pointer; flex-direction:column;
+    align-items:center; justify-content:center; gap:5px;
+  }
+  .nav-toggle span{ display:block; width:22px; height:2px; background:var(--navy); transition:transform .2s ease, opacity .2s ease; }
+  .nav.open .nav-toggle span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav.open .nav-toggle span:nth-child(2){ opacity:0; }
+  .nav.open .nav-toggle span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media (max-width:920px){
+    .nav-toggle{ display:flex; }
+    .navlinks{
+      display:flex; flex-direction:column; align-items:stretch; gap:0;
+      position:absolute; top:100%; left:0; right:0; background:#fff;
+      border-bottom:1px solid var(--hair); box-shadow:0 12px 24px rgba(15,30,45,.08);
+      max-height:0; overflow:hidden; visibility:hidden;
+      transition:max-height .25s ease, visibility .25s ease;
+    }
+    .nav.open .navlinks{ max-height:70vh; overflow-y:auto; visibility:visible; }
+    .navlinks > a, .navlinks > div > a{ padding:16px 24px; }
+    .navlinks > div{ position:static; }
+    .dropdown{
+      position:static; opacity:1; visibility:visible; transform:none; transition:none;
+      border:none; padding:0 0 8px; margin-top:0; min-width:0; text-align:left;
+    }
+    .dropdown::before{ display:none; }
+    .dropdown a{ padding:10px 24px 10px 40px; }
+  }
 
   /* PAGE HEAD — quiet, oversized watermark year */
   .pagehead{ position:relative; padding:120px 0 90px; overflow:hidden; background:var(--navy-deep); }
@@ -152,7 +182,10 @@
   <nav class="nav">
     <div class="nav-inner">
       <a class="brand" href="index.html"><img class="logomark" src="logo.png" alt="BDI Construction"></a>
-      <div class="navlinks">
+      <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="navlinks" id="navlinks">
         <div>
           <a class="active" href="history.html"><span class="label">About Us</span></a>
           <div class="dropdown">
@@ -168,6 +201,16 @@
       </div>
     </div>
   </nav>
+  <script>
+    (function(){
+      var nav = document.querySelector('.nav');
+      var toggle = nav.querySelector('.nav-toggle');
+      toggle.addEventListener('click', function(){
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+  </script>
 
   <div class="pagehead">
     <div class="year">1994</div>
