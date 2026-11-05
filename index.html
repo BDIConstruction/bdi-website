@@ -110,6 +110,7 @@
   /* Readability panel — hugs the hero copy from the eyebrow down to the buttons */
   .hero-panel{
     width:fit-content; max-width:100%;
+    margin:0 auto; text-align:center;
     padding:46px 56px 52px;
     background:rgba(11,29,44,.62);
     -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
@@ -118,10 +119,10 @@
   @media (max-width:800px){ .hero-panel{ padding:28px 24px 30px; } }
   .hero .label{ color:var(--green); margin-bottom:24px; }
   .hero h1{
-    font-size:clamp(38px,6vw,86px); line-height:1.04; color:#fff; max-width:1100px; margin-bottom:30px;
+    font-size:clamp(38px,6vw,86px); line-height:1.04; color:#fff; max-width:1100px; margin:0 auto 30px;
   }
-  .hero p{ color:rgba(255,255,255,.68); font-size:19px; max-width:560px; line-height:1.7; font-weight:300; margin-bottom:36px; }
-  .btnrow{ display:flex; gap:16px; flex-wrap:wrap; }
+  .hero p{ color:rgba(255,255,255,.68); font-size:19px; max-width:560px; line-height:1.7; font-weight:300; margin:0 auto 36px; }
+  .btnrow{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
   .btn{ padding:17px 38px; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
   .btn.primary{ background:var(--green); color:var(--navy-deep); }
   .btn.ghost{ border:1px solid rgba(255,255,255,.4); color:#fff; }
@@ -266,7 +267,7 @@
          delays the photograph a visitor actually arrives to. -->
     <div class="skyline" id="slides">
       <img src="hero-fountains-hidden-lake.jpg" alt="The Fountains at Hidden Lake, Crystal River" class="on" fetchpriority="high">
-      <img data-src="hero-tucker.jpg" alt="Tucker Tower Apartments, Miami">
+      <img data-src="hero-heineken.jpg" alt="Heineken America's Office, Miami">
       <img data-src="hero-courtside.jpg" alt="Courtside Apartments II, Miami" style="object-position:center 55%">
       <img data-src="hero-kla.jpg" alt="KLA Academy, Miami">
     </div>
@@ -274,7 +275,7 @@
     <div class="wrap">
       <div class="hero-panel">
         <div class="rv label" data-d="0">General Contracting · Construction Management — Statewide, Florida</div>
-        <h1 class="rv" data-d="90">Solid People.<br>Solid Work.<br>Solid Relationships.</h1>
+        <h1 class="rv" data-d="90">Solid People.<br>Solid Work.</h1>
         <p class="rv" data-d="180">For more than three decades, BDI Construction has built the schools, homes, and communities Floridians spend their lives in.</p>
         <div class="rv btnrow" data-d="270">
           <a class="btn primary" href="projects.html">View Our Work</a>
