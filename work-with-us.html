@@ -109,6 +109,19 @@
   .col-head h2{ font-size:clamp(21px,2.2vw,26px); font-style:italic; color:var(--navy); }
   .col-head p{ color:var(--muted); font-size:15px; margin-top:16px; line-height:1.8; font-weight:300; }
 
+  /* Paycom's own snippet ships a fixed 650px width meant for a narrow
+     sidebar; full-width + a fluid height reads much better in this column
+     and on phones, where a fixed-width iframe would force the page to
+     scroll sideways. */
+  .careers-embed{ margin-bottom:56px; }
+  .careers-embed .label{ color:var(--teal); margin-bottom:16px; }
+  .careers-embed .frame{
+    width:100%; height:80vh; max-height:900px; min-height:520px;
+    border:1px solid var(--hair); overflow:hidden;
+  }
+  .careers-embed iframe{ display:block; width:100%; height:100%; border:none; }
+  @media (max-width:600px){ .careers-embed .frame{ height:70vh; min-height:440px; } }
+
   /* the honeypot: off-screen rather than display:none, which some bots skip */
   .hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
 
@@ -357,6 +370,13 @@
           <h2>Join Our Team</h2>
           <p>Solid people build solid work. Tell us about yourself, attach your resume,
             and it goes straight to our hiring team — whether or not we have a posting open.</p>
+        </div>
+
+        <div class="careers-embed rv-r">
+          <div class="label">Current Openings</div>
+          <div class="frame">
+            <iframe src="https://phx.us-west.paycomonline.net/v4/ats/web.php/portal/121CF1E8039B1F5AA004E56B18A8B058/career-page" title="BDI Construction job openings on Paycom" loading="lazy"></iframe>
+          </div>
         </div>
 
         <!-- The resume has to travel with the application, and the relay the
