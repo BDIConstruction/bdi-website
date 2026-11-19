@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BDI Secret Santa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --sunk:#F3F5F9; --ink:#0B1A3A; --muted:#4E5A78; --line:#E1E5ED;
+  --cobalt:#1747E6; --cobalt-ink:#FFFFFF; --signal:#D4FF3A; --band:#FFFFFF; --band-ink:#0B1A3A; --band-muted:#4E5A78;
+  --warn:#9A4A00; --warn-bg:#FFF1DF;
+  --display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+a{color:var(--cobalt)}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+.band{background:var(--band);color:var(--band-ink);border-bottom:1px solid var(--line)}
+.band .wrap{padding-block:30px}
+.eyebrow{font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.band h1{font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.05;margin-top:12px}
+.band p{color:var(--band-muted);max-width:62ch;margin:12px 0 0}
+.cap{display:inline-flex;align-items:baseline;gap:8px;border:1.5px solid var(--cobalt);border-radius:6px;padding:10px 16px;margin-top:18px}
+.cap b{font-family:var(--display);font-size:20px}
+.cap span{font-size:13px;color:var(--band-muted)}
+
+main .wrap{padding-block:32px 100px}
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;gap:10px}
+.card h3{font-size:18px;font-weight:800}
+.card ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14px;color:var(--ink)}
+.card .nogift{display:inline-block;margin-top:2px;font-size:12px;font-weight:700;color:var(--warn);background:var(--warn-bg);padding:3px 8px;border-radius:99px}
+
+h2.section{font-size:22px;font-weight:800;margin-top:52px}
+.section-note{color:var(--muted);font-size:14px;margin-top:8px;max-width:62ch}
+.tbd{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.tbd span{background:var(--sunk);border:1px solid var(--line);border-radius:99px;padding:8px 16px;font-size:14px;font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap">
+    <div class="eyebrow">BDI Construction · Holiday 2026</div>
+    <h1>Secret Santa Gift Exchange</h1>
+    <p>Everyone's been matched with a person to shop for. Below is what each person told us
+      they'd like — pick one, or use it as a starting point. A few people haven't shared their
+      picks yet; check back on this page as those get added.</p>
+    <div class="cap"><b>$50</b><span>spending cap per gift</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <h2 class="section">Gift Ideas</h2>
+    <div class="people">
+
+      <div class="card">
+        <h3>Yamile Dominguez</h3>
+        <ul>
+          <li>Plants</li>
+          <li>Gift card — food or a store</li>
+          <li>Loves <a href="https://www.rossstores.com/" target="_blank" rel="noopener">Ross</a> and
+            <a href="https://tjmaxx.tjx.com/" target="_blank" rel="noopener">TJ Maxx</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Dayana Colmenares</h3>
+        <ul>
+          <li>Gift card — <a href="https://www.ulta.com/" target="_blank" rel="noopener">Ulta</a>,
+            <a href="https://www.zara.com/us/" target="_blank" rel="noopener">Zara</a>, or
+            <a href="https://www.intimissimi.com/us-en" target="_blank" rel="noopener">Intimissimi</a></li>
+          <li>Hair clips</li>
+          <li>Bodysuits</li>
+          <li>A toy for Dior</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Margarita Cangas</h3>
+        <ul>
+          <li>Loves anything from <a href="https://www.crateandbarrel.com/" target="_blank" rel="noopener">Crate &amp; Barrel</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Katrin Nunez</h3>
+        <ul>
+          <li>Gift card — <a href="https://us.shein.com/" target="_blank" rel="noopener">Shein</a> or
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener">Amazon</a></li>
+          <li>Primemart</li>
+          <li>A cool sweater</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Jocelyn Guillen</h3>
+        <ul>
+          <li>Gift card — <a href="https://www.sephora.com/" target="_blank" rel="noopener">Sephora</a> or
+            <a href="https://www.ulta.com/" target="_blank" rel="noopener">Ulta</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Brenda Cedeno Rijo</h3>
+        <ul>
+          <li><a href="https://shop.lululemon.com/" target="_blank" rel="noopener">Lululemon</a> keychain</li>
+          <li><a href="https://shop.lululemon.com/" target="_blank" rel="noopener">Lululemon</a> belt bag</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Andrea Nestor</h3>
+        <ul>
+          <li>Coffee mugs</li>
+          <li>Food processor</li>
+          <li>Waffle maker</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Noemi Rovirosa</h3>
+        <ul>
+          <li>Not sure yet — open to ideas</li>
+        </ul>
+        <span class="nogift">Does NOT want a gift card</span>
+      </div>
+
+      <div class="card">
+        <h3>Lourdes Escandon</h3>
+        <ul>
+          <li>Loves anything from <a href="https://120percento.com/" target="_blank" rel="noopener">120% Lino</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h2 class="section">Still Deciding</h2>
+    <p class="section-note">These folks haven't shared their picks yet. If you've got one of them, hang tight — their list will move up above once they send it in.</p>
+    <div class="tbd">
+      <span>Yolanda Cue Gonzalez</span>
+      <span>Sofia Espaillat</span>
+      <span>Jessica Terman</span>
+      <span>Agustina Matarazzo</span>
+      <span>Andrea Loguzzo</span>
+      <span>Marileidy Hernandez</span>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
